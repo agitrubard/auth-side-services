@@ -11,8 +11,5 @@ AuthSide is a robust authentication and authorization framework developed using 
 - **Secure User Access:** AuthSide handles authentication, authorization, and JWT-based user access.
 - **Database Integration:** Fully integrated with various databases, enabling compatibility with different systems. Utilizes Liquibase for seamless multi-database support.
 - **Containerization with Docker:** AuthSide embraces containerization with Docker, allowing consistent deployment across various environments.
-- **Comprehensive Testing:** Unit, integration and system tests are included, utilizing test containers to ensure comprehensive test coverage.
-- **Documentation:** AuthSide comes with extensive code documentation, enabling developers to quickly understand and contribute to the project.
-- **Containerization with Docker:** AuthSide embraces containerization with Docker, allowing consistent deployment across various environments.
 - **Comprehensive Testing:** Unit, system, and integration tests are included, utilizing test containers to ensure comprehensive test coverage.
 - **Documentation:** AuthSide comes with extensive code documentation, enabling developers to quickly understand and contribute to the project.
