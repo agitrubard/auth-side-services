@@ -13,3 +13,4 @@ AuthSide is an advanced authentication and authorization framework designed to f
 - **Containerization with Docker:** AuthSide embraces containerization with Docker, allowing consistent deployment across various environments.
 - **Comprehensive Testing:** Unit, system, and integration tests are included, utilizing test containers to ensure comprehensive test coverage.
 - **Documentation:** AuthSide comes with extensive code documentation, enabling developers to quickly understand and contribute to the project.
+- **GitHub Actions Integration:** Automate your workflows with seamless GitHub Actions integration. Ensure code quality, run tests, and deploy effortlessly.
