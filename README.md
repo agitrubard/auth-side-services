@@ -1,16 +1,20 @@
 # 🔐 AuthSide
 
-AuthSide is an advanced authentication and authorization framework designed to fortify your applications with rock-solid
-user access control solutions. Crafted using cutting-edge technologies, AuthSide stands as your ultimate solution for
-implementing unwavering security measures. Developed with Java 17 and the latest Spring framework, AuthSide follows a
-hexagonal architecture that enhances modular design and elevates system maintainability. Through the seamless
-integration of Spring Security and JSON Web Tokens (JWT), AuthSide establishes a multi-layered security paradigm.
-Moreover, AuthSide boasts seamless integration with a variety of databases, fortified by the power of Liquibase,
-ensuring cross-database compatibility and streamlined development.
+AuthSide stands as an advanced authentication and authorization framework meticulously designed to empower your
+applications with user access control solutions that boast unwavering security. Merging cutting-edge technologies with
+expert craftsmanship, AuthSide provides the ultimate solution for implementing ironclad security measures. Developed
+using Java 17 and the latest Spring framework, AuthSide adopts a hexagonal architecture that magnifies modular design
+principles and elevates system maintainability. Seamlessly weaving together Spring Security and JSON Web Tokens (JWT),
+AuthSide establishes a multi-layered security paradigm. Moreover, AuthSide's seamless integration with a variety of
+databases, fortified by the prowess of Liquibase, ensures cross-database compatibility and streamlines development
+workflows.
 
 ## 🗯️ Features
 
 - **Secure User Access:** AuthSide handles authentication, authorization, and JWT-based user access.
+- **Flexibility on User/Role/Permission Flows:** AuthSide empowers you to define intricate user hierarchies, roles, and
+  permissions. Build flexible user and role structures with ease, and enjoy the flexibility of creating custom roles and
+  assigning permissions as needed.
 - **Spring Security & JWT:** Robust security is ensured through the integration of Spring Security, offering various
   authentication mechanisms and JWT for secure token-based communication.
 - **Database Integration:** Fully integrated with various databases, enabling compatibility with different systems.
