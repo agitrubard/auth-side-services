@@ -1,4 +1,4 @@
-package com.agitrubard.ass;
+package com.agitrubard.authside;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

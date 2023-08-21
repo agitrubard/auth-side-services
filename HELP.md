@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'com.agitrubard.auth-side-services' is invalid and this project uses 'com.agitrubard.ass' instead.
+* The original package name 'com.agitrubard.auth-side-services' is invalid and this project uses 'com.agitrubard.authside' instead.
 
 # Getting Started
 
