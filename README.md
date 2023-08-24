@@ -38,5 +38,4 @@ workflows.
 
 ## 🏛️ Hexagonal Architecture
 
-<img src="https://rb.gy/sa7kt" width="7000" alt=""/>
-
+![](https://github.com/agitrubard/auth-side-services/blob/main/documents/architecture/hexagonal-architecture.jpg?raw=true)
