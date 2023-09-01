@@ -1,1 +1,50 @@
+server:
+  port: 9090
 
+logging:
+  level:
+    web: debug
+
+spring:
+  liquibase:
+    enabled: true
+    changeLog: "classpath:database/configuration.yaml"
+    drop-first: ${LIQUIBASE_ENABLE_DROP_FIRST:true}
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  datasource:
+    username: ${DATABASE_USERNAME:auth_side}
+    password: ${DATABASE_USERNAME:auth_side_pass}
+    url: jdbc:mysql://${DATABASE_IP:localhost}:${DATABASE_PORT:3306}/auth_side
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+springdoc:
+  packagesToScan: com.agitrubard.authside
+  cache:
+    disabled: false
+  swagger-ui:
+    path: /public/swagger-ui.html
+  api-docs:
+    path: /public/api/docs
+
+info:
+  application:
+    name: '@project.name@'
+    description: '@project.description@'
+    version: '@project.version@'
+
+management:
+  info:
+    env:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: info, health
+      base-path: /public/actuator
