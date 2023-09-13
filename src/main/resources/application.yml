@@ -6,6 +6,11 @@ logging:
     web: debug
 
 spring:
+  datasource:
+    username: ${DATABASE_USERNAME:auth_side}
+    password: ${DATABASE_PASSWORD:auth_side_pass}
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:3306}/auth_side
+    driver-class-name: com.mysql.cj.jdbc.Driver
   liquibase:
     enabled: true
     changeLog: "classpath:database/configuration.yaml"
@@ -18,11 +23,6 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-  datasource:
-    username: ${DATABASE_USERNAME:auth_side}
-    password: ${DATABASE_USERNAME:auth_side_pass}
-    url: jdbc:mysql://${DATABASE_IP:localhost}:${DATABASE_PORT:3306}/auth_side
-    driver-class-name: com.mysql.cj.jdbc.Driver
 
 springdoc:
   packagesToScan: com.agitrubard.authside

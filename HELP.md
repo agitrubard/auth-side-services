@@ -34,10 +34,11 @@ The following guides illustrate how to use some features concretely:
 * [Handling Form Submission](https://spring.io/guides/gs/handling-form-submission/)
 
 ### Docker Compose support
-This project contains a Docker Compose file named `compose.yaml`.
+This project contains a Docker Compose file named `docker-compose.yml`.
 In this file, the following services have been defined:
 
-* mysql: [`mysql:latest`](https://hub.docker.com/_/mysql)
+* database: [`mysql:latest`](https://hub.docker.com/_/mysql)
+* application: `auth-side-services:latest`
 
 Please review the tags of the used images and set them to the same as you're running in production.
 

@@ -4,7 +4,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
 
-    <changeSet id="1__auth_side__ddl" author="agitrubard">
+    <changeSet id="1__ddl" author="agitrubard">
         <!-- ========================== -->
         <!-- DDL of AUTH_SIDE_PARAMETER -->
         <!-- ========================== -->
