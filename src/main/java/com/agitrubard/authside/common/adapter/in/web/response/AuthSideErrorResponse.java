@@ -17,32 +17,84 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * The {@code AuthSideErrorResponse} class represents a standard error response format used for handling exceptions and conveying error information.
+ * It includes details such as the timestamp, HTTP status, error message, and optional sub-errors.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
+ */
 @Getter
 @Builder
 public class AuthSideErrorResponse {
 
+    /**
+     * The timestamp indicating when the error response was created.
+     */
     @Builder.Default
     private LocalDateTime time = LocalDateTime.now();
+
+    /**
+     * The HTTP status code corresponding to the error.
+     */
     private HttpStatus httpStatus;
+
+    /**
+     * A boolean value indicating whether the request was successful (default is false for error responses).
+     */
     @Builder.Default
     private final Boolean isSuccess = false;
+
+    /**
+     * A short header or error code describing the type of error.
+     */
     private String header;
+
+    /**
+     * An optional error message providing more information about the error.
+     */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String message;
+
+    /**
+     * An optional list of sub-errors, each representing a specific issue related to the main error.
+     */
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<AuthSideSubError> subErrors;
 
+    /**
+     * The {@code AuthSideSubError} class represents a sub-error within an error response.
+     */
     @Getter
     @Builder
     public static class AuthSideSubError {
+
+        /**
+         * A message describing the sub-error.
+         */
         private String message;
+
+        /**
+         * The name of the field associated with the sub-error.
+         */
         private String field;
+
+        /**
+         * The value that caused the sub-error (if applicable).
+         */
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private Object value;
+
+        /**
+         * The type or data type related to the sub-error (if applicable).
+         */
         @JsonInclude(JsonInclude.Include.NON_NULL)
         private String type;
     }
 
+    /**
+     * An enumeration of predefined error headers used for categorizing errors.
+     */
     @Getter
     @RequiredArgsConstructor
     public enum Header {
@@ -58,6 +110,13 @@ public class AuthSideErrorResponse {
     }
 
 
+    /**
+     * Constructs an {@code AuthSideErrorResponseBuilder} with sub-errors generated from a list of {@code FieldError} objects.
+     * This is typically used to handle validation errors.
+     *
+     * @param fieldErrors The list of {@code FieldError} objects representing validation errors.
+     * @return An {@code AuthSideErrorResponseBuilder} with sub-errors.
+     */
     public static AuthSideErrorResponse.AuthSideErrorResponseBuilder subErrors(final List<FieldError> fieldErrors) {
 
         if (CollectionUtils.isEmpty(fieldErrors)) {
@@ -87,6 +146,13 @@ public class AuthSideErrorResponse {
         return AuthSideErrorResponse.builder().subErrors(subErrorErrors);
     }
 
+    /**
+     * Constructs an {@code AuthSideErrorResponseBuilder} with sub-errors generated from a set of {@code ConstraintViolation} objects.
+     * This is used to handle validation errors that occur due to constraint violations.
+     *
+     * @param constraintViolations The set of {@code ConstraintViolation} objects representing validation errors.
+     * @return An {@code AuthSideErrorResponseBuilder} with sub-errors.
+     */
     public static AuthSideErrorResponse.AuthSideErrorResponseBuilder subErrors(final Set<ConstraintViolation<?>> constraintViolations) {
 
         if (CollectionUtils.isEmpty(constraintViolations)) {
@@ -108,6 +174,13 @@ public class AuthSideErrorResponse {
         return AuthSideErrorResponse.builder().subErrors(subErrors);
     }
 
+    /**
+     * Constructs an {@code AuthSideErrorResponseBuilder} with sub-errors generated from a {@code MethodArgumentTypeMismatchException}.
+     * This is used to handle type mismatch errors in method arguments.
+     *
+     * @param exception The {@code MethodArgumentTypeMismatchException} representing the type mismatch error.
+     * @return An {@code AuthSideErrorResponseBuilder} with sub-errors.
+     */
     public static AuthSideErrorResponse.AuthSideErrorResponseBuilder subErrors(final MethodArgumentTypeMismatchException exception) {
         return AuthSideErrorResponse.builder()
                 .subErrors(List.of(

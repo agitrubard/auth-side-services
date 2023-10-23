@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.10.xsd">
+
+    <changeSet id="2__dml" author="agitrubard">
+        <!-- ========================== -->
+        <!-- DML of AUTH_SIDE_PARAMETER -->
+        <!-- ========================== -->
+        <insert tableName="AUTH_SIDE_PARAMETER">
+            <column name="NAME" value="AUTH_TOKENS_ISSUER"/>
+            <column name="DEFINITION" value="AUTH_SIDE"/>
+            <column name="CREATED_BY" value="AUTH_SIDE"/>
+            <column name="CREATED_AT" valueDate="now()"/>
+        </insert>
+        <insert tableName="AUTH_SIDE_PARAMETER">
+            <column name="NAME" value="AUTH_NEW_KEY_PAIR_GENERATED_WHEN_APPLICATION_STARTS"/>
+            <column name="DEFINITION" value="false"/>
+            <column name="CREATED_BY" value="AUTH_SIDE"/>
+            <column name="CREATED_AT" valueDate="now()"/>
+        </insert>
+        <insert tableName="AUTH_SIDE_PARAMETER">
+            <column name="NAME" value="AUTH_ACCESS_TOKEN_EXPIRE_MINUTE"/>
+            <column name="DEFINITION" value="120"/>
+            <column name="CREATED_BY" value="AUTH_SIDE"/>
+            <column name="CREATED_AT" valueDate="now()"/>
+        </insert>
+        <insert tableName="AUTH_SIDE_PARAMETER">
+            <column name="NAME" value="AUTH_REFRESH_TOKEN_EXPIRE_DAY"/>
+            <column name="DEFINITION" value="1"/>
+            <column name="CREATED_BY" value="AUTH_SIDE"/>
+            <column name="CREATED_AT" valueDate="now()"/>
+        </insert>
+        <insert tableName="AUTH_SIDE_PARAMETER">
+            <column name="NAME" value="AUTH_SENDS_MAIL_OTP_WHEN_USER_LOGGED_IN"/>
+            <column name="DEFINITION" value="true"/>
+            <column name="CREATED_BY" value="AUTH_SIDE"/>
+            <column name="CREATED_AT" valueDate="now()"/>
+        </insert>
+        <insert tableName="AUTH_SIDE_PARAMETER">
+            <column name="NAME" value="AUTH_LOGIN_MAX_TRY_COUNT"/>
+            <column name="DEFINITION" value="3"/>
+            <column name="CREATED_BY" value="AUTH_SIDE"/>
+            <column name="CREATED_AT" valueDate="now()"/>
+        </insert>
+        <!-- ========================== -->
+        <!-- DML of AUTH_SIDE_PARAMETER -->
+        <!-- ========================== -->
+    </changeSet>
+
+</databaseChangeLog>

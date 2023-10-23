@@ -18,13 +18,13 @@
             <column name="DEFINITION" type="LONGTEXT">
                 <constraints nullable="false"/>
             </column>
-            <column name="CREATED_USER" type="VARCHAR(255)" defaultValue='AUTH_SIDE'>
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue='AUTH_SIDE'>
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_AT" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATED_USER" type="VARCHAR(255)"/>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
             <column name="UPDATED_AT" type="TIMESTAMP"/>
         </createTable>
         <!-- ========================== -->
@@ -39,14 +39,14 @@
             <column name="ID" type="VARCHAR(36)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="USERNAME" type="VARCHAR(255)">
+            <column name="USERNAME" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true" uniqueConstraintName="U__AUTH_SIDE_USER__USERNAME"/>
             </column>
-            <column name="PASSWORD" type="VARCHAR(512)">
-                <constraints nullable="false"/>
+            <column name="MAIL_ADDRESS" type="VARCHAR(254)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="U__AUTH_SIDE_USER__MAIL_ADDRESS"/>
             </column>
-            <column name="EMAIL" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true" uniqueConstraintName="U__AUTH_SIDE_USER__EMAIL"/>
+            <column name="PASSWORD" type="VARCHAR(60)">
+                <constraints nullable="false"/>
             </column>
             <column name="FIRST_NAME" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -57,13 +57,13 @@
             <column name="STATUS" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="CREATED_USER" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_AT" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATED_USER" type="VARCHAR(255)"/>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
             <column name="UPDATED_AT" type="TIMESTAMP"/>
         </createTable>
         <!-- ===================== -->
@@ -84,13 +84,13 @@
             <column name="STATUS" type="VARCHAR(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="CREATED_USER" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_AT" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATED_USER" type="VARCHAR(255)"/>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
             <column name="UPDATED_AT" type="TIMESTAMP"/>
         </createTable>
         <!-- ===================== -->
@@ -108,16 +108,16 @@
             <column name="NAME" type="VARCHAR(255)">
                 <constraints nullable="false" unique="true" uniqueConstraintName="U__AUTH_SIDE_PERMISSION__NAME"/>
             </column>
-            <column name="STATUS" type="VARCHAR(50)">
+            <column name="CATEGORY" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="CREATED_USER" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_AT" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATED_USER" type="VARCHAR(255)"/>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
             <column name="UPDATED_AT" type="TIMESTAMP"/>
         </createTable>
         <!-- =========================== -->
@@ -146,13 +146,13 @@
                              referencedColumnNames="ID"
                 />
             </column>
-            <column name="CREATED_USER" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_AT" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATED_USER" type="VARCHAR(255)"/>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
             <column name="UPDATED_AT" type="TIMESTAMP"/>
         </createTable>
         <!-- =================================== -->
@@ -181,13 +181,13 @@
                              referencedColumnNames="ID"
                 />
             </column>
-            <column name="CREATED_ROLE" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_AT" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATED_ROLE" type="VARCHAR(255)"/>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
             <column name="UPDATED_AT" type="TIMESTAMP"/>
         </createTable>
         <!-- ========================================= -->
@@ -195,39 +195,36 @@
         <!-- ========================================= -->
 
 
-        <!-- =========================================== -->
-        <!-- DDL of AUTH_SIDE_USER_REGISTER_VERIFICATION -->
-        <!-- =========================================== -->
-        <createTable tableName="AUTH_SIDE_USER_REGISTER_VERIFICATION">
+        <!-- =================================== -->
+        <!-- DDL of AUTH_SIDE_USER_LOGIN_ATTEMPT -->
+        <!-- =================================== -->
+        <createTable tableName="AUTH_SIDE_USER_LOGIN_ATTEMPT">
             <column name="ID" type="VARCHAR(36)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="USER_ID" type="VARCHAR(36)">
-                <constraints foreignKeyName="FK__AUTH_SIDE_USER_REGISTER_VERIFICATION__USER_ID"
+                <constraints foreignKeyName="FK__AUTH_SIDE_USER_LOGIN_ATTEMPT__USER_ID"
                              referencedTableName="AUTH_SIDE_USER"
                              referencedColumnNames="ID"
                 />
             </column>
-            <column name="REASON" type="VARCHAR(512)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="STATUS" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column name="CREATED_USER" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
+            <column name="LAST_LOGIN_DATE" type="TIMESTAMP"/>
+            <column name="FAILED_TRY_COUNT" type="BIGINT" defaultValue="0"/>
+            <column name="LAST_FAILED_TRY_DATE" type="TIMESTAMP"/>
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_AT" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATED_USER" type="VARCHAR(255)"/>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
             <column name="UPDATED_AT" type="TIMESTAMP"/>
         </createTable>
-        <!-- =========================================== -->
-        <!-- DDL of AUTH_SIDE_USER_REGISTER_VERIFICATION -->
-        <!-- =========================================== -->
-        
-        
+        <!-- =================================== -->
+        <!-- DDL of AUTH_SIDE_USER_LOGIN_ATTEMPT -->
+        <!-- =================================== -->
+
+
         <!-- ============================== -->
         <!-- DDL of AUTH_SIDE_INVALID_TOKEN -->
         <!-- ============================== -->
@@ -238,13 +235,13 @@
             <column name="TOKEN_ID" type="VARCHAR(36)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="CREATED_USER" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
                 <constraints nullable="false"/>
             </column>
             <column name="CREATED_AT" type="TIMESTAMP">
                 <constraints nullable="false"/>
             </column>
-            <column name="UPDATED_USER" type="VARCHAR(255)"/>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
             <column name="UPDATED_AT" type="TIMESTAMP"/>
         </createTable>
         <!-- ============================== -->

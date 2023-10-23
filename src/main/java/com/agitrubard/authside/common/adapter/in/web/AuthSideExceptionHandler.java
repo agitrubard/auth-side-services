@@ -1,10 +1,10 @@
 package com.agitrubard.authside.common.adapter.in.web;
 
+import com.agitrubard.authside.common.adapter.in.web.response.AuthSideErrorResponse;
 import com.agitrubard.authside.common.application.exception.AuthSideAlreadyException;
 import com.agitrubard.authside.common.application.exception.AuthSideException;
 import com.agitrubard.authside.common.application.exception.AuthSideNotFoundException;
 import com.agitrubard.authside.common.application.exception.AuthSideProcessException;
-import com.agitrubard.authside.common.adapter.in.web.response.AuthSideErrorResponse;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,23 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 
 import java.sql.SQLException;
 
+/**
+ * The {@code AuthSideExceptionHandler} class is a controller advice that handles exceptions and translates them into appropriate HTTP responses.
+ * It provides exception handling for various types of exceptions that can occur within the application.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
+ */
 @Slf4j
 @RestControllerAdvice
 class AuthSideExceptionHandler {
 
+    /**
+     * Handle generic exceptions and translate them into an internal server error response (HTTP status 500).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing an internal server error.
+     */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     protected AuthSideErrorResponse handleProcessError(final Exception exception) {
@@ -32,6 +45,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle {@code AuthSideProcessException} and translate it into an internal server error response (HTTP status 500).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing an internal server error with a custom error message.
+     */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(AuthSideProcessException.class)
     protected AuthSideErrorResponse handleProcessError(final AuthSideProcessException exception) {
@@ -44,6 +63,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle SQL exceptions and translate them into an internal server error response (HTTP status 500).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing a database-related error.
+     */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(SQLException.class)
     protected AuthSideErrorResponse handleSQLError(final SQLException exception) {
@@ -55,6 +80,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle {@code MethodArgumentTypeMismatchException} exceptions and translate them into a bad request response (HTTP status 400).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing a validation error due to method argument type mismatch.
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     protected AuthSideErrorResponse handleValidationErrors(final MethodArgumentTypeMismatchException exception) {
@@ -67,6 +98,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle {@code MethodArgumentNotValidException} exceptions and translate them into a bad request response (HTTP status 400).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing a validation error due to method argument not being valid.
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     protected AuthSideErrorResponse handleValidationErrors(final MethodArgumentNotValidException exception) {
@@ -79,6 +116,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle {@code ConstraintViolationException} exceptions and translate them into a bad request response (HTTP status 400).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing a validation error due to constraint violation.
+     */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
     protected AuthSideErrorResponse handlePathVariableErrors(final ConstraintViolationException exception) {
@@ -90,6 +133,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle {@code AuthSideNotFoundException} exceptions and translate them into a not found response (HTTP status 404).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing a resource not found error.
+     */
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(AuthSideNotFoundException.class)
     protected AuthSideErrorResponse handleNotExistError(final AuthSideNotFoundException exception) {
@@ -102,6 +151,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle {@code AuthSideAlreadyException} exceptions and translate them into a conflict response (HTTP status 409).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing a conflict due to a resource already existing.
+     */
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(AuthSideAlreadyException.class)
     protected AuthSideErrorResponse handleAlreadyExistError(final AuthSideAlreadyException exception) {
@@ -114,6 +169,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle {@code AccessDeniedException} exceptions and translate them into a forbidden response (HTTP status 403).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing a forbidden access error.
+     */
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(AccessDeniedException.class)
     protected AuthSideErrorResponse handleAccessDeniedError(final AccessDeniedException exception) {
@@ -125,6 +186,12 @@ class AuthSideExceptionHandler {
                 .build();
     }
 
+    /**
+     * Handle {@code AuthSideException} exceptions and translate them into an unauthorized response (HTTP status 401).
+     *
+     * @param exception The exception to be handled.
+     * @return An {@code AuthSideErrorResponse} representing an unauthorized access error.
+     */
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AuthSideException.class)
     protected AuthSideErrorResponse handleAuthError(final AuthSideException exception) {

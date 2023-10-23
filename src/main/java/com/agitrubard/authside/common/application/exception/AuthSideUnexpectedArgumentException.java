@@ -11,7 +11,11 @@ import java.io.Serial;
 public final class AuthSideUnexpectedArgumentException extends AuthSideProcessException {
 
     @Serial
-    private static final long serialVersionUID = -3853001912012088926L;
+    private static final long serialVersionUID = 6175478681206196630L;
+
+    public AuthSideUnexpectedArgumentException() {
+        super("UNEXPECTED ARGUMENT!");
+    }
 
     /**
      * Constructs a new instance of AuthSideUnexpectedArgumentException with an unexpected object as an argument.

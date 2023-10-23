@@ -3,7 +3,9 @@ server:
 
 logging:
   level:
-    web: debug
+    com.agitrubard.authside: ${LOG_LEVEL:info}
+    web: ${LOG_LEVEL:info}
+    sql: ${LOG_LEVEL:info}
 
 spring:
   datasource:
@@ -14,7 +16,7 @@ spring:
   liquibase:
     enabled: true
     changeLog: "classpath:database/configuration.yaml"
-    drop-first: ${LIQUIBASE_ENABLE_DROP_FIRST:true}
+    drop-first: ${LIQUIBASE_ENABLE_DROP_FIRST:false}
   jpa:
     properties:
       hibernate:
