@@ -22,8 +22,8 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -116,17 +116,29 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
 
         final Jwt jwt = new Jwt(
                 accessToken,
-                claims.get(AuthSideTokenClaim.ISSUED_AT.getValue(), Instant.class),
-                claims.get(AuthSideTokenClaim.EXPIRES_AT.getValue(), Instant.class),
+                claims.getIssuedAt().toInstant(),
+                claims.getExpiration().toInstant(),
                 Map.of(AuthSideTokenClaim.ALGORITHM.getValue(), SignatureAlgorithm.RS512.getValue()),
                 claims
         );
 
         final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        final Set<String> permissions = claims.get(AuthSideTokenClaim.USER_PERMISSIONS.getValue(), Set.class);
+        final Set<String> permissions = this.convertToSet(claims.get(AuthSideTokenClaim.USER_PERMISSIONS.getValue()));
         permissions.forEach(permission -> authorities.add(new SimpleGrantedAuthority(permission)));
 
         return UsernamePasswordAuthenticationToken.authenticated(jwt, null, authorities);
+    }
+
+    /**
+     * Converts an object to a Set of the specified class type.
+     *
+     * @param object the object to convert
+     * @param <C>    the type parameter for the class
+     * @return a Set of objects of the specified class type
+     */
+    @SuppressWarnings({"unchecked"})
+    private <C> Set<C> convertToSet(Object object) {
+        return new HashSet<>((List<C>) object);
     }
 
 }
