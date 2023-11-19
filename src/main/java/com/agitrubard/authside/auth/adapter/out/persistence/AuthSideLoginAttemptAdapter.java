@@ -28,8 +28,8 @@ class AuthSideLoginAttemptAdapter implements AuthSideLoginAttemptReadPort, AuthS
 
     private final AuthSideLoginAttemptRepository loginAttemptRepository;
 
-    private static final AuthSideLoginAttemptEntityToLoginAttemptMapper LOGIN_ATTEMPT_ENTITY_TO_LOGIN_ATTEMPT_MAPPER = AuthSideLoginAttemptEntityToLoginAttemptMapper.initialize();
-    private static final AuthSideLoginAttemptToLoginAttemptEntityMapper LOGIN_ATTEMPT_TO_LOGIN_ATTEMPT_ENTITY_MAPPER = AuthSideLoginAttemptToLoginAttemptEntityMapper.initialize();
+    private final AuthSideLoginAttemptEntityToLoginAttemptMapper loginAttemptEntityToLoginAttemptMapper = AuthSideLoginAttemptEntityToLoginAttemptMapper.initialize();
+    private final AuthSideLoginAttemptToLoginAttemptEntityMapper loginAttemptToLoginAttemptEntityMapper = AuthSideLoginAttemptToLoginAttemptEntityMapper.initialize();
 
     /**
      * Retrieves a user's login attempt based on their user ID.
@@ -42,7 +42,7 @@ class AuthSideLoginAttemptAdapter implements AuthSideLoginAttemptReadPort, AuthS
     public AuthSideLoginAttempt findByUserId(final String userId) {
         final AuthSideLoginAttemptEntity loginAttemptEntity = loginAttemptRepository.findByUserId(userId)
                 .orElseThrow(() -> new AuthSideLoginAttemptRecordNotFoundException(userId));
-        return LOGIN_ATTEMPT_ENTITY_TO_LOGIN_ATTEMPT_MAPPER.map(loginAttemptEntity);
+        return loginAttemptEntityToLoginAttemptMapper.map(loginAttemptEntity);
 
     }
 
@@ -53,7 +53,7 @@ class AuthSideLoginAttemptAdapter implements AuthSideLoginAttemptReadPort, AuthS
      */
     @Override
     public void save(final AuthSideLoginAttempt loginAttempt) {
-        final AuthSideLoginAttemptEntity loginAttemptEntity = LOGIN_ATTEMPT_TO_LOGIN_ATTEMPT_ENTITY_MAPPER.map(loginAttempt);
+        final AuthSideLoginAttemptEntity loginAttemptEntity = loginAttemptToLoginAttemptEntityMapper.map(loginAttempt);
         loginAttemptRepository.save(loginAttemptEntity);
     }
 

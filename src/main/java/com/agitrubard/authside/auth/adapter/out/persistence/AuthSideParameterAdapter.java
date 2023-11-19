@@ -31,8 +31,8 @@ class AuthSideParameterAdapter implements AuthSideParameterReadPort, AuthSidePar
 
     private final AuthSideParameterRepository parameterRepository;
 
-    private static final AuthSideParameterEntityToParameterMapper PARAMETER_ENTITY_TO_PARAMETER_MAPPER = AuthSideParameterEntityToParameterMapper.initialize();
-    private static final AuthSideParameterToParameterEntityMapper PARAMETER_TO_PARAMETER_ENTITY_MAPPER = AuthSideParameterToParameterEntityMapper.initialize();
+    private final AuthSideParameterEntityToParameterMapper parameterEntityToParameterMapper = AuthSideParameterEntityToParameterMapper.initialize();
+    private final AuthSideParameterToParameterEntityMapper parameterToParameterEntityMapper = AuthSideParameterToParameterEntityMapper.initialize();
 
     /**
      * Finds and returns a set of authentication parameters whose names start with the specified prefix.
@@ -44,7 +44,7 @@ class AuthSideParameterAdapter implements AuthSideParameterReadPort, AuthSidePar
     public Set<AuthSideParameter> findAllByPrefixOfName(String prefixOfName) {
         return parameterRepository.findByNameStartingWith(prefixOfName)
                 .stream()
-                .map(PARAMETER_ENTITY_TO_PARAMETER_MAPPER::map)
+                .map(parameterEntityToParameterMapper::map)
                 .collect(Collectors.toSet());
     }
 
@@ -67,7 +67,7 @@ class AuthSideParameterAdapter implements AuthSideParameterReadPort, AuthSidePar
                 return;
             }
 
-            final AuthSideParameterEntity parameterEntity = PARAMETER_TO_PARAMETER_ENTITY_MAPPER.map(parameter);
+            final AuthSideParameterEntity parameterEntity = parameterToParameterEntityMapper.map(parameter);
             parameterRepository.save(parameterEntity);
         });
     }

@@ -26,7 +26,7 @@ class AuthSideParameterService implements AuthSideParameterUseCase {
     private final AuthSideParameterReadPort parameterReadPort;
     private final AuthSideParameterSavePort parameterSavePort;
 
-    private static final AuthSideParameterSaveCommandToParameterMapper PARAMETER_SAVE_COMMAND_TO_PARAMETER_MAPPER = AuthSideParameterSaveCommandToParameterMapper.initialize();
+    private final AuthSideParameterSaveCommandToParameterMapper parameterSaveCommandToParameterMapper = AuthSideParameterSaveCommandToParameterMapper.initialize();
 
     /**
      * Retrieves a set of parameters based on the provided prefix of the parameter name.
@@ -46,7 +46,7 @@ class AuthSideParameterService implements AuthSideParameterUseCase {
      */
     @Override
     public void saveAll(final Set<AuthSideParameterSaveCommand> saveCommands) {
-        final Set<AuthSideParameter> parameters = PARAMETER_SAVE_COMMAND_TO_PARAMETER_MAPPER.map(saveCommands);
+        final Set<AuthSideParameter> parameters = parameterSaveCommandToParameterMapper.map(saveCommands);
         parameterSavePort.saveAll(parameters);
     }
 

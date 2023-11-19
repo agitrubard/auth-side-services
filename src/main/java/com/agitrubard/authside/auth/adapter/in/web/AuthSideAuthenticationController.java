@@ -38,10 +38,10 @@ class AuthSideAuthenticationController {
 
     private final AuthSideAuthenticationUseCase authenticationUseCase;
 
-    private static final AuthSideLoginRequestToLoginCommandMapper LOGIN_REQUEST_TO_LOGIN_COMMAND_MAPPER = AuthSideLoginRequestToLoginCommandMapper.initialize();
-    private static final AuthSideTokenRefreshRequestToTokenRefreshCommandMapper TOKEN_REFRESH_REQUEST_TO_TOKEN_REFRESH_COMMAND_MAPPER = AuthSideTokenRefreshRequestToTokenRefreshCommandMapper.initialize();
-    private static final AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper TOKEN_INVALIDATE_REQUEST_TO_TOKEN_INVALIDATE_COMMAND_MAPPER = AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper.initialize();
-    private static final AuthSideTokenToTokenResponseMapper TOKEN_TO_TOKEN_RESPONSE_MAPPER = AuthSideTokenToTokenResponseMapper.initialize();
+    private final AuthSideLoginRequestToLoginCommandMapper loginRequestToLoginCommandMapper = AuthSideLoginRequestToLoginCommandMapper.initialize();
+    private final AuthSideTokenRefreshRequestToTokenRefreshCommandMapper tokenRefreshRequestToTokenRefreshCommandMapper = AuthSideTokenRefreshRequestToTokenRefreshCommandMapper.initialize();
+    private final AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper tokenInvalidateRequestToTokenInvalidateCommandMapper = AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper.initialize();
+    private final AuthSideTokenToTokenResponseMapper tokenToTokenResponseMapper = AuthSideTokenToTokenResponseMapper.initialize();
 
     /**
      * Endpoint for user authentication. Receives a login request, converts it to a command, and returns an authentication token response.
@@ -53,10 +53,10 @@ class AuthSideAuthenticationController {
     public AuthSideResponse<AuthSideTokenResponse> authenticate(
             @RequestBody @Valid final AuthSideLoginRequest loginRequest) {
 
-        final AuthSideLoginCommand loginCommand = LOGIN_REQUEST_TO_LOGIN_COMMAND_MAPPER.map(loginRequest);
+        final AuthSideLoginCommand loginCommand = loginRequestToLoginCommandMapper.map(loginRequest);
         final AuthSideToken token = authenticationUseCase.authenticate(loginCommand);
 
-        final AuthSideTokenResponse tokenResponse = TOKEN_TO_TOKEN_RESPONSE_MAPPER.map(token);
+        final AuthSideTokenResponse tokenResponse = tokenToTokenResponseMapper.map(token);
         return AuthSideResponse.successOf(tokenResponse);
     }
 
@@ -70,10 +70,10 @@ class AuthSideAuthenticationController {
     public AuthSideResponse<AuthSideTokenResponse> refreshToken(
             @RequestBody @Valid final AuthSideTokenRefreshRequest refreshRequest) {
 
-        final AuthSideTokenRefreshCommand tokenRefreshCommand = TOKEN_REFRESH_REQUEST_TO_TOKEN_REFRESH_COMMAND_MAPPER
+        final AuthSideTokenRefreshCommand tokenRefreshCommand = tokenRefreshRequestToTokenRefreshCommandMapper
                 .map(refreshRequest);
         final AuthSideToken token = authenticationUseCase.refreshAccessToken(tokenRefreshCommand);
-        final AuthSideTokenResponse tokenResponse = TOKEN_TO_TOKEN_RESPONSE_MAPPER.map(token);
+        final AuthSideTokenResponse tokenResponse = tokenToTokenResponseMapper.map(token);
         return AuthSideResponse.successOf(tokenResponse);
     }
 
@@ -87,7 +87,7 @@ class AuthSideAuthenticationController {
     public AuthSideResponse<Void> invalidateTokens(
             @RequestBody @Valid final AuthSideTokensInvalidateRequest invalidateRequest) {
 
-        final AuthSideTokenInvalidateCommand tokenInvalidateCommand = TOKEN_INVALIDATE_REQUEST_TO_TOKEN_INVALIDATE_COMMAND_MAPPER
+        final AuthSideTokenInvalidateCommand tokenInvalidateCommand = tokenInvalidateRequestToTokenInvalidateCommandMapper
                 .map(invalidateRequest);
         authenticationUseCase.invalidateTokens(tokenInvalidateCommand);
         return AuthSideResponse.SUCCESS;

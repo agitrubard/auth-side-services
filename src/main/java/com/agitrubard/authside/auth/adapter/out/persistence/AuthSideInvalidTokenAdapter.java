@@ -28,7 +28,7 @@ class AuthSideInvalidTokenAdapter implements AuthSideInvalidTokenReadPort, AuthS
 
     private final AuthSideInvalidTokenRepository invalidTokenRepository;
 
-    private static final AuthSideInvalidTokenToInvalidTokenEntityMapper INVALID_TOKEN_TO_INVALID_TOKEN_ENTITY_MAPPER = AuthSideInvalidTokenToInvalidTokenEntityMapper.initialize();
+    private final AuthSideInvalidTokenToInvalidTokenEntityMapper invalidTokenToInvalidTokenEntityMapper = AuthSideInvalidTokenToInvalidTokenEntityMapper.initialize();
 
     /**
      * Saves a set of invalidated authentication tokens in the data store.
@@ -37,7 +37,7 @@ class AuthSideInvalidTokenAdapter implements AuthSideInvalidTokenReadPort, AuthS
      */
     @Override
     public void saveAll(Set<AuthSideInvalidToken> invalidTokens) {
-        final Set<AuthSideInvalidTokenEntity> invalidTokenEntities = INVALID_TOKEN_TO_INVALID_TOKEN_ENTITY_MAPPER
+        final Set<AuthSideInvalidTokenEntity> invalidTokenEntities = invalidTokenToInvalidTokenEntityMapper
                 .map(invalidTokens);
         invalidTokenRepository.saveAll(invalidTokenEntities);
     }

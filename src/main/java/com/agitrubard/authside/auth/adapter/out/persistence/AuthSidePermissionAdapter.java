@@ -23,7 +23,7 @@ class AuthSidePermissionAdapter implements AuthSidePermissionReadPort {
 
     private final AuthSidePermissionRepository permissionRepository;
 
-    private static final AuthSidePermissionEntityToPermissionMapper PERMISSION_ENTITY_TO_PERMISSION_MAPPER = AuthSidePermissionEntityToPermissionMapper.initialize();
+    private final AuthSidePermissionEntityToPermissionMapper permissionEntityToPermissionMapper = AuthSidePermissionEntityToPermissionMapper.initialize();
 
     /**
      * Retrieves all authentication side permissions.
@@ -33,7 +33,7 @@ class AuthSidePermissionAdapter implements AuthSidePermissionReadPort {
     @Override
     public Set<AuthSidePermission> findAll() {
         final List<AuthSidePermissionEntity> permissionEntities = permissionRepository.findAll();
-        return PERMISSION_ENTITY_TO_PERMISSION_MAPPER.map(permissionEntities);
+        return permissionEntityToPermissionMapper.map(permissionEntities);
     }
 
 }

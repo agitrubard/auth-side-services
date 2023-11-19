@@ -27,7 +27,7 @@ class AuthSideUserAdapter implements AuthSideUserReadPort {
 
     private final AuthSideUserRepository userRepository;
 
-    private static final AuthSideUserEntityToUserMapper USER_ENTITY_TO_USER_MAPPER = AuthSideUserEntityToUserMapper.initialize();
+    private final AuthSideUserEntityToUserMapper userEntityToUserMapper = AuthSideUserEntityToUserMapper.initialize();
 
     /**
      * Retrieves a user profile based on the user's unique identifier.
@@ -38,7 +38,7 @@ class AuthSideUserAdapter implements AuthSideUserReadPort {
     @Override
     public Optional<AuthSideUser> findById(final String id) {
         final Optional<AuthSideUserEntity> userEntity = userRepository.findById(id);
-        return userEntity.map(USER_ENTITY_TO_USER_MAPPER::map);
+        return userEntity.map(userEntityToUserMapper::map);
     }
 
     /**
@@ -50,7 +50,7 @@ class AuthSideUserAdapter implements AuthSideUserReadPort {
     @Override
     public Optional<AuthSideUser> findByUsername(final String username) {
         final Optional<AuthSideUserEntity> userEntity = userRepository.findByUsername(username);
-        return userEntity.map(USER_ENTITY_TO_USER_MAPPER::map);
+        return userEntity.map(userEntityToUserMapper::map);
     }
 
 }
