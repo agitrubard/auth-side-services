@@ -10,6 +10,9 @@ import java.io.Serial;
  * It is used to indicate authentication-related issues, such as unauthorized access.
  * <p>
  * This exception is annotated with {@code @ResponseStatus(HttpStatus.UNAUTHORIZED)} to indicate an HTTP 401 Unauthorized status code.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @ResponseStatus(HttpStatus.UNAUTHORIZED)
 public abstract class AuthSideException extends RuntimeException {

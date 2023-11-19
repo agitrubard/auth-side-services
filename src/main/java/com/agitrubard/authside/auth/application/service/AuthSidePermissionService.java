@@ -11,6 +11,9 @@ import java.util.Set;
 /**
  * AuthSidePermissionService is a service class that implements the AuthSidePermissionUseCase
  * interface. It provides business logic for managing authentication side permissions.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @Service
 @RequiredArgsConstructor

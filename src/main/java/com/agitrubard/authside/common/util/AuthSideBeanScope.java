@@ -4,6 +4,9 @@ import lombok.experimental.UtilityClass;
 
 /**
  * This utility class is used to define the bean scope values in the Spring Framework.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @UtilityClass
 public class AuthSideBeanScope {

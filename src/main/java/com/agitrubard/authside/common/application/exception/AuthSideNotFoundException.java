@@ -10,6 +10,9 @@ import java.io.Serial;
  * It is typically thrown when a requested resource or entity cannot be located.
  * <p>
  * This exception is annotated with {@code @ResponseStatus(HttpStatus.NOT_FOUND)} to indicate an HTTP 404 Not Found status code.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public abstract class AuthSideNotFoundException extends RuntimeException {

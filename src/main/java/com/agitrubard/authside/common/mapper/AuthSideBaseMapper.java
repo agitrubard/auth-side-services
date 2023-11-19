@@ -17,6 +17,9 @@ import java.util.Set;
  *
  * @param <S> the type of the source object to be mapped
  * @param <T> the type of the target object to be mapped to
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 public interface AuthSideBaseMapper<S, T> {
 

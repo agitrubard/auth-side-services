@@ -26,7 +26,7 @@ import java.util.Base64;
  * and converting between PEM format and Java `PrivateKey` and `PublicKey` objects.
  *
  * @author Agit Rubar Demir | @agitrubard
- * @version 1.0.0.0
+ * @version 1.0.0
  */
 @UtilityClass
 public class AuthSideKeyPairUtil {

@@ -10,6 +10,9 @@ import java.io.Serial;
  * It is typically used to indicate that an entity or resource being created or modified already exists.
  * <p>
  * This exception is annotated with {@code @ResponseStatus(HttpStatus.CONFLICT)} to indicate an HTTP 409 Conflict status code.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @ResponseStatus(HttpStatus.CONFLICT)
 public abstract class AuthSideAlreadyException extends RuntimeException {

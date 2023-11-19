@@ -16,6 +16,9 @@ import java.util.Set;
  * interface, providing read operations for authentication side permissions.
  * This component utilizes the AuthSidePermissionRepository to interact with the
  * underlying data store and converts entities to domain objects using a mapper.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @Component
 @RequiredArgsConstructor

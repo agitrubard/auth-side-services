@@ -11,8 +11,9 @@ import java.time.LocalDateTime;
  * A generic response class used to encapsulate the response data for API requests.
  *
  * @param <T> The type of data contained in the response.
+ *
  * @author Agit Rubar Demir | @agitrubard
- * @version 1.0.0.0
+ * @version 1.0.0
  */
 @Getter
 @Builder

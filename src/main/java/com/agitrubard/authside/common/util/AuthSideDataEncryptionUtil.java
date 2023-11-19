@@ -15,6 +15,9 @@ import java.util.Base64;
  * <b>First ></b> <a href="https://www.random.org/passwords/?num=5&len=32&format=html&rnd=new">Random Text Generator</a>
  * <p>
  * <b>Second ></b> <a href="https://www.base64encode.org/">Base 64 Encode</a>
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @UtilityClass
 public class AuthSideDataEncryptionUtil {

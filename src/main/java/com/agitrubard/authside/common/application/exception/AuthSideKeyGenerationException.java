@@ -6,6 +6,9 @@ import java.io.Serial;
  * The {@code AuthSideKeyGenerationException} is a specific type of {@link AuthSideProcessException} that is thrown when there is an issue with generating keys or cryptographic material within the Auth Side application. This exception is used to indicate failures in the key generation process.
  *
  * <p>This exception typically wraps another exception, providing additional context or details about the failure. The primary message associated with this exception is "KEY COULD NOT BE GENERATED!"
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 public final class AuthSideKeyGenerationException extends AuthSideProcessException {
 

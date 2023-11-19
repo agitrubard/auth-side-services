@@ -7,6 +7,9 @@ import java.util.Set;
 /**
  * AuthSidePermissionUseCase defines the use case for managing authentication side permissions.
  * This interface declares the contract for retrieving all authentication side permissions.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 public interface AuthSidePermissionUseCase {
 

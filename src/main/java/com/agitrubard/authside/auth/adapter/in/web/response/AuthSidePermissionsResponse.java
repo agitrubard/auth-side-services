@@ -12,6 +12,9 @@ import java.util.Set;
  * the response containing a map of permissions categorized by PermissionCategory.
  * This class is commonly used to convey permission-related information within
  * the authentication side of the application.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @Getter
 @Builder

@@ -19,6 +19,9 @@ import java.util.Set;
  * <p>
  * This controller is designed to manage permissions and is secured with
  * role-based authorization for the 'role:add' and 'role:update' authorities.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @RestController
 @RequiredArgsConstructor

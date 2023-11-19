@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
  * These claims are used for various purposes, such as identifying the token, specifying its type, and including user-related
  * information like user ID, username, roles, and permissions.
  *
- * @author Agit Rubar Demir | @agitrubard Rubar Demir | @agitrubard
+ * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
  */
 @Getter

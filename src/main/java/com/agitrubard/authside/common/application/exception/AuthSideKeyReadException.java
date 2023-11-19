@@ -7,6 +7,9 @@ import java.io.Serial;
  * It is a specific type of processing exception.
  * <p>
  * This exception extends {@link AuthSideProcessException}, which indicates a processing-related issue, often an internal server error.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 public final class AuthSideKeyReadException extends AuthSideProcessException {
 

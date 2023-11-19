@@ -6,7 +6,6 @@ import com.agitrubard.authside.common.mapper.AuthSideBaseMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-
 /**
  * The {@code AuthSideLoginAttemptToLoginAttemptEntityMapper} interface defines mapping methods for converting instances of
  * {@link AuthSideLoginAttempt} to their corresponding entity representations, {@link AuthSideLoginAttemptEntity}.

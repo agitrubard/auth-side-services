@@ -10,6 +10,9 @@ import java.io.Serial;
  * It is used to indicate issues that occur during the processing of a request.
  * <p>
  * This exception is annotated with {@code @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)} to indicate an HTTP 500 Internal Server Error status code.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 public abstract class AuthSideProcessException extends RuntimeException {

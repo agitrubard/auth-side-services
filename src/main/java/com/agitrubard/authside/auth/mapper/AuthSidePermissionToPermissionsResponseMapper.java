@@ -14,6 +14,9 @@ import java.util.stream.Collectors;
  * AuthSidePermissionToPermissionsResponseMapper is a mapper interface responsible for
  * converting a Set of AuthSidePermission objects to an AuthSidePermissionsResponse object.
  * It groups permissions by PermissionCategory and creates a response with a map of permissions.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 @Mapper
 public interface AuthSidePermissionToPermissionsResponseMapper {

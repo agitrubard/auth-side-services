@@ -7,6 +7,9 @@ import java.util.Set;
 /**
  * AuthSidePermissionReadPort defines the port for reading authentication side permissions.
  * This interface declares the contract for retrieving all authentication side permissions.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
  */
 public interface AuthSidePermissionReadPort {
 
