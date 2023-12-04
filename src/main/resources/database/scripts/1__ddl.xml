@@ -42,8 +42,8 @@
             <column name="USERNAME" type="VARCHAR(50)">
                 <constraints nullable="false" unique="true" uniqueConstraintName="U__AUTH_SIDE_USER__USERNAME"/>
             </column>
-            <column name="MAIL_ADDRESS" type="VARCHAR(254)">
-                <constraints nullable="false" unique="true" uniqueConstraintName="U__AUTH_SIDE_USER__MAIL_ADDRESS"/>
+            <column name="EMAIL_ADDRESS" type="VARCHAR(254)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="U__AUTH_SIDE_USER__EMAIL_ADDRESS"/>
             </column>
             <column name="PASSWORD" type="VARCHAR(60)">
                 <constraints nullable="false"/>

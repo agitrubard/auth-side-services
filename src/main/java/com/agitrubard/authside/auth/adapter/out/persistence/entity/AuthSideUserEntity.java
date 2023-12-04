@@ -50,8 +50,8 @@ public class AuthSideUserEntity extends AuthSideBaseEntity {
     /**
      * The email address of the user, which may serve as a means of contact and authentication.
      */
-    @Column(name = "MAIL_ADDRESS")
-    private String mailAddress;
+    @Column(name = "EMAIL_ADDRESS")
+    private String emailAddress;
 
     /**
      * The user's password, securely stored for authentication purposes.

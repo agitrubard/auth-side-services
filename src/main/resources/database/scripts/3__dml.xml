@@ -203,9 +203,9 @@
         <!-- DML of AUTH_SIDE_USER -->
         <!-- ===================== -->
         <insert tableName="AUTH_SIDE_USER">
-            <column name="ID" value="93cdd260-57cd-4536-bd17-e35b5b7c68fd"/>
-            <column name="USERNAME" value="agitrubard"/>
-            <column name="MAIL_ADDRESS" value="demiragitrubar@gmail.com"/>
+            <column name="ID" value="e86f01ee-bde2-4a4d-b98b-b7a76041c0a7"/>
+            <column name="USERNAME" value="agitrubardemir"/>
+            <column name="EMAIL_ADDRESS" value="authside.admin@gmail.com"/>
             <column name="PASSWORD"
                     value="$2a$10$kTZ1jlgzj1xxNKEye5gIM.LG9EAk9GAmJ/jxK9UHRoQpH.SdN0AkK"/> <!-- authsidepass -->
             <column name="FIRST_NAME" value="Agit Rubar"/>
@@ -215,9 +215,9 @@
             <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_USER">
-            <column name="ID" value="e86f01ee-bde2-4a4d-b98b-b7a76041c0a7"/>
-            <column name="USERNAME" value="agitrubardemir"/>
-            <column name="MAIL_ADDRESS" value="authside.admin@gmail.com"/>
+            <column name="ID" value="93cdd260-57cd-4536-bd17-e35b5b7c68fd"/>
+            <column name="USERNAME" value="agitrubard"/>
+            <column name="EMAIL_ADDRESS" value="demiragitrubar@gmail.com"/>
             <column name="PASSWORD"
                     value="$2a$10$kTZ1jlgzj1xxNKEye5gIM.LG9EAk9GAmJ/jxK9UHRoQpH.SdN0AkK"/> <!-- authsidepass -->
             <column name="FIRST_NAME" value="Agit Rubar"/>

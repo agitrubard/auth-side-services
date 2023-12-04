@@ -40,7 +40,7 @@ public class AuthSideUser extends AuthSideBaseDomainModel {
     /**
      * The email address of the user.
      */
-    private String mailAddress;
+    private String emailAddress;
 
     /**
      * The user's password (usually encrypted or hashed for security).
