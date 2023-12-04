@@ -11,7 +11,7 @@ spring:
   datasource:
     username: ${DATABASE_USERNAME:auth_side}
     password: ${DATABASE_PASSWORD:auth_side_pass}
-    url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:3306}/auth_side
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:3307}/auth_side
     driver-class-name: com.mysql.cj.jdbc.Driver
   liquibase:
     enabled: true
