@@ -93,10 +93,12 @@ public class AuthSideUser extends AuthSideBaseDomainModel {
         claims.put(AuthSideTokenClaim.USER_FIRST_NAME.getValue(), this.firstName);
         claims.put(AuthSideTokenClaim.USER_LAST_NAME.getValue(), this.lastName);
 
-        claims.put(
-                AuthSideTokenClaim.USER_LAST_LOGIN_DATE.getValue(),
-                loginAttempt.getLastLoginDate().toInstant(ZoneOffset.UTC).getEpochSecond()
-        );
+        if (loginAttempt.getLastLoginDate() != null) {
+            claims.put(
+                    AuthSideTokenClaim.USER_LAST_LOGIN_DATE.getValue(),
+                    loginAttempt.getLastLoginDate().toInstant(ZoneOffset.UTC).getEpochSecond()
+            );
+        }
 
         if (loginAttempt.getLastFailedTryDate() != null) {
             claims.put(
