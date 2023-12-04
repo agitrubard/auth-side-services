@@ -1,6 +1,6 @@
 package com.agitrubard.authside.auth.domain.permission.model;
 
-import com.agitrubard.authside.auth.domain.permission.enums.PermissionCategory;
+import com.agitrubard.authside.auth.domain.permission.enums.AuthSidePermissionCategory;
 import com.agitrubard.authside.common.domain.model.AuthSideBaseDomainModel;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;
@@ -30,6 +30,6 @@ public class AuthSidePermission extends AuthSideBaseDomainModel {
     /**
      * The category to which the permission belongs. It categorizes permissions based on their usage within the application.
      */
-    private PermissionCategory category;
+    private AuthSidePermissionCategory category;
 
 }

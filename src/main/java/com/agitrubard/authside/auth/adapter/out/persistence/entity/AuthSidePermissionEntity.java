@@ -1,6 +1,6 @@
 package com.agitrubard.authside.auth.adapter.out.persistence.entity;
 
-import com.agitrubard.authside.auth.domain.permission.enums.PermissionCategory;
+import com.agitrubard.authside.auth.domain.permission.enums.AuthSidePermissionCategory;
 import com.agitrubard.authside.common.adapter.out.persistence.entity.AuthSideBaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,6 +46,6 @@ public class AuthSidePermissionEntity extends AuthSideBaseEntity {
      */
     @Enumerated(value = EnumType.STRING)
     @Column(name = "CATEGORY")
-    private PermissionCategory category;
+    private AuthSidePermissionCategory category;
 
 }

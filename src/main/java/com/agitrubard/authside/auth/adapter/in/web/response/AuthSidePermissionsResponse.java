@@ -1,6 +1,6 @@
 package com.agitrubard.authside.auth.adapter.in.web.response;
 
-import com.agitrubard.authside.auth.domain.permission.enums.PermissionCategory;
+import com.agitrubard.authside.auth.domain.permission.enums.AuthSidePermissionCategory;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -23,6 +23,6 @@ public class AuthSidePermissionsResponse {
     /**
      * A map that associates PermissionCategory with a set of permission strings.
      */
-    private Map<PermissionCategory, Set<String>> permissions;
+    private Map<AuthSidePermissionCategory, Set<String>> permissions;
 
 }

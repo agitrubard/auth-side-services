@@ -1,7 +1,7 @@
 package com.agitrubard.authside.auth.mapper;
 
 import com.agitrubard.authside.auth.adapter.in.web.response.AuthSidePermissionsResponse;
-import com.agitrubard.authside.auth.domain.permission.enums.PermissionCategory;
+import com.agitrubard.authside.auth.domain.permission.enums.AuthSidePermissionCategory;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
@@ -28,7 +28,7 @@ public interface AuthSidePermissionToPermissionsResponseMapper {
      * @return An AuthSidePermissionsResponse object representing the mapped permissions.
      */
     default AuthSidePermissionsResponse map(Set<AuthSidePermission> permissions) {
-        final Map<PermissionCategory, Set<String>> permissionsMap = permissions.stream()
+        final Map<AuthSidePermissionCategory, Set<String>> permissionsMap = permissions.stream()
                 .collect(
                         Collectors.groupingBy(
                                 AuthSidePermission::getCategory,

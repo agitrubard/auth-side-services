@@ -7,7 +7,7 @@ package com.agitrubard.authside.auth.domain.permission.enums;
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
  */
-public enum PermissionCategory {
+public enum AuthSidePermissionCategory {
 
     /**
      * Represents permissions related to user management, such as creating, updating, or deleting users.
