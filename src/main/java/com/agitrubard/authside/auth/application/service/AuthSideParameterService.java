@@ -35,7 +35,7 @@ class AuthSideParameterService implements AuthSideParameterUseCase {
      * @return A set of parameters matching the provided prefix of the name.
      */
     @Override
-    public Set<AuthSideParameter> getAllByPrefixOfName(final String prefixOfName) {
+    public Set<AuthSideParameter> findAllByPrefixOfName(final String prefixOfName) {
         return parameterReadPort.findAllByPrefixOfName(prefixOfName);
     }
 

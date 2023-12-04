@@ -24,7 +24,7 @@ public interface AuthSideParameterUseCase {
      * @param prefixOfName The prefix used to filter and retrieve authentication parameters.
      * @return A set of authentication parameters that match the specified prefix.
      */
-    Set<AuthSideParameter> getAllByPrefixOfName(String prefixOfName);
+    Set<AuthSideParameter> findAllByPrefixOfName(String prefixOfName);
 
     /**
      * Saves a collection of authentication parameters using the provided save commands.

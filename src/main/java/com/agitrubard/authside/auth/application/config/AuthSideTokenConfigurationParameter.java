@@ -72,7 +72,7 @@ public class AuthSideTokenConfigurationParameter {
         log.info("AuthSide Token Configuration is initializing with AuthSide Parameters...");
 
         final Set<AuthSideParameter> authConfigurationParameters = parameterUseCase
-                .getAllByPrefixOfName("AUTH_");
+                .findAllByPrefixOfName("AUTH_");
 
 
         this.issuer = Optional
@@ -100,7 +100,7 @@ public class AuthSideTokenConfigurationParameter {
 
         this.createAndSaveKeyPairIfNeedsToCreating(authConfigurationParameters, parameterUseCase);
         Set<AuthSideParameter> authTokenConfigurationParameters = parameterUseCase
-                .getAllByPrefixOfName("AUTH_TOKEN_");
+                .findAllByPrefixOfName("AUTH_TOKEN_");
 
 
         final String encryptedPrivateKeyPem = Optional
