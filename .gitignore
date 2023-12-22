@@ -10,4 +10,5 @@ target/
 *.iml
 *.ipr
 
+### AuthSide ###
 /db
