@@ -62,6 +62,10 @@ public class AuthSideErrorResponse {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<AuthSideSubError> subErrors;
 
+    public static final AuthSideErrorResponse FORBIDDEN = AuthSideErrorResponse.builder()
+            .httpStatus(HttpStatus.FORBIDDEN)
+            .isSuccess(false).build();
+
     /**
      * The {@code AuthSideSubError} class represents a sub-error within an error response.
      */
