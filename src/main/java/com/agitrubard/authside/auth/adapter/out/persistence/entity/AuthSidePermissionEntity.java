@@ -1,6 +1,6 @@
 package com.agitrubard.authside.auth.adapter.out.persistence.entity;
 
-import com.agitrubard.authside.auth.domain.permission.enums.AuthSidePermissionCategory;
+import com.agitrubard.authside.auth.domain.permission.model.enums.AuthSidePermissionCategory;
 import com.agitrubard.authside.common.adapter.out.persistence.entity.AuthSideBaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

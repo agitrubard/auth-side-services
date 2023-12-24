@@ -1,6 +1,6 @@
 package com.agitrubard.authside.auth.domain.permission.model;
 
-import com.agitrubard.authside.auth.domain.permission.enums.AuthSidePermissionCategory;
+import com.agitrubard.authside.auth.domain.permission.model.enums.AuthSidePermissionCategory;
 import com.agitrubard.authside.common.domain.model.AuthSideBaseDomainModel;
 import lombok.Getter;
 import lombok.experimental.SuperBuilder;

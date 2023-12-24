@@ -1,4 +1,4 @@
-package com.agitrubard.authside.auth.domain.permission.enums;
+package com.agitrubard.authside.auth.domain.permission.model.enums;
 
 /**
  * The {@code PermissionCategory} enum represents different categories or types of permissions in the authentication system.
