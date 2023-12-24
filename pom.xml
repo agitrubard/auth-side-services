@@ -7,12 +7,12 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.6</version>
+        <version>3.1.7</version>
         <relativePath/>
     </parent>
 
     <description>AuthSide Services</description>
-    <groupId>com.agitrubard</groupId>
+    <groupId>com.agitrubard.authside</groupId>
     <artifactId>auth-side-services</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>auth-side-services</name>
