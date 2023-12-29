@@ -1,0 +1,19 @@
+spring:
+  sql:
+    init:
+      mode: always
+  datasource:
+    username: auth_side
+    password: auth_side_pass
+    url: jdbc:tc:mysql:8.0.33///test
+  liquibase:
+    enabled: true
+    changeLog: "classpath:database/configuration.yaml"
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
