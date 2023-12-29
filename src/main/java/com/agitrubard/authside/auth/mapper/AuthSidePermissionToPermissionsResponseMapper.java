@@ -1,8 +1,8 @@
 package com.agitrubard.authside.auth.mapper;
 
 import com.agitrubard.authside.auth.adapter.in.web.response.AuthSidePermissionsResponse;
-import com.agitrubard.authside.auth.domain.permission.model.enums.AuthSidePermissionCategory;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
+import com.agitrubard.authside.auth.domain.permission.model.enums.AuthSidePermissionCategory;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

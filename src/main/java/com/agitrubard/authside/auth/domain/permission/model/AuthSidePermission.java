@@ -3,6 +3,7 @@ package com.agitrubard.authside.auth.domain.permission.model;
 import com.agitrubard.authside.auth.domain.permission.model.enums.AuthSidePermissionCategory;
 import com.agitrubard.authside.common.domain.model.AuthSideBaseDomainModel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 /**
@@ -14,6 +15,7 @@ import lombok.experimental.SuperBuilder;
  * @version 1.0.0
  */
 @Getter
+@Setter
 @SuperBuilder
 public class AuthSidePermission extends AuthSideBaseDomainModel {
 
