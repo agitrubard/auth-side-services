@@ -10,6 +10,8 @@ import com.agitrubard.authside.auth.mapper.AuthSideParameterToParameterEntityMap
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -56,6 +58,7 @@ class AuthSideParameterAdapter implements AuthSideParameterReadPort, AuthSidePar
     @Override
     public void saveAll(final Set<AuthSideParameter> parameters) {
 
+        List<AuthSideParameterEntity> parameterEntitiesToBeSaved = new ArrayList<>();
         parameters.forEach(parameter -> {
 
             final Optional<AuthSideParameterEntity> parameterFromDatabase = parameterRepository
@@ -63,13 +66,15 @@ class AuthSideParameterAdapter implements AuthSideParameterReadPort, AuthSidePar
 
             if (parameterFromDatabase.isPresent()) {
                 parameterFromDatabase.get().setDefinition(parameter.getDefinition());
-                parameterRepository.save(parameterFromDatabase.get());
+                parameterEntitiesToBeSaved.add(parameterFromDatabase.get());
                 return;
             }
 
             final AuthSideParameterEntity parameterEntity = parameterToParameterEntityMapper.map(parameter);
-            parameterRepository.save(parameterEntity);
+            parameterEntitiesToBeSaved.add(parameterEntity);
         });
+
+        parameterRepository.saveAll(parameterEntitiesToBeSaved);
     }
 
 }
