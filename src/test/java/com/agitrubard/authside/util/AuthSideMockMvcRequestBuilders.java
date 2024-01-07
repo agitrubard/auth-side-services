@@ -66,6 +66,6 @@ public class AuthSideMockMvcRequestBuilders {
     }
 
     private String getTokenWithBearerPrefix(String token) {
-        return "Bearer " + token;
+        return STR."Bearer \{token}";
     }
 }

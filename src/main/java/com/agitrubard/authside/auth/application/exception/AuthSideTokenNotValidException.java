@@ -25,11 +25,11 @@ public class AuthSideTokenNotValidException extends AuthSideException {
     /**
      * Constructs a new {@code AuthSideTokenNotValidException} with the provided token and a cause.
      *
-     * @param jwt The token that is not considered valid.
+     * @param jwt   The token that is not considered valid.
      * @param cause The cause of the exception, typically another exception that led to this token validation failure.
      */
     public AuthSideTokenNotValidException(String jwt, Throwable cause) {
-        super("TOKEN IS NOT VALID! token: " + jwt, cause);
+        super(STR."TOKEN IS NOT VALID! token: \{jwt}", cause);
     }
 
 }

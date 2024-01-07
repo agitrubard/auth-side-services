@@ -28,7 +28,7 @@ public class AuthSideUsernameNotValidException extends AuthSideException {
      * @param username The username that is considered not valid.
      */
     public AuthSideUsernameNotValidException(final String username) {
-        super("USERNAME IS NOT VALID! username: " + username);
+        super(STR."USERNAME IS NOT VALID! username: \{username}");
     }
 
 }

@@ -1,4 +1,4 @@
-FROM maven:3.8.4-openjdk-17-slim AS build
+FROM maven:3.9.6-amazoncorretto-21 AS build
 
 COPY pom.xml ./
 COPY .mvn .mvn
@@ -6,7 +6,9 @@ COPY src src
 
 RUN mvn clean install -DskipTests
 
-FROM openjdk:17-jdk-slim
+RUN yum update && yum install -y curl
+
+FROM openjdk:21-jdk
 
 WORKDIR auth-side-services
 

@@ -28,7 +28,7 @@ public class AuthSideUserNotActiveException extends AuthSideException {
      * @param userId The user ID of the inactive user.
      */
     public AuthSideUserNotActiveException(final String userId) {
-        super("USER IS NOT ACTIVE! userId:" + userId);
+        super(STR."USER IS NOT ACTIVE! userId:\{userId}");
     }
 
 }

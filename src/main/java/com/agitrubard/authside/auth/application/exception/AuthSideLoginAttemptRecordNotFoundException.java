@@ -28,7 +28,7 @@ public class AuthSideLoginAttemptRecordNotFoundException extends AuthSideNotFoun
      * @param userId The user ID for which the login attempt record is not found.
      */
     public AuthSideLoginAttemptRecordNotFoundException(String userId) {
-        super("USER LOGIN ATTEMPT RECORD IS NOT FOUND! userId:" + userId);
+        super(STR."USER LOGIN ATTEMPT RECORD IS NOT FOUND! userId: \{userId}");
     }
 
 }

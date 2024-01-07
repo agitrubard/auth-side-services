@@ -28,7 +28,7 @@ public class AuthSideUserMaximumLoginAttemptsExceedException extends AuthSideExc
      * @param userId The user ID of the user who has exceeded the maximum allowed login attempts.
      */
     public AuthSideUserMaximumLoginAttemptsExceedException(final String userId) {
-        super("USER EXCEED MAXIMUM LOGIN ATTEMPTS! userId:" + userId);
+        super(STR."USER EXCEED MAXIMUM LOGIN ATTEMPTS! userId:\{userId}");
     }
 
 }

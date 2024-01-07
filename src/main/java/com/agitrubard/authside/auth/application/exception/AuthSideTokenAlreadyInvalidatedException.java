@@ -28,7 +28,7 @@ public class AuthSideTokenAlreadyInvalidatedException extends AuthSideException 
      * @param tokenId The token ID for which the invalidation failed due to the token being already invalidated.
      */
     public AuthSideTokenAlreadyInvalidatedException(final String tokenId) {
-        super("TOKEN IS ALREADY INVALIDATED! tokenId: " + tokenId);
+        super(STR."TOKEN IS ALREADY INVALIDATED! tokenId: \{tokenId}");
     }
 
 }

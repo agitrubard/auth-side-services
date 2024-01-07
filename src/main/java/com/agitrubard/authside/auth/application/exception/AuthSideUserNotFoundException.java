@@ -28,7 +28,7 @@ public class AuthSideUserNotFoundException extends AuthSideNotFoundException {
      * @param userId The user ID for which the user is not found.
      */
     public AuthSideUserNotFoundException(final String userId) {
-        super("USER IS NOT FOUND! userId:" + userId);
+        super(STR."USER IS NOT FOUND! userId:\{userId}");
     }
 
 }

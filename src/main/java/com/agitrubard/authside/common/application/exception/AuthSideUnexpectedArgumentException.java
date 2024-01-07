@@ -26,7 +26,7 @@ public final class AuthSideUnexpectedArgumentException extends AuthSideProcessEx
      * @param object The unexpected object that caused this exception.
      */
     public AuthSideUnexpectedArgumentException(final Object object) {
-        super("UNEXPECTED ARGUMENT! object: " + object.toString() + ", objectType: " + object.getClass().getName());
+        super(STR."UNEXPECTED ARGUMENT! object: \{object.toString()}, objectType: \{object.getClass().getName()}");
     }
 
 }

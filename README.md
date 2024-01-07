@@ -3,7 +3,7 @@
 AuthSide stands as an advanced authentication and authorization framework meticulously designed to empower your
 applications with user access control solutions that boast unwavering security. Merging cutting-edge technologies with
 expert craftsmanship, AuthSide provides the ultimate solution for implementing ironclad security measures. Developed
-using Java 17 and the latest Spring framework, AuthSide adopts a hexagonal architecture that magnifies modular design
+using Java 21 and the latest Spring framework, AuthSide adopts a hexagonal architecture that magnifies modular design
 principles and elevates system maintainability. Seamlessly weaving together Spring Security and JSON Web Tokens (JWT),
 AuthSide establishes a multi-layered security paradigm. Moreover, AuthSide's seamless integration with a variety of
 databases, fortified by the prowess of Liquibase, ensures cross-database compatibility and streamlines development
