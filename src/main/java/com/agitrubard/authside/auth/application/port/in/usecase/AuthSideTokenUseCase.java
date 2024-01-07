@@ -2,6 +2,7 @@ package com.agitrubard.authside.auth.application.port.in.usecase;
 
 import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 
 import java.util.Map;
 
@@ -18,35 +19,44 @@ import java.util.Map;
 public interface AuthSideTokenUseCase {
 
     /**
-     * Generates an authentication token with the provided claims.
+     * Generates an authentication side token based on the provided claims.
      *
-     * @param claims The claims to be included in the token.
-     * @return An authentication token containing the specified claims.
+     * @param claims The claims to be included in the generated token.
+     * @return The generated authentication side token.
      */
     AuthSideToken generate(Map<String, Object> claims);
 
     /**
-     * Generates an authentication token with the provided claims and associates it with a refresh token.
+     * Generates an authentication side token with an additional refresh token,
+     * based on the provided claims.
      *
-     * @param claims       The claims to be included in the token.
-     * @param refreshToken The associated refresh token.
-     * @return An authentication token containing the specified claims and associated with the given refresh token.
+     * @param claims       The claims to be included in the generated token.
+     * @param refreshToken The refresh token to be associated with the generated token.
+     * @return The generated authentication side token with a refresh token.
      */
     AuthSideToken generate(Map<String, Object> claims, String refreshToken);
 
     /**
-     * Verifies and validates the provided JWT (JSON Web Token) to ensure its authenticity and integrity.
+     * Verifies and validates the authenticity and integrity of the provided token.
      *
-     * @param jwt The JWT to verify and validate.
+     * @param token The token to be verified and validated.
      */
-    void verifyAndValidate(String jwt);
+    void verifyAndValidate(String token);
 
     /**
-     * Retrieves the claims from the provided JWT (JSON Web Token).
+     * Retrieves the payload (claims) from the provided token.
      *
-     * @param jwt The JWT from which to retrieve the claims.
-     * @return The claims contained within the JWT.
+     * @param token The token from which to extract the payload.
+     * @return The claims (payload) extracted from the token.
      */
-    Claims getClaims(String jwt);
+    Claims getPayload(String token);
+
+    /**
+     * Retrieves the complete set of claims from the provided token as a JSON Web Signature (JWS) object.
+     *
+     * @param token The token from which to extract the claims.
+     * @return The JWS object containing the claims.
+     */
+    Jws<Claims> getClaims(String token);
 
 }

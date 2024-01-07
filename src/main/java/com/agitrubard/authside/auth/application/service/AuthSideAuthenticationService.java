@@ -128,7 +128,7 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
         this.validateToken(refreshToken);
 
         final String userId = tokenUseCase
-                .getClaims(refreshToken)
+                .getPayload(refreshToken)
                 .get(AuthSideTokenClaim.USER_ID.getValue()).toString();
 
         final AuthSideUser user = userReadPort.findById(userId)
@@ -168,9 +168,9 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
         final String refreshToken = tokenInvalidateCommand.getRefreshToken();
         this.validateToken(refreshToken);
 
-        final String accessTokenId = tokenUseCase.getClaims(accessToken)
+        final String accessTokenId = tokenUseCase.getPayload(accessToken)
                 .get(AuthSideTokenClaim.ID.getValue()).toString();
-        final String refreshTokenId = tokenUseCase.getClaims(refreshToken)
+        final String refreshTokenId = tokenUseCase.getPayload(refreshToken)
                 .get(AuthSideTokenClaim.ID.getValue()).toString();
         invalidateTokenUseCase.invalidateTokens(Set.of(accessTokenId, refreshTokenId));
     }
@@ -185,7 +185,7 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
 
         tokenUseCase.verifyAndValidate(token);
 
-        final String tokenId = tokenUseCase.getClaims(token)
+        final String tokenId = tokenUseCase.getPayload(token)
                 .get(AuthSideTokenClaim.ID.getValue()).toString();
 
         invalidateTokenUseCase.validateInvalidityOfToken(tokenId);

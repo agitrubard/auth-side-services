@@ -10,7 +10,6 @@ import com.agitrubard.authside.auth.domain.user.model.AuthSideUser;
 import com.agitrubard.authside.util.AuthSideValidTestData;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -67,25 +66,29 @@ public abstract class AuthSideRestControllerTest implements AuthSideTestcontaine
 
         final Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), tokenConfigurationParameter.getAccessTokenExpireMinute());
         final String accessToken = Jwts.builder()
-                .setId(UUID.randomUUID().toString())
-                .setIssuer(tokenConfigurationParameter.getIssuer())
-                .setIssuedAt(tokenIssuedAt)
-                .setExpiration(accessTokenExpiresAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey(), SignatureAlgorithm.RS512)
-                .setHeaderParam(AuthSideTokenClaim.TYPE.getValue(), OAuth2AccessToken.TokenType.BEARER.getValue())
-                .addClaims(claims)
+                .header()
+                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(tokenConfigurationParameter.getIssuer())
+                .issuedAt(tokenIssuedAt)
+                .expiration(accessTokenExpiresAt)
+                .signWith(tokenConfigurationParameter.getPrivateKey())
+                .claims(claims)
                 .compact();
 
         final Date refreshTokenExpiresAt = DateUtils.addDays(new Date(currentTimeMillis), tokenConfigurationParameter.getRefreshTokenExpireDay());
         final JwtBuilder refreshTokenBuilder = Jwts.builder();
         final String refreshToken = refreshTokenBuilder
-                .setId(UUID.randomUUID().toString())
-                .setIssuer(tokenConfigurationParameter.getIssuer())
-                .setIssuedAt(tokenIssuedAt)
-                .setExpiration(refreshTokenExpiresAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey(), SignatureAlgorithm.RS512)
-                .setHeaderParam(AuthSideTokenClaim.TYPE.getValue(), OAuth2AccessToken.TokenType.BEARER.getValue())
-                .claim(AuthSideTokenClaim.USERNAME.getValue(), claims.get(AuthSideTokenClaim.USERNAME.getValue()))
+                .header()
+                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(tokenConfigurationParameter.getIssuer())
+                .issuedAt(tokenIssuedAt)
+                .expiration(refreshTokenExpiresAt)
+                .signWith(tokenConfigurationParameter.getPrivateKey())
+                .claim(AuthSideTokenClaim.USER_ID.getValue(), claims.get(AuthSideTokenClaim.USER_ID.getValue()))
                 .compact();
 
         return AuthSideToken.builder()

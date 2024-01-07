@@ -4,7 +4,8 @@ import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideInvalidT
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideTokenUseCase;
 import com.agitrubard.authside.auth.domain.token.enums.AuthSideTokenClaim;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwsHeader;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -70,7 +71,7 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
 
             tokenUseCase.verifyAndValidate(accessToken);
 
-            final String accessTokenId = tokenUseCase.getClaims(accessToken)
+            final String accessTokenId = tokenUseCase.getPayload(accessToken)
                     .get(AuthSideTokenClaim.ID.getValue()).toString();
             invalidTokenUseCase.validateInvalidityOfToken(accessTokenId);
 
@@ -112,18 +113,25 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
      */
     private UsernamePasswordAuthenticationToken generateAuthentication(final String accessToken) {
 
-        final Claims claims = tokenUseCase.getClaims(accessToken);
+        final Jws<Claims> claims = tokenUseCase.getClaims(accessToken);
+
+        JwsHeader header = claims.getHeader();
+        Claims payload = claims.getPayload();
 
         final Jwt jwt = new Jwt(
                 accessToken,
-                claims.getIssuedAt().toInstant(),
-                claims.getExpiration().toInstant(),
-                Map.of(AuthSideTokenClaim.ALGORITHM.getValue(), SignatureAlgorithm.RS512.getValue()),
-                claims
+                payload.getIssuedAt().toInstant(),
+                payload.getExpiration().toInstant(),
+                Map.of(
+
+                        AuthSideTokenClaim.TYPE.getValue(), header.getType(),
+                        AuthSideTokenClaim.ALGORITHM.getValue(), header.getAlgorithm()
+                ),
+                payload
         );
 
         final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        final Set<String> permissions = this.convertToSet(claims.get(AuthSideTokenClaim.USER_PERMISSIONS.getValue()));
+        final Set<String> permissions = this.convertToSet(payload.get(AuthSideTokenClaim.USER_PERMISSIONS.getValue()));
         permissions.forEach(permission -> authorities.add(new SimpleGrantedAuthority(permission)));
 
         return UsernamePasswordAuthenticationToken.authenticated(jwt, null, authorities);
@@ -138,6 +146,11 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
      */
     @SuppressWarnings({"unchecked"})
     private <C> Set<C> convertToSet(Object object) {
+
+        if (object == null) {
+            return Set.of();
+        }
+
         return new HashSet<>((List<C>) object);
     }
 

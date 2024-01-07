@@ -7,10 +7,10 @@ import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 import com.agitrubard.authside.auth.domain.token.enums.AuthSideTokenClaim;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,10 +38,10 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
     private final AuthSideTokenConfigurationParameter tokenConfigurationParameter;
 
     /**
-     * Generates an authentication token based on the provided claims and returns it.
+     * Generates an authentication side token based on the provided claims.
      *
-     * @param claims The claims to be included in the authentication token.
-     * @return An authentication token containing the provided claims.
+     * @param claims The claims to be included in the generated token.
+     * @return The generated authentication side token.
      */
     @Override
     public AuthSideToken generate(final Map<String, Object> claims) {
@@ -51,25 +51,29 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
 
         final Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), tokenConfigurationParameter.getAccessTokenExpireMinute());
         final String accessToken = Jwts.builder()
-                .setId(UUID.randomUUID().toString())
-                .setIssuer(tokenConfigurationParameter.getIssuer())
-                .setIssuedAt(tokenIssuedAt)
-                .setExpiration(accessTokenExpiresAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey(), SignatureAlgorithm.RS512)
-                .setHeaderParam(AuthSideTokenClaim.TYPE.getValue(), OAuth2AccessToken.TokenType.BEARER.getValue())
-                .addClaims(claims)
+                .header()
+                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(tokenConfigurationParameter.getIssuer())
+                .issuedAt(tokenIssuedAt)
+                .expiration(accessTokenExpiresAt)
+                .signWith(tokenConfigurationParameter.getPrivateKey())
+                .claims(claims)
                 .compact();
 
         final Date refreshTokenExpiresAt = DateUtils.addDays(new Date(currentTimeMillis), tokenConfigurationParameter.getRefreshTokenExpireDay());
         final JwtBuilder refreshTokenBuilder = Jwts.builder();
         final String refreshToken = refreshTokenBuilder
-                .setId(UUID.randomUUID().toString())
-                .setIssuer(tokenConfigurationParameter.getIssuer())
-                .setIssuedAt(tokenIssuedAt)
-                .setExpiration(refreshTokenExpiresAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey(), SignatureAlgorithm.RS512)
+                .header()
+                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(tokenConfigurationParameter.getIssuer())
+                .issuedAt(tokenIssuedAt)
+                .expiration(refreshTokenExpiresAt)
+                .signWith(tokenConfigurationParameter.getPrivateKey())
                 .claim(AuthSideTokenClaim.USER_ID.getValue(), claims.get(AuthSideTokenClaim.USER_ID.getValue()))
-                .setHeaderParam(AuthSideTokenClaim.TYPE.getValue(), OAuth2AccessToken.TokenType.BEARER.getValue())
                 .compact();
 
         return AuthSideToken.builder()
@@ -81,11 +85,12 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
 
 
     /**
-     * Generates a new authentication token based on the provided claims and a refresh token, and returns it.
+     * Generates an authentication side token with an additional refresh token,
+     * based on the provided claims.
      *
-     * @param claims       The claims to be included in the authentication token.
-     * @param refreshToken The refresh token used for generating the new access token.
-     * @return An authentication token containing the provided claims and a new access token.
+     * @param claims       The claims to be included in the generated token.
+     * @param refreshToken The refresh token to be associated with the generated token.
+     * @return The generated authentication side token with a refresh token.
      */
     @Override
     public AuthSideToken generate(final Map<String, Object> claims, final String refreshToken) {
@@ -95,13 +100,15 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
         final Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), tokenConfigurationParameter.getAccessTokenExpireMinute());
 
         final String accessToken = Jwts.builder()
-                .setId(UUID.randomUUID().toString())
-                .setIssuer(tokenConfigurationParameter.getIssuer())
-                .setIssuedAt(accessTokenIssuedAt)
-                .setExpiration(accessTokenExpiresAt)
-                .setHeaderParam(AuthSideTokenClaim.TYPE.getValue(), OAuth2AccessToken.TokenType.BEARER.getValue())
-                .signWith(tokenConfigurationParameter.getPrivateKey(), SignatureAlgorithm.RS512)
-                .addClaims(claims)
+                .header()
+                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(tokenConfigurationParameter.getIssuer())
+                .issuedAt(accessTokenIssuedAt)
+                .expiration(accessTokenExpiresAt)
+                .signWith(tokenConfigurationParameter.getPrivateKey())
+                .claims(claims)
                 .compact();
 
         return AuthSideToken.builder()
@@ -113,38 +120,53 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
 
 
     /**
-     * Verifies and validates an authentication token. If the token is invalid, it throws an exception.
+     * Verifies and validates the authenticity and integrity of the provided token.
      *
-     * @param jwt The authentication token to verify and validate.
-     * @throws AuthSideTokenNotValidException if the token is invalid.
+     * @param token The token to be verified and validated.
+     * @throws AuthSideTokenNotValidException If the token verification fails.
      */
     @Override
-    public void verifyAndValidate(String jwt) {
+    public void verifyAndValidate(String token) {
         try {
-            Jwts.parserBuilder()
-                    .setSigningKey(tokenConfigurationParameter.getPublicKey())
+            Jwts.parser()
+                    .verifyWith(tokenConfigurationParameter.getPublicKey())
                     .build()
-                    .parseClaimsJws(jwt)
-                    .getBody();
+                    .parseSignedClaims(token)
+                    .getPayload();
         } catch (MalformedJwtException | ExpiredJwtException | SignatureException exception) {
-            throw new AuthSideTokenNotValidException(jwt, exception);
+            throw new AuthSideTokenNotValidException(token, exception);
         }
     }
 
 
     /**
-     * Retrieves the claims (payload) from an authentication token.
+     * Retrieves the payload (claims) from the provided token.
      *
-     * @param token The authentication token from which to retrieve the claims.
-     * @return The claims extracted from the token.
+     * @param token The token from which to extract the payload.
+     * @return The claims (payload) extracted from the token.
      */
     @Override
-    public Claims getClaims(String token) {
-        return Jwts.parserBuilder()
-                .setSigningKey(tokenConfigurationParameter.getPublicKey())
+    public Claims getPayload(String token) {
+        return Jwts.parser()
+                .verifyWith(tokenConfigurationParameter.getPublicKey())
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
+    }
+
+
+    /**
+     * Retrieves the complete set of claims from the provided token as a JSON Web Signature (JWS) object.
+     *
+     * @param token The token from which to extract the claims.
+     * @return The JWS object containing the claims.
+     */
+    @Override
+    public Jws<Claims> getClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(tokenConfigurationParameter.getPublicKey())
+                .build()
+                .parseSignedClaims(token);
     }
 
 }
