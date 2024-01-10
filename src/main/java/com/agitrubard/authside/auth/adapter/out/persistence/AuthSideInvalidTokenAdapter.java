@@ -36,7 +36,7 @@ class AuthSideInvalidTokenAdapter implements AuthSideInvalidTokenReadPort, AuthS
      * @param invalidTokens The set of invalidated authentication tokens to save.
      */
     @Override
-    public void saveAll(Set<AuthSideInvalidToken> invalidTokens) {
+    public void saveAll(final Set<AuthSideInvalidToken> invalidTokens) {
         final Set<AuthSideInvalidTokenEntity> invalidTokenEntities = invalidTokenToInvalidTokenEntityMapper
                 .map(invalidTokens);
         invalidTokenRepository.saveAll(invalidTokenEntities);

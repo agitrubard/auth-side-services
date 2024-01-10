@@ -2,6 +2,7 @@ package com.agitrubard.authside.auth.domain.token;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Represents an entity for storing information about invalidated authentication tokens.
@@ -11,6 +12,7 @@ import lombok.Getter;
  * @version 1.0.0.0
  */
 @Getter
+@Setter
 @Builder
 public class AuthSideInvalidToken {
 
