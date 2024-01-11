@@ -24,6 +24,7 @@ class AuthSideInvalidTokenServiceTest extends AuthSideUnitTest {
     @Mock
     private AuthSideInvalidTokenSavePort invalidTokenSavePort;
 
+
     @Test
     void givenInvalidTokenIds_whenTokensInvalidated_thenDoNothing() {
         // Given

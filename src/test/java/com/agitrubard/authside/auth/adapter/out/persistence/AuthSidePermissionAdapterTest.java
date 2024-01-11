@@ -28,6 +28,7 @@ class AuthSidePermissionAdapterTest extends AuthSideUnitTest {
 
     private final AuthSidePermissionEntityToPermissionMapper permissionEntityToPermissionMapper = AuthSidePermissionEntityToPermissionMapper.initialize();
 
+
     @Test
     void whenFindAllPermissions_thenReturnAllPermissions() {
 
@@ -59,6 +60,7 @@ class AuthSidePermissionAdapterTest extends AuthSideUnitTest {
         Assertions.assertEquals(mockPermissions.iterator().next().getName(), permissions.iterator().next().getName());
         Assertions.assertEquals(mockPermissions.iterator().next().getCategory(), permissions.iterator().next().getCategory());
 
+        // Verify
         Mockito.verify(permissionRepository, Mockito.times(1))
                 .findAll();
     }
@@ -80,6 +82,7 @@ class AuthSidePermissionAdapterTest extends AuthSideUnitTest {
 
         Assertions.assertEquals(mockPermissions.size(), permissions.size());
 
+        // Verify
         Mockito.verify(permissionRepository, Mockito.times(1))
                 .findAll();
     }

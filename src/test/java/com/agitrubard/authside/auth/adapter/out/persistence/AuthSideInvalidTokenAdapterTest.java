@@ -24,7 +24,9 @@ class AuthSideInvalidTokenAdapterTest extends AuthSideUnitTest {
     @Mock
     private AuthSideInvalidTokenRepository invalidTokenRepository;
 
+
     private final AuthSideInvalidTokenToInvalidTokenEntityMapper invalidTokenToInvalidTokenEntityMapper = AuthSideInvalidTokenToInvalidTokenEntityMapper.initialize();
+
 
     @Test
     void givenValidInvalidTokens_whenInvalidTokensSaved_thenDoNothing() {

@@ -30,6 +30,7 @@ class AuthSideLoginAttemptAdapterTest extends AuthSideUnitTest {
     private final AuthSideLoginAttemptEntityToLoginAttemptMapper loginAttemptEntityToLoginAttemptMapper = AuthSideLoginAttemptEntityToLoginAttemptMapper.initialize();
     private final AuthSideLoginAttemptToLoginAttemptEntityMapper loginAttemptToLoginAttemptEntityMapper = AuthSideLoginAttemptToLoginAttemptEntityMapper.initialize();
 
+
     @Test
     void givenValidUserId_whenFindLoginAttemptEntity_thenReturnAuthSideLoginAttempt() {
 

@@ -54,6 +54,7 @@ class AuthSideParameterAdapterTest extends AuthSideUnitTest {
 
         Assertions.assertEquals(mockParameters.size(), parameters.size());
 
+        // Verify
         Mockito.verify(parameterRepository, Mockito.times(1))
                 .findByNameStartingWith(Mockito.anyString());
     }
@@ -75,6 +76,7 @@ class AuthSideParameterAdapterTest extends AuthSideUnitTest {
 
         Assertions.assertEquals(mockParameters.size(), parameters.size());
 
+        // Verify
         Mockito.verify(parameterRepository, Mockito.times(1))
                 .findByNameStartingWith(Mockito.anyString());
     }

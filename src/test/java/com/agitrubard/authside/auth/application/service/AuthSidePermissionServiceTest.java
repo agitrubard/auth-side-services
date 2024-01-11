@@ -16,12 +16,12 @@ import java.util.UUID;
 
 class AuthSidePermissionServiceTest extends AuthSideUnitTest {
 
-
     @InjectMocks
     private AuthSidePermissionService permissionService;
 
     @Mock
     private AuthSidePermissionReadPort permissionReadPort;
+
 
     @Test
     void whenFindAllPermissions_thenReturnAllPermissions() {
@@ -52,6 +52,7 @@ class AuthSidePermissionServiceTest extends AuthSideUnitTest {
         Assertions.assertEquals(mockPermissions.iterator().next().getName(), permissions.iterator().next().getName());
         Assertions.assertEquals(mockPermissions.iterator().next().getCategory(), permissions.iterator().next().getCategory());
 
+        // Verify
         Mockito.verify(permissionReadPort, Mockito.times(1))
                 .findAll();
     }
@@ -71,6 +72,7 @@ class AuthSidePermissionServiceTest extends AuthSideUnitTest {
 
         Assertions.assertEquals(0, permissions.size());
 
+        // Verify
         Mockito.verify(permissionReadPort, Mockito.times(1))
                 .findAll();
     }
