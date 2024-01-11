@@ -2,6 +2,7 @@ package com.agitrubard.authside.auth.domain.login.model;
 
 import com.agitrubard.authside.common.domain.model.AuthSideBaseDomainModel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
  * @version 1.0.0
  */
 @Getter
+@Setter
 @SuperBuilder
 public class AuthSideLoginAttempt extends AuthSideBaseDomainModel {
 
