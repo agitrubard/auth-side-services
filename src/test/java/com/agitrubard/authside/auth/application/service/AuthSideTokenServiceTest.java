@@ -58,37 +58,35 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
         long currentTimeMillis = System.currentTimeMillis();
 
         Date tokenIssuedAt = new Date(currentTimeMillis);
-
-        Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), MOCK_ACCESS_TOKEN_EXPIRE_MINUTE);
-        String accessToken = Jwts.builder()
+        JwtBuilder mockTokenBuilder = Jwts.builder()
                 .header()
                 .type(OAuth2AccessToken.TokenType.BEARER.getValue())
                 .and()
-                .id(UUID.randomUUID().toString())
                 .issuer(MOCK_ISSUER)
-                .issuedAt(tokenIssuedAt)
-                .expiration(accessTokenExpiresAt)
                 .signWith(MOCK_PRIVATE_KEY)
+                .issuedAt(tokenIssuedAt);
+
+        Date mockAccessTokenExpiresAt = DateUtils.addMinutes(
+                new Date(currentTimeMillis),
+                MOCK_ACCESS_TOKEN_EXPIRE_MINUTE
+        );
+        String mockAccessToken = mockTokenBuilder
+                .id(UUID.randomUUID().toString())
+                .expiration(mockAccessTokenExpiresAt)
                 .claims(mockClaims)
                 .compact();
 
         Date refreshTokenExpiresAt = DateUtils.addDays(new Date(currentTimeMillis), MOCK_REFRESH_TOKEN_EXPIRE_DAY);
-        String refreshToken = Jwts.builder()
-                .header()
-                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
-                .and()
+        String mockRefreshToken = mockTokenBuilder
                 .id(UUID.randomUUID().toString())
-                .issuer(MOCK_ISSUER)
-                .issuedAt(tokenIssuedAt)
                 .expiration(refreshTokenExpiresAt)
-                .signWith(MOCK_PRIVATE_KEY)
                 .claim(AuthSideTokenClaim.USER_ID.getValue(), mockClaims.get(AuthSideTokenClaim.USER_ID.getValue()))
                 .compact();
 
         AuthSideToken mockToken = AuthSideToken.builder()
-                .accessToken(accessToken)
-                .accessTokenExpiresAt(accessTokenExpiresAt.toInstant().getEpochSecond())
-                .refreshToken(refreshToken)
+                .accessToken(mockAccessToken)
+                .accessTokenExpiresAt(mockAccessTokenExpiresAt.toInstant().getEpochSecond())
+                .refreshToken(mockRefreshToken)
                 .build();
 
         Mockito.when(tokenConfigurationParameter.getIssuer())
@@ -147,9 +145,9 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
         );
 
         // Verify
-        Mockito.verify(tokenConfigurationParameter, Mockito.times(2))
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(1))
                 .getIssuer();
-        Mockito.verify(tokenConfigurationParameter, Mockito.times(2))
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(1))
                 .getPrivateKey();
         Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
                 .getPublicKey();
@@ -180,30 +178,28 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
         long currentTimeMillis = System.currentTimeMillis();
 
         Date tokenIssuedAt = new Date(currentTimeMillis);
-
-        Date mockAccessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), MOCK_ACCESS_TOKEN_EXPIRE_MINUTE);
-        String mockAccessToken = Jwts.builder()
+        JwtBuilder mockTokenBuilder = Jwts.builder()
                 .header()
                 .type(OAuth2AccessToken.TokenType.BEARER.getValue())
                 .and()
-                .id(UUID.randomUUID().toString())
                 .issuer(MOCK_ISSUER)
-                .issuedAt(tokenIssuedAt)
-                .expiration(mockAccessTokenExpiresAt)
                 .signWith(MOCK_PRIVATE_KEY)
+                .issuedAt(tokenIssuedAt);
+
+        Date mockAccessTokenExpiresAt = DateUtils.addMinutes(
+                new Date(currentTimeMillis),
+                MOCK_ACCESS_TOKEN_EXPIRE_MINUTE
+        );
+        String mockAccessToken = mockTokenBuilder
+                .id(UUID.randomUUID().toString())
+                .expiration(mockAccessTokenExpiresAt)
                 .claims(mockClaims)
                 .compact();
 
         Date refreshTokenExpiresAt = DateUtils.addDays(new Date(currentTimeMillis), MOCK_REFRESH_TOKEN_EXPIRE_DAY);
-        String mockRefreshToken = Jwts.builder()
-                .header()
-                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
-                .and()
+        String mockRefreshToken = mockTokenBuilder
                 .id(UUID.randomUUID().toString())
-                .issuer(MOCK_ISSUER)
-                .issuedAt(tokenIssuedAt)
                 .expiration(refreshTokenExpiresAt)
-                .signWith(MOCK_PRIVATE_KEY)
                 .claim(AuthSideTokenClaim.USER_ID.getValue(), mockClaims.get(AuthSideTokenClaim.USER_ID.getValue()))
                 .compact();
 

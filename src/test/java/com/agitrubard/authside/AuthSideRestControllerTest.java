@@ -49,13 +49,11 @@ public abstract class AuthSideRestControllerTest implements AuthSideTestcontaine
     @BeforeEach
     void init() {
         AuthSideUser adminUser = userReadPort.findById(AuthSideValidTestData.AdminUser.ID).get();
-        AuthSideLoginAttempt loginAttemptOfAdminUser = loginAttemptReadPort
-                .findByUserId(adminUser.getId());
+        AuthSideLoginAttempt loginAttemptOfAdminUser = loginAttemptReadPort.findByUserId(adminUser.getId());
         this.userToken = this.generate(adminUser.getClaims(loginAttemptOfAdminUser));
 
         AuthSideUser user = userReadPort.findById(AuthSideValidTestData.ReadUser.ID).get();
-        AuthSideLoginAttempt loginAttemptOfUser = loginAttemptReadPort
-                .findByUserId(user.getId());
+        AuthSideLoginAttempt loginAttemptOfUser = loginAttemptReadPort.findByUserId(user.getId());
         this.adminUserToken = this.generate(user.getClaims(loginAttemptOfUser));
     }
 
@@ -63,31 +61,31 @@ public abstract class AuthSideRestControllerTest implements AuthSideTestcontaine
         final long currentTimeMillis = System.currentTimeMillis();
 
         final Date tokenIssuedAt = new Date(currentTimeMillis);
-
-        final Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), tokenConfigurationParameter.getAccessTokenExpireMinute());
-        final String accessToken = Jwts.builder()
+        final JwtBuilder tokenBuilder = Jwts.builder()
                 .header()
                 .type(OAuth2AccessToken.TokenType.BEARER.getValue())
                 .and()
-                .id(UUID.randomUUID().toString())
                 .issuer(tokenConfigurationParameter.getIssuer())
-                .issuedAt(tokenIssuedAt)
-                .expiration(accessTokenExpiresAt)
                 .signWith(tokenConfigurationParameter.getPrivateKey())
+                .issuedAt(tokenIssuedAt);
+
+        final Date accessTokenExpiresAt = DateUtils.addMinutes(
+                new Date(currentTimeMillis),
+                tokenConfigurationParameter.getAccessTokenExpireMinute()
+        );
+        final String accessToken = tokenBuilder
+                .id(UUID.randomUUID().toString())
+                .expiration(accessTokenExpiresAt)
                 .claims(claims)
                 .compact();
 
-        final Date refreshTokenExpiresAt = DateUtils.addDays(new Date(currentTimeMillis), tokenConfigurationParameter.getRefreshTokenExpireDay());
-        final JwtBuilder refreshTokenBuilder = Jwts.builder();
-        final String refreshToken = refreshTokenBuilder
-                .header()
-                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
-                .and()
+        final Date refreshTokenExpiresAt = DateUtils.addDays(
+                new Date(currentTimeMillis),
+                tokenConfigurationParameter.getRefreshTokenExpireDay()
+        );
+        final String refreshToken = tokenBuilder
                 .id(UUID.randomUUID().toString())
-                .issuer(tokenConfigurationParameter.getIssuer())
-                .issuedAt(tokenIssuedAt)
                 .expiration(refreshTokenExpiresAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey())
                 .claim(AuthSideTokenClaim.USER_ID.getValue(), claims.get(AuthSideTokenClaim.USER_ID.getValue()))
                 .compact();
 

@@ -48,31 +48,31 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
         final long currentTimeMillis = System.currentTimeMillis();
 
         final Date tokenIssuedAt = new Date(currentTimeMillis);
-
-        final Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), tokenConfigurationParameter.getAccessTokenExpireMinute());
-        final String accessToken = Jwts.builder()
+        final JwtBuilder tokenBuilder = Jwts.builder()
                 .header()
                 .type(OAuth2AccessToken.TokenType.BEARER.getValue())
                 .and()
-                .id(UUID.randomUUID().toString())
                 .issuer(tokenConfigurationParameter.getIssuer())
-                .issuedAt(tokenIssuedAt)
-                .expiration(accessTokenExpiresAt)
                 .signWith(tokenConfigurationParameter.getPrivateKey())
+                .issuedAt(tokenIssuedAt);
+
+        final Date accessTokenExpiresAt = DateUtils.addMinutes(
+                new Date(currentTimeMillis),
+                tokenConfigurationParameter.getAccessTokenExpireMinute()
+        );
+        final String accessToken = tokenBuilder
+                .id(UUID.randomUUID().toString())
+                .expiration(accessTokenExpiresAt)
                 .claims(claims)
                 .compact();
 
-        final Date refreshTokenExpiresAt = DateUtils.addDays(new Date(currentTimeMillis), tokenConfigurationParameter.getRefreshTokenExpireDay());
-        final JwtBuilder refreshTokenBuilder = Jwts.builder();
-        final String refreshToken = refreshTokenBuilder
-                .header()
-                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
-                .and()
+        final Date refreshTokenExpiresAt = DateUtils.addDays(
+                new Date(currentTimeMillis),
+                tokenConfigurationParameter.getRefreshTokenExpireDay()
+        );
+        final String refreshToken = tokenBuilder
                 .id(UUID.randomUUID().toString())
-                .issuer(tokenConfigurationParameter.getIssuer())
-                .issuedAt(tokenIssuedAt)
                 .expiration(refreshTokenExpiresAt)
-                .signWith(tokenConfigurationParameter.getPrivateKey())
                 .claim(AuthSideTokenClaim.USER_ID.getValue(), claims.get(AuthSideTokenClaim.USER_ID.getValue()))
                 .compact();
 
@@ -96,9 +96,13 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
     public AuthSideToken generate(final Map<String, Object> claims, final String refreshToken) {
 
         final long currentTimeMillis = System.currentTimeMillis();
-        final Date accessTokenIssuedAt = new Date(currentTimeMillis);
-        final Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), tokenConfigurationParameter.getAccessTokenExpireMinute());
 
+        final Date accessTokenIssuedAt = new Date(currentTimeMillis);
+
+        final Date accessTokenExpiresAt = DateUtils.addMinutes(
+                new Date(currentTimeMillis),
+                tokenConfigurationParameter.getAccessTokenExpireMinute()
+        );
         final String accessToken = Jwts.builder()
                 .header()
                 .type(OAuth2AccessToken.TokenType.BEARER.getValue())
