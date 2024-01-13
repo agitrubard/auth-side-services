@@ -123,7 +123,6 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
                 payload.getIssuedAt().toInstant(),
                 payload.getExpiration().toInstant(),
                 Map.of(
-
                         AuthSideTokenClaim.TYPE.getValue(), header.getType(),
                         AuthSideTokenClaim.ALGORITHM.getValue(), header.getAlgorithm()
                 ),

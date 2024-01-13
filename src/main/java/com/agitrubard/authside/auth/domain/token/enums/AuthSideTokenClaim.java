@@ -28,21 +28,6 @@ public enum AuthSideTokenClaim {
     TYPE("typ"),
 
     /**
-     * The "sub" claim represents the subject of the token, typically the user.
-     */
-    SUBJECT("sub"),
-
-    /**
-     * The "iat" claim represents the timestamp at which the token was issued (in seconds since the epoch).
-     */
-    ISSUED_AT("iat"),
-
-    /**
-     * The "exp" claim represents the timestamp at which the token will expire (in seconds since the epoch).
-     */
-    EXPIRES_AT("exp"),
-
-    /**
      * The "alg" claim represents the algorithm used to sign the token.
      */
     ALGORITHM("alg"),
