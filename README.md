@@ -19,7 +19,7 @@ workflows.
   authentication mechanisms and JWT for secure token-based communication.
 - **Database Integration:** Fully integrated with various databases, enabling compatibility with different systems.
   Utilizes Liquibase for seamless multi-database support.
-- **Latest Technology Stack:** AuthSide leverages Java 17 and the latest Spring ecosystem, guaranteeing the utilization
+- **Latest Technology Stack:** AuthSide leverages Java 21 and the latest Spring ecosystem, guaranteeing the utilization
   of up-to-date and well-supported tools.
 - **Hexagonal Architecture:** The hexagonal architecture promotes separation of concerns and maintainability, making it
   easier to adapt to changes and expansions.
