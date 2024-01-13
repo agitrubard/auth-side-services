@@ -5,7 +5,7 @@ spring:
   datasource:
     username: auth_side
     password: auth_side_pass
-    url: jdbc:tc:mysql:8.0.33///test
+    url: jdbc:tc:mysql:latest///test
   liquibase:
     enabled: true
     changeLog: "classpath:database/configuration.yaml"
