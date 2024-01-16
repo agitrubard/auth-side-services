@@ -17,7 +17,7 @@ public class AuthSideUserEntityBuilder extends TestDataBuilder<AuthSideUserEntit
     public AuthSideUserEntityBuilder withValidFields() {
         return this
                 .withId(UUID.randomUUID().toString())
-                .withEmailAddress(RandomStringUtils.random(8).concat("@authside.com"))
+                .withEmailAddress(RandomStringUtils.randomAlphabetic(8).concat("@authside.com"))
                 .withPassword(AuthSideValidTestData.ReadUser.PASSWORD_ENCRYPTED)
                 .withRoles(Set.of(new AuthSideRoleEntityBuilder().withValidFields().build()))
                 .withStatus(AuthSideUserStatus.ACTIVE);
