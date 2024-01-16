@@ -8,6 +8,7 @@ import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 import com.agitrubard.authside.auth.domain.token.enums.AuthSideTokenClaim;
 import com.agitrubard.authside.auth.domain.user.model.AuthSideUser;
 import com.agitrubard.authside.util.AuthSideValidTestData;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import org.apache.commons.lang3.time.DateUtils;
@@ -21,7 +22,6 @@ import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.UUID;
 
 @SpringBootTest
@@ -47,6 +47,7 @@ public abstract class AuthSideRestControllerTest implements AuthSideTestcontaine
     private AuthSideLoginAttemptReadPort loginAttemptReadPort;
 
     @BeforeEach
+    @SuppressWarnings("OptionalGetWithoutIsPresent disabled because of the test data is valid")
     void init() {
         AuthSideUser adminUser = userReadPort.findById(AuthSideValidTestData.AdminUser.ID).get();
         AuthSideLoginAttempt loginAttemptOfAdminUser = loginAttemptReadPort.findByUserId(adminUser.getId());
@@ -57,7 +58,7 @@ public abstract class AuthSideRestControllerTest implements AuthSideTestcontaine
         this.adminUserToken = this.generate(user.getClaims(loginAttemptOfUser));
     }
 
-    protected AuthSideToken generate(Map<String, Object> claims) {
+    protected AuthSideToken generate(Claims claims) {
         final long currentTimeMillis = System.currentTimeMillis();
 
         final Date tokenIssuedAt = new Date(currentTimeMillis);

@@ -4,8 +4,6 @@ import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 
-import java.util.Map;
-
 /**
  * The {@code AuthSideTokenUseCase} interface defines the use cases for working with authentication tokens in the authentication
  * side of the application. It provides methods for generating tokens, verifying and validating tokens, and retrieving token claims.
@@ -24,7 +22,7 @@ public interface AuthSideTokenUseCase {
      * @param claims The claims to be included in the generated token.
      * @return The generated authentication side token.
      */
-    AuthSideToken generate(Map<String, Object> claims);
+    AuthSideToken generate(Claims claims);
 
     /**
      * Generates an authentication side token with an additional refresh token,
@@ -34,7 +32,7 @@ public interface AuthSideTokenUseCase {
      * @param refreshToken The refresh token to be associated with the generated token.
      * @return The generated authentication side token with a refresh token.
      */
-    AuthSideToken generate(Map<String, Object> claims, String refreshToken);
+    AuthSideToken generate(Claims claims, String refreshToken);
 
     /**
      * Verifies and validates the authenticity and integrity of the provided token.

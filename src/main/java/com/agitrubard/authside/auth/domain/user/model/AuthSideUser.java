@@ -6,12 +6,14 @@ import com.agitrubard.authside.auth.domain.role.model.AuthSideRole;
 import com.agitrubard.authside.auth.domain.token.enums.AuthSideTokenClaim;
 import com.agitrubard.authside.auth.domain.user.enums.AuthSideUserStatus;
 import com.agitrubard.authside.common.domain.model.AuthSideBaseDomainModel;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ClaimsBuilder;
+import io.jsonwebtoken.Jwts;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.ZoneOffset;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
  * @version 1.0.0
  */
 @Getter
+@Setter
 @SuperBuilder
 public class AuthSideUser extends AuthSideBaseDomainModel {
 
@@ -78,36 +81,36 @@ public class AuthSideUser extends AuthSideBaseDomainModel {
 
 
     /**
-     * Generates a map of claims for authentication tokens based on user and login attempt information.
+     * Generates a claims for authentication tokens based on user and login attempt information.
      *
      * @param loginAttempt The user's login attempt information, such as the last login date and last failed try date.
-     * @return A map of claims for authentication tokens.
+     * @return A claims for authentication tokens.
      */
-    public Map<String, Object> getClaims(final AuthSideLoginAttempt loginAttempt) {
-        final Map<String, Object> claims = new HashMap<>();
+    public Claims getClaims(final AuthSideLoginAttempt loginAttempt) {
+        final ClaimsBuilder claimsBuilder = Jwts.claims();
 
-        claims.put(AuthSideTokenClaim.USER_ID.getValue(), this.id);
-        claims.put(AuthSideTokenClaim.USERNAME.getValue(), this.username);
-        claims.put(AuthSideTokenClaim.USER_ROLES.getValue(), this.getRoleNames());
-        claims.put(AuthSideTokenClaim.USER_PERMISSIONS.getValue(), this.getPermissionNames());
-        claims.put(AuthSideTokenClaim.USER_FIRST_NAME.getValue(), this.firstName);
-        claims.put(AuthSideTokenClaim.USER_LAST_NAME.getValue(), this.lastName);
+        claimsBuilder.add(AuthSideTokenClaim.USER_ID.getValue(), this.id);
+        claimsBuilder.add(AuthSideTokenClaim.USERNAME.getValue(), this.username);
+        claimsBuilder.add(AuthSideTokenClaim.USER_ROLES.getValue(), this.getRoleNames());
+        claimsBuilder.add(AuthSideTokenClaim.USER_PERMISSIONS.getValue(), this.getPermissionNames());
+        claimsBuilder.add(AuthSideTokenClaim.USER_FIRST_NAME.getValue(), this.firstName);
+        claimsBuilder.add(AuthSideTokenClaim.USER_LAST_NAME.getValue(), this.lastName);
 
         if (loginAttempt.getLastLoginDate() != null) {
-            claims.put(
+            claimsBuilder.add(
                     AuthSideTokenClaim.USER_LAST_LOGIN_DATE.getValue(),
                     loginAttempt.getLastLoginDate().toInstant(ZoneOffset.UTC).getEpochSecond()
             );
         }
 
         if (loginAttempt.getLastFailedTryDate() != null) {
-            claims.put(
+            claimsBuilder.add(
                     AuthSideTokenClaim.USER_LAST_FAILED_TRY_DATE.getValue(),
                     loginAttempt.getLastFailedTryDate().toInstant(ZoneOffset.UTC).getEpochSecond()
             );
         }
 
-        return claims;
+        return claimsBuilder.build();
     }
 
     /**

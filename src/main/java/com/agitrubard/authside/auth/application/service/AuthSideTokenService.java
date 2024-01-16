@@ -8,9 +8,11 @@ import com.agitrubard.authside.auth.domain.token.enums.AuthSideTokenClaim;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwsHeader;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.RequiredTypeException;
 import io.jsonwebtoken.security.SignatureException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +21,6 @@ import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -44,7 +45,7 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
      * @return The generated authentication side token.
      */
     @Override
-    public AuthSideToken generate(final Map<String, Object> claims) {
+    public AuthSideToken generate(final Claims claims) {
         final long currentTimeMillis = System.currentTimeMillis();
 
         final Date tokenIssuedAt = new Date(currentTimeMillis);
@@ -93,7 +94,7 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
      * @return The generated authentication side token with a refresh token.
      */
     @Override
-    public AuthSideToken generate(final Map<String, Object> claims, final String refreshToken) {
+    public AuthSideToken generate(final Claims claims, final String refreshToken) {
 
         final long currentTimeMillis = System.currentTimeMillis();
 

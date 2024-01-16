@@ -18,11 +18,6 @@ import lombok.RequiredArgsConstructor;
 public enum AuthSideTokenClaim {
 
     /**
-     * The "jti" claim represents the JWT (JSON Web Token) ID, which is a unique identifier for the token.
-     */
-    ID("jti"),
-
-    /**
      * The "typ" claim represents the type of the token.
      */
     TYPE("typ"),

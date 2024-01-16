@@ -18,11 +18,11 @@ import com.agitrubard.authside.auth.domain.login.model.AuthSideLoginAttempt;
 import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 import com.agitrubard.authside.auth.domain.token.enums.AuthSideTokenClaim;
 import com.agitrubard.authside.auth.domain.user.model.AuthSideUser;
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -69,7 +69,7 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
 
         loginAttempt.success();
 
-        final Map<String, Object> claims = user.getClaims(loginAttempt);
+        final Claims claims = user.getClaims(loginAttempt);
         final AuthSideToken token = tokenUseCase.generate(claims);
 
         loginAttemptSavePort.save(loginAttempt);
@@ -97,7 +97,8 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
                 throw new AuthSideUserMaximumLoginAttemptsExceedException(user.getId());
             }
 
-            if (!passwordEncoder.matches(loginCommand.getPassword(), user.getPassword())) {
+            final boolean isPasswordWrong = !passwordEncoder.matches(loginCommand.getPassword(), user.getPassword());
+            if (isPasswordWrong) {
                 throw new AuthSidePasswordNotValidException();
             }
 
@@ -125,11 +126,9 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
     public AuthSideToken refreshAccessToken(final AuthSideTokenRefreshCommand tokenRefreshCommand) {
 
         final String refreshToken = tokenRefreshCommand.getRefreshToken();
-        this.validateToken(refreshToken);
+        final Claims claimsOfToken = this.validateTokenAndGetTokenPayload(refreshToken);
 
-        final String userId = tokenUseCase
-                .getPayload(refreshToken)
-                .get(AuthSideTokenClaim.USER_ID.getValue()).toString();
+        final String userId = claimsOfToken.get(AuthSideTokenClaim.USER_ID.getValue()).toString();
 
         final AuthSideUser user = userReadPort.findById(userId)
                 .orElseThrow(() -> new AuthSideUserNotFoundException(userId));
@@ -137,8 +136,8 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
         this.validateUserStatus(user);
 
         final AuthSideLoginAttempt loginAttempt = loginAttemptReadPort.findByUserId(user.getId());
-        final Map<String, Object> claims = user.getClaims(loginAttempt);
-        return tokenUseCase.generate(claims, refreshToken);
+        final Claims claimsOfUser = user.getClaims(loginAttempt);
+        return tokenUseCase.generate(claimsOfUser, refreshToken);
     }
 
     /**
@@ -163,32 +162,30 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
     public void invalidateTokens(final AuthSideTokenInvalidateCommand tokenInvalidateCommand) {
 
         final String accessToken = tokenInvalidateCommand.getAccessToken();
-        this.validateToken(accessToken);
+        final String accessTokenId = this.validateTokenAndGetTokenPayload(accessToken).getId();
 
         final String refreshToken = tokenInvalidateCommand.getRefreshToken();
-        this.validateToken(refreshToken);
+        final String refreshTokenId = this.validateTokenAndGetTokenPayload(refreshToken).getId();
 
-        final String accessTokenId = tokenUseCase.getPayload(accessToken)
-                .get(AuthSideTokenClaim.ID.getValue()).toString();
-        final String refreshTokenId = tokenUseCase.getPayload(refreshToken)
-                .get(AuthSideTokenClaim.ID.getValue()).toString();
         invalidateTokenUseCase.invalidateTokens(Set.of(accessTokenId, refreshTokenId));
     }
 
-
     /**
-     * Validates a refresh token, verifies its validity, and retrieves the associated user's claims.
+     * Validates a token and returns the token payload.
      *
      * @param token The token to validate.
+     * @return The token payload.
      */
-    private void validateToken(final String token) {
+    private Claims validateTokenAndGetTokenPayload(final String token) {
 
         tokenUseCase.verifyAndValidate(token);
 
-        final String tokenId = tokenUseCase.getPayload(token)
-                .get(AuthSideTokenClaim.ID.getValue()).toString();
+        final Claims payload = tokenUseCase.getPayload(token);
+        final String tokenId = payload.getId();
 
         invalidateTokenUseCase.validateInvalidityOfToken(tokenId);
+
+        return payload;
     }
 
 }

@@ -17,6 +17,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -71,8 +72,7 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
 
             tokenUseCase.verifyAndValidate(accessToken);
 
-            final String accessTokenId = tokenUseCase.getPayload(accessToken)
-                    .get(AuthSideTokenClaim.ID.getValue()).toString();
+            final String accessTokenId = tokenUseCase.getPayload(accessToken).getId();
             invalidTokenUseCase.validateInvalidityOfToken(accessTokenId);
 
             final var authentication = this.generateAuthentication(accessToken);
@@ -83,7 +83,7 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
     }
 
 
-    private static final String TOKEN_PREFIX = "Bearer ";
+    private static final String TOKEN_PREFIX = STR."\{OAuth2AccessToken.TokenType.BEARER.getValue()} ";
 
     /**
      * Checks if the provided authorization header contains a bearer token.
