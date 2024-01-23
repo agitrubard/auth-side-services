@@ -2,8 +2,11 @@ package com.agitrubard.authside.auth.application.service;
 
 import com.agitrubard.authside.AuthSideUnitTest;
 import com.agitrubard.authside.auth.application.exception.AuthSidePasswordNotValidException;
+import com.agitrubard.authside.auth.application.exception.AuthSideTokenAlreadyInvalidatedException;
+import com.agitrubard.authside.auth.application.exception.AuthSideTokenNotValidException;
 import com.agitrubard.authside.auth.application.exception.AuthSideUserMaximumLoginAttemptsExceedException;
 import com.agitrubard.authside.auth.application.exception.AuthSideUserNotActiveException;
+import com.agitrubard.authside.auth.application.exception.AuthSideUserNotFoundException;
 import com.agitrubard.authside.auth.application.exception.AuthSideUsernameNotValidException;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommandBuilder;
@@ -359,6 +362,153 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .findByUserId(Mockito.anyString());
 
         Mockito.verify(tokenUseCase, Mockito.times(1))
+                .generate(Mockito.any(Claims.class), Mockito.anyString());
+    }
+
+    @Test
+    void givenInvalidTokenRefreshCommand_whenTokensNotValid_thenThrowAuthSideTokenNotValidException() {
+
+        // Given
+        AuthSideTokenRefreshCommand mockTokenRefreshCommand = new AuthSideTokenRefreshCommandBuilder()
+                .build();
+
+        // When
+        Mockito.doThrow(AuthSideTokenNotValidException.class)
+                .when(tokenUseCase)
+                .verifyAndValidate(Mockito.anyString());
+
+        // Then
+        Assertions.assertThrows(
+                AuthSideTokenNotValidException.class,
+                () -> authenticationService.refreshAccessToken(mockTokenRefreshCommand)
+        );
+
+        // Verify
+        Mockito.verify(tokenUseCase, Mockito.times(1))
+                .verifyAndValidate(Mockito.anyString());
+
+        Mockito.verify(tokenUseCase, Mockito.times(0))
+                .getPayload(Mockito.anyString());
+
+        Mockito.verify(invalidateTokenUseCase, Mockito.times(0))
+                .validateInvalidityOfToken(Mockito.anyString());
+
+        Mockito.verify(userReadPort, Mockito.times(0))
+                .findById(Mockito.anyString());
+
+        Mockito.verify(loginAttemptReadPort, Mockito.times(0))
+                .findByUserId(Mockito.anyString());
+
+        Mockito.verify(tokenUseCase, Mockito.times(0))
+                .generate(Mockito.any(Claims.class), Mockito.anyString());
+    }
+
+    @Test
+    void givenInvalidTokenRefreshCommand_whenTokensInvalidatedAlready_thenThrowAuthSideTokenAlreadyInvalidatedException() {
+
+        // Initialize
+        AuthSideUser mockUser = new AuthSideUserBuilder()
+                .withValidFields()
+                .build();
+        Claims claims = Jwts.claims()
+                .id(UUID.randomUUID().toString())
+                .add(AuthSideTokenClaim.USER_ID.getValue(), mockUser.getId())
+                .build();
+
+        // Given
+        AuthSideTokenRefreshCommand mockTokenRefreshCommand = new AuthSideTokenRefreshCommandBuilder().build();
+
+        // When
+        Mockito.doNothing()
+                .when(tokenUseCase)
+                .verifyAndValidate(Mockito.anyString());
+
+        Mockito.when(tokenUseCase.getPayload(Mockito.anyString()))
+                .thenReturn(claims);
+
+        Mockito.doThrow(AuthSideTokenAlreadyInvalidatedException.class)
+                .when(invalidateTokenUseCase)
+                .validateInvalidityOfToken(Mockito.anyString());
+
+        // Then
+        Assertions.assertThrows(
+                AuthSideTokenAlreadyInvalidatedException.class,
+                () -> authenticationService.refreshAccessToken(mockTokenRefreshCommand)
+        );
+
+        // Verify
+        Mockito.verify(tokenUseCase, Mockito.times(1))
+                .verifyAndValidate(Mockito.anyString());
+
+        Mockito.verify(tokenUseCase, Mockito.times(1))
+                .getPayload(Mockito.anyString());
+
+        Mockito.verify(invalidateTokenUseCase, Mockito.times(1))
+                .validateInvalidityOfToken(Mockito.anyString());
+
+        Mockito.verify(userReadPort, Mockito.times(0))
+                .findById(Mockito.anyString());
+
+        Mockito.verify(loginAttemptReadPort, Mockito.times(0))
+                .findByUserId(Mockito.anyString());
+
+        Mockito.verify(tokenUseCase, Mockito.times(0))
+                .generate(Mockito.any(Claims.class), Mockito.anyString());
+    }
+
+    @Test
+    void givenInvalidTokenRefreshCommand_whenUserNotFound_thenThrowAuthSideUserNotFoundException() {
+
+        // Initialize
+        AuthSideUser mockUser = new AuthSideUserBuilder()
+                .withValidFields()
+                .build();
+        Claims claims = Jwts.claims()
+                .id(UUID.randomUUID().toString())
+                .add(AuthSideTokenClaim.USER_ID.getValue(), mockUser.getId())
+                .build();
+
+        // Given
+        AuthSideTokenRefreshCommand mockTokenRefreshCommand = new AuthSideTokenRefreshCommandBuilder().build();
+
+        // When
+        Mockito.doNothing()
+                .when(tokenUseCase)
+                .verifyAndValidate(Mockito.anyString());
+
+        Mockito.when(tokenUseCase.getPayload(Mockito.anyString()))
+                .thenReturn(claims);
+
+        Mockito.doNothing()
+                .when(invalidateTokenUseCase)
+                .validateInvalidityOfToken(Mockito.anyString());
+
+        Mockito.when(userReadPort.findById(Mockito.anyString()))
+                .thenThrow(AuthSideUserNotFoundException.class);
+
+        // Then
+        Assertions.assertThrows(
+                AuthSideUserNotFoundException.class,
+                () -> authenticationService.refreshAccessToken(mockTokenRefreshCommand)
+        );
+
+        // Verify
+        Mockito.verify(tokenUseCase, Mockito.times(1))
+                .verifyAndValidate(Mockito.anyString());
+
+        Mockito.verify(tokenUseCase, Mockito.times(1))
+                .getPayload(Mockito.anyString());
+
+        Mockito.verify(invalidateTokenUseCase, Mockito.times(1))
+                .validateInvalidityOfToken(Mockito.anyString());
+
+        Mockito.verify(userReadPort, Mockito.times(1))
+                .findById(Mockito.anyString());
+
+        Mockito.verify(loginAttemptReadPort, Mockito.times(0))
+                .findByUserId(Mockito.anyString());
+
+        Mockito.verify(tokenUseCase, Mockito.times(0))
                 .generate(Mockito.any(Claims.class), Mockito.anyString());
     }
 
