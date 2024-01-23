@@ -406,13 +406,13 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
     }
 
     @Test
-    void givenInvalidTokenRefreshCommand_whenTokensInvalidatedAlready_thenThrowAuthSideTokenAlreadyInvalidatedException() {
+    void givenInvalidTokenRefreshCommand_whenRefreshTokenInvalidatedAlready_thenThrowAuthSideTokenAlreadyInvalidatedException() {
 
         // Initialize
         AuthSideUser mockUser = new AuthSideUserBuilder()
                 .withValidFields()
                 .build();
-        Claims claims = Jwts.claims()
+        Claims claimsOfRefreshToken = Jwts.claims()
                 .id(UUID.randomUUID().toString())
                 .add(AuthSideTokenClaim.USER_ID.getValue(), mockUser.getId())
                 .build();
@@ -425,8 +425,8 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .when(tokenUseCase)
                 .verifyAndValidate(Mockito.anyString());
 
-        Mockito.when(tokenUseCase.getPayload(Mockito.anyString()))
-                .thenReturn(claims);
+        Mockito.when(tokenUseCase.getPayload(mockTokenRefreshCommand.getRefreshToken()))
+                .thenReturn(claimsOfRefreshToken);
 
         Mockito.doThrow(AuthSideTokenAlreadyInvalidatedException.class)
                 .when(invalidateTokenUseCase)
@@ -600,7 +600,6 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
         Mockito.verify(invalidateTokenUseCase, Mockito.times(0))
                 .invalidateTokens(Mockito.anySet());
     }
-
 
     @Test
     void givenInvalidTokenInvalidateCommand_whenAccessTokenInvalidatedAlready_thenThrowAuthSideTokenAlreadyInvalidatedException() {
