@@ -86,7 +86,7 @@ public class AuthSideUser extends AuthSideBaseDomainModel {
      * @param loginAttempt The user's login attempt information, such as the last login date and last failed try date.
      * @return A claims for authentication tokens.
      */
-    public Claims getClaims(final AuthSideLoginAttempt loginAttempt) {
+    public Claims getPayload(final AuthSideLoginAttempt loginAttempt) {
         final ClaimsBuilder claimsBuilder = Jwts.claims();
 
         claimsBuilder.add(AuthSideTokenClaim.USER_ID.getValue(), this.id);

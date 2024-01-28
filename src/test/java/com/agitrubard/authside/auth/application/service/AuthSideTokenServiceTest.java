@@ -51,7 +51,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .build();
 
         // Given
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         // When
         long currentTimeMillis = System.currentTimeMillis();
@@ -171,7 +171,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .build();
 
         // Given
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         // When
         long currentTimeMillis = System.currentTimeMillis();
@@ -296,7 +296,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .withUserId(mockUser.getId())
                 .build();
 
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         long currentTimeMillis = System.currentTimeMillis();
 
@@ -356,7 +356,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .withUserId(mockUser.getId())
                 .build();
 
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         PrivateKey privateKey = AuthSideKeyPairUtil.generateKeyPair().getPrivate();
 
@@ -422,7 +422,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .withUserId(mockUser.getId())
                 .build();
 
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         long currentTimeMillis = System.currentTimeMillis();
 
@@ -482,7 +482,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .withUserId(mockUser.getId())
                 .build();
 
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         PrivateKey privateKey = AuthSideKeyPairUtil.generateKeyPair().getPrivate();
 
@@ -548,7 +548,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .withUserId(mockUser.getId())
                 .build();
 
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         long currentTimeMillis = System.currentTimeMillis();
 
@@ -639,7 +639,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .withUserId(mockUser.getId())
                 .build();
 
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         long currentTimeMillis = System.currentTimeMillis();
 
@@ -731,7 +731,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .withUserId(mockUser.getId())
                 .build();
 
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         long currentTimeMillis = System.currentTimeMillis();
 
@@ -829,7 +829,7 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
                 .withUserId(mockUser.getId())
                 .build();
 
-        Claims mockClaims = mockUser.getClaims(mockLoginAttempt);
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
 
         long currentTimeMillis = System.currentTimeMillis();
 

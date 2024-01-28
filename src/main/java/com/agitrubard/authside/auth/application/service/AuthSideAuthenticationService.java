@@ -69,7 +69,7 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
 
         loginAttempt.success();
 
-        final Claims claims = user.getClaims(loginAttempt);
+        final Claims claims = user.getPayload(loginAttempt);
         final AuthSideToken token = tokenUseCase.generate(claims);
 
         loginAttemptSavePort.save(loginAttempt);
@@ -136,7 +136,7 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
         this.validateUserStatus(user);
 
         final AuthSideLoginAttempt loginAttempt = loginAttemptReadPort.findByUserId(user.getId());
-        final Claims claimsOfUser = user.getClaims(loginAttempt);
+        final Claims claimsOfUser = user.getPayload(loginAttempt);
         return tokenUseCase.generate(claimsOfUser, refreshToken);
     }
 
