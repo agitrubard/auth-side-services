@@ -10,10 +10,10 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
-import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -59,9 +59,9 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
      * @throws IOException      If an I/O error occurs.
      */
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest,
-                                    @NonNull HttpServletResponse httpServletResponse,
-                                    @NonNull FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(final HttpServletRequest httpServletRequest,
+                                    final @NonNull HttpServletResponse httpServletResponse,
+                                    final @NonNull FilterChain filterChain) throws ServletException, IOException {
 
 
         log.debug("API Request was secured with AYS Security!");
