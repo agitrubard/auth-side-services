@@ -133,12 +133,21 @@ class AuthSideTokenService implements AuthSideTokenUseCase {
     @Override
     public void verifyAndValidate(String token) {
         try {
-            Jwts.parser()
+            final Jws<Claims> claims = Jwts.parser()
                     .verifyWith(tokenConfigurationParameter.getPublicKey())
                     .build()
-                    .parseSignedClaims(token)
-                    .getPayload();
-        } catch (MalformedJwtException | ExpiredJwtException | SignatureException exception) {
+                    .parseSignedClaims(token);
+
+            final JwsHeader header = claims.getHeader();
+            if (!OAuth2AccessToken.TokenType.BEARER.getValue().equals(header.getType())) {
+                throw new RequiredTypeException(token);
+            }
+
+            if (!Jwts.SIG.RS256.getId().equals(header.getAlgorithm())) {
+                throw new SignatureException(token);
+            }
+
+        } catch (MalformedJwtException | ExpiredJwtException | SignatureException | RequiredTypeException exception) {
             throw new AuthSideTokenNotValidException(token, exception);
         }
     }
