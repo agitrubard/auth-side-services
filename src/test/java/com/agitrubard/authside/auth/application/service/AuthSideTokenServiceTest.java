@@ -23,6 +23,8 @@ import org.mockito.Mockito;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
 
 import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.Date;
@@ -344,6 +346,137 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
     }
 
     @Test
+    void givenInvalidAccessToken_whenTokenTypeIsNotBearer_thenThrowAuthSideTokenNotValidException() {
+
+        // Initialize
+        AuthSideUser mockUser = new AuthSideUserBuilder()
+                .withValidFields()
+                .build();
+
+        AuthSideLoginAttempt mockLoginAttempt = new AuthSideLoginAttemptBuilder()
+                .withValidFields()
+                .withUserId(mockUser.getId())
+                .build();
+
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
+
+        long currentTimeMillis = System.currentTimeMillis();
+
+        Date tokenIssuedAt = new Date(currentTimeMillis);
+
+        Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), MOCK_ACCESS_TOKEN_EXPIRE_MINUTE);
+        String accessToken = Jwts.builder()
+                .header()
+                .type("Invalid")
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(MOCK_ISSUER)
+                .issuedAt(tokenIssuedAt)
+                .expiration(accessTokenExpiresAt)
+                .signWith(MOCK_PRIVATE_KEY)
+                .claims(mockClaims)
+                .compact();
+
+        AuthSideToken token = AuthSideToken.builder()
+                .accessToken(accessToken)
+                .accessTokenExpiresAt(accessTokenExpiresAt.toInstant().getEpochSecond())
+                .build();
+
+        // Given
+        String mockAccessToken = token.getAccessToken();
+
+        // When
+        Mockito.when(tokenConfigurationParameter.getPublicKey())
+                .thenReturn(MOCK_PUBLIC_KEY);
+
+        // Then
+        Assertions.assertThrows(
+                AuthSideTokenNotValidException.class,
+                () -> tokenService.verifyAndValidate(mockAccessToken)
+        );
+
+        // Verify
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(1))
+                .getPublicKey();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getPrivateKey();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getIssuer();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getAccessTokenExpireMinute();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getRefreshTokenExpireDay();
+    }
+
+    @Test
+    void givenInvalidAccessToken_whenTokenSignatureAlgorithmInvalid_thenThrowAuthSideTokenNotValidException() throws NoSuchAlgorithmException {
+
+        // Initialize
+        AuthSideUser mockUser = new AuthSideUserBuilder()
+                .withValidFields()
+                .build();
+
+        AuthSideLoginAttempt mockLoginAttempt = new AuthSideLoginAttemptBuilder()
+                .withValidFields()
+                .withUserId(mockUser.getId())
+                .build();
+
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
+
+        long currentTimeMillis = System.currentTimeMillis();
+
+        Date tokenIssuedAt = new Date(currentTimeMillis);
+
+        Date accessTokenExpiresAt = DateUtils.addMinutes(new Date(currentTimeMillis), MOCK_ACCESS_TOKEN_EXPIRE_MINUTE);
+
+        KeyPairGenerator mockKeyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        mockKeyPairGenerator.initialize(4096);
+        KeyPair mockKeyPair = mockKeyPairGenerator.generateKeyPair();
+
+        String accessToken = Jwts.builder()
+                .header()
+                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(MOCK_ISSUER)
+                .issuedAt(tokenIssuedAt)
+                .expiration(accessTokenExpiresAt)
+                .signWith(mockKeyPair.getPrivate())
+                .claims(mockClaims)
+                .compact();
+
+        AuthSideToken token = AuthSideToken.builder()
+                .accessToken(accessToken)
+                .accessTokenExpiresAt(accessTokenExpiresAt.toInstant().getEpochSecond())
+                .build();
+
+        // Given
+        String mockAccessToken = token.getAccessToken();
+
+        // When
+        Mockito.when(tokenConfigurationParameter.getPublicKey())
+                .thenReturn(mockKeyPair.getPublic());
+
+        // Then
+        Assertions.assertThrows(
+                AuthSideTokenNotValidException.class,
+                () -> tokenService.verifyAndValidate(mockAccessToken)
+        );
+
+        // Verify
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(1))
+                .getPublicKey();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getPrivateKey();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getIssuer();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getAccessTokenExpireMinute();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getRefreshTokenExpireDay();
+    }
+
+    @Test
     void givenInvalidAccessToken_whenTokenNotVerified_thenThrowAuthSideTokenNotValidException() {
 
         // Initialize
@@ -455,6 +588,136 @@ class AuthSideTokenServiceTest extends AuthSideUnitTest {
 
         // Then
         tokenService.verifyAndValidate(mockRefreshToken);
+
+        // Verify
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(1))
+                .getPublicKey();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getPrivateKey();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getIssuer();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getAccessTokenExpireMinute();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getRefreshTokenExpireDay();
+    }
+
+    @Test
+    void givenInvalidRefreshToken_whenTokenTypeIsNotBearer_thenThrowAuthSideTokenNotValidException() {
+
+        // Initialize
+        AuthSideUser mockUser = new AuthSideUserBuilder()
+                .withValidFields()
+                .build();
+
+        AuthSideLoginAttempt mockLoginAttempt = new AuthSideLoginAttemptBuilder()
+                .withValidFields()
+                .withUserId(mockUser.getId())
+                .build();
+
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
+
+        long currentTimeMillis = System.currentTimeMillis();
+
+        Date tokenIssuedAt = new Date(currentTimeMillis);
+
+        Date refreshTokenExpiresAt = DateUtils.addDays(new Date(currentTimeMillis), MOCK_REFRESH_TOKEN_EXPIRE_DAY);
+        JwtBuilder refreshTokenBuilder = Jwts.builder();
+        String refreshToken = refreshTokenBuilder
+                .header()
+                .type("Invalid")
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(MOCK_ISSUER)
+                .issuedAt(tokenIssuedAt)
+                .expiration(refreshTokenExpiresAt)
+                .signWith(MOCK_PRIVATE_KEY)
+                .claim(AuthSideTokenClaim.USER_ID.getValue(), mockClaims.get(AuthSideTokenClaim.USER_ID.getValue()))
+                .compact();
+
+        AuthSideToken token = AuthSideToken.builder()
+                .refreshToken(refreshToken)
+                .build();
+
+        // Given
+        String mockRefreshToken = token.getRefreshToken();
+
+        // When
+        Mockito.when(tokenConfigurationParameter.getPublicKey())
+                .thenReturn(MOCK_PUBLIC_KEY);
+
+        // Then
+        Assertions.assertThrows(
+                AuthSideTokenNotValidException.class,
+                () -> tokenService.verifyAndValidate(mockRefreshToken)
+        );
+
+        // Verify
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(1))
+                .getPublicKey();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getPrivateKey();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getIssuer();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getAccessTokenExpireMinute();
+        Mockito.verify(tokenConfigurationParameter, Mockito.times(0))
+                .getRefreshTokenExpireDay();
+    }
+
+    @Test
+    void givenInvalidRefreshToken_whenTokenSignatureAlgorithmInvalid_thenThrowAuthSideTokenNotValidException() throws NoSuchAlgorithmException {
+
+        // Initialize
+        AuthSideUser mockUser = new AuthSideUserBuilder()
+                .withValidFields()
+                .build();
+
+        AuthSideLoginAttempt mockLoginAttempt = new AuthSideLoginAttemptBuilder()
+                .withValidFields()
+                .withUserId(mockUser.getId())
+                .build();
+
+        Claims mockClaims = mockUser.getPayload(mockLoginAttempt);
+
+        long currentTimeMillis = System.currentTimeMillis();
+
+        Date tokenIssuedAt = new Date(currentTimeMillis);
+
+        Date refreshTokenExpiresAt = DateUtils.addDays(new Date(currentTimeMillis), MOCK_REFRESH_TOKEN_EXPIRE_DAY);
+
+        KeyPairGenerator mockKeyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        mockKeyPairGenerator.initialize(4096);
+        KeyPair mockKeyPair = mockKeyPairGenerator.generateKeyPair();
+
+        String refreshToken = Jwts.builder()
+                .header()
+                .type(OAuth2AccessToken.TokenType.BEARER.getValue())
+                .and()
+                .id(UUID.randomUUID().toString())
+                .issuer(MOCK_ISSUER)
+                .issuedAt(tokenIssuedAt)
+                .expiration(refreshTokenExpiresAt)
+                .signWith(mockKeyPair.getPrivate())
+                .claim(AuthSideTokenClaim.USER_ID.getValue(), mockClaims.get(AuthSideTokenClaim.USER_ID.getValue()))
+                .compact();
+
+        AuthSideToken token = AuthSideToken.builder()
+                .refreshToken(refreshToken)
+                .build();
+
+        // Given
+        String mockRefreshToken = token.getRefreshToken();
+
+        // When
+        Mockito.when(tokenConfigurationParameter.getPublicKey())
+                .thenReturn(mockKeyPair.getPublic());
+
+        // Then
+        Assertions.assertThrows(
+                AuthSideTokenNotValidException.class,
+                () -> tokenService.verifyAndValidate(mockRefreshToken)
+        );
 
         // Verify
         Mockito.verify(tokenConfigurationParameter, Mockito.times(1))
