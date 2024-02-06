@@ -10,10 +10,10 @@ import com.agitrubard.authside.auth.application.exception.AuthSideUserNotFoundEx
 import com.agitrubard.authside.auth.application.exception.AuthSideUsernameNotValidException;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommandBuilder;
-import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenInvalidateCommandBuilder;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenRefreshCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenRefreshCommandBuilder;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokensInvalidateCommand;
+import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokensInvalidateCommandBuilder;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideInvalidTokenUseCase;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideTokenUseCase;
 import com.agitrubard.authside.auth.application.port.out.AuthSideLoginAttemptReadPort;
@@ -532,17 +532,17 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .build();
 
         // Given
-        AuthSideTokensInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
+        AuthSideTokensInvalidateCommand mockTokensInvalidateCommand = new AuthSideTokensInvalidateCommandBuilder().build();
 
         // When
         Mockito.doNothing()
                 .when(tokenUseCase)
                 .verifyAndValidate(Mockito.anyString());
 
-        Mockito.when(tokenUseCase.getPayload(mockTokenInvalidateCommand.getAccessToken()))
+        Mockito.when(tokenUseCase.getPayload(mockTokensInvalidateCommand.getAccessToken()))
                 .thenReturn(claimsOfAccessToken);
 
-        Mockito.when(tokenUseCase.getPayload(mockTokenInvalidateCommand.getRefreshToken()))
+        Mockito.when(tokenUseCase.getPayload(mockTokensInvalidateCommand.getRefreshToken()))
                 .thenReturn(claimsOfRefreshToken);
 
         Mockito.doNothing()
@@ -554,7 +554,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .invalidateTokens(Mockito.anySet());
 
         // Then
-        authenticationService.invalidateTokens(mockTokenInvalidateCommand);
+        authenticationService.invalidateTokens(mockTokensInvalidateCommand);
 
         // Verify
         Mockito.verify(tokenUseCase, Mockito.times(2))
@@ -574,7 +574,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
     void givenInvalidTokenInvalidateCommand_whenTokensNotValid_thenThrowAuthSideTokenNotValidException() {
 
         // Given
-        AuthSideTokensInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
+        AuthSideTokensInvalidateCommand mockTokensInvalidateCommand = new AuthSideTokensInvalidateCommandBuilder().build();
 
         // When
         Mockito.doThrow(AuthSideTokenNotValidException.class)
@@ -584,7 +584,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
         // Then
         Assertions.assertThrows(
                 AuthSideTokenNotValidException.class,
-                () -> authenticationService.invalidateTokens(mockTokenInvalidateCommand)
+                () -> authenticationService.invalidateTokens(mockTokensInvalidateCommand)
         );
 
         // Verify
@@ -618,17 +618,17 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .build();
 
         // Given
-        AuthSideTokensInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
+        AuthSideTokensInvalidateCommand mockTokensInvalidateCommand = new AuthSideTokensInvalidateCommandBuilder().build();
 
         // When
         Mockito.doNothing()
                 .when(tokenUseCase)
                 .verifyAndValidate(Mockito.anyString());
 
-        Mockito.when(tokenUseCase.getPayload(mockTokenInvalidateCommand.getAccessToken()))
+        Mockito.when(tokenUseCase.getPayload(mockTokensInvalidateCommand.getAccessToken()))
                 .thenReturn(claimsOfAccessToken);
 
-        Mockito.when(tokenUseCase.getPayload(mockTokenInvalidateCommand.getRefreshToken()))
+        Mockito.when(tokenUseCase.getPayload(mockTokensInvalidateCommand.getRefreshToken()))
                 .thenReturn(claimsOfRefreshToken);
 
         Mockito.doThrow(AuthSideTokenAlreadyInvalidatedException.class)
@@ -638,7 +638,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
         // Then
         Assertions.assertThrows(
                 AuthSideTokenAlreadyInvalidatedException.class,
-                () -> authenticationService.invalidateTokens(mockTokenInvalidateCommand)
+                () -> authenticationService.invalidateTokens(mockTokensInvalidateCommand)
         );
 
         // Verify
@@ -672,17 +672,17 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .build();
 
         // Given
-        AuthSideTokensInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
+        AuthSideTokensInvalidateCommand mockTokensInvalidateCommand = new AuthSideTokensInvalidateCommandBuilder().build();
 
         // When
         Mockito.doNothing()
                 .when(tokenUseCase)
                 .verifyAndValidate(Mockito.anyString());
 
-        Mockito.when(tokenUseCase.getPayload(mockTokenInvalidateCommand.getAccessToken()))
+        Mockito.when(tokenUseCase.getPayload(mockTokensInvalidateCommand.getAccessToken()))
                 .thenReturn(claimsOfAccessToken);
 
-        Mockito.when(tokenUseCase.getPayload(mockTokenInvalidateCommand.getRefreshToken()))
+        Mockito.when(tokenUseCase.getPayload(mockTokensInvalidateCommand.getRefreshToken()))
                 .thenReturn(claimsOfRefreshToken);
 
         Mockito.doNothing()
@@ -696,7 +696,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
         // Then
         Assertions.assertThrows(
                 AuthSideTokenAlreadyInvalidatedException.class,
-                () -> authenticationService.invalidateTokens(mockTokenInvalidateCommand)
+                () -> authenticationService.invalidateTokens(mockTokensInvalidateCommand)
         );
 
         // Verify
