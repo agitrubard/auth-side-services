@@ -6,8 +6,8 @@ import com.agitrubard.authside.auth.application.exception.AuthSideUserNotActiveE
 import com.agitrubard.authside.auth.application.exception.AuthSideUserNotFoundException;
 import com.agitrubard.authside.auth.application.exception.AuthSideUsernameNotValidException;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommand;
-import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenInvalidateCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenRefreshCommand;
+import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokensInvalidateCommand;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideAuthenticationUseCase;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideInvalidTokenUseCase;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideTokenUseCase;
@@ -159,7 +159,7 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
      * @param tokenInvalidateCommand The token invalidate command containing access and refresh tokens.
      */
     @Override
-    public void invalidateTokens(final AuthSideTokenInvalidateCommand tokenInvalidateCommand) {
+    public void invalidateTokens(final AuthSideTokensInvalidateCommand tokenInvalidateCommand) {
 
         final String accessToken = tokenInvalidateCommand.getAccessToken();
         final String accessTokenId = this.validateTokenAndGetTokenPayload(accessToken).getId();

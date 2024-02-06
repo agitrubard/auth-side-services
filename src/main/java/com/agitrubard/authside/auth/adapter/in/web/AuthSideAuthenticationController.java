@@ -5,8 +5,8 @@ import com.agitrubard.authside.auth.adapter.in.web.request.AuthSideTokenRefreshR
 import com.agitrubard.authside.auth.adapter.in.web.request.AuthSideTokensInvalidateRequest;
 import com.agitrubard.authside.auth.adapter.in.web.response.AuthSideTokenResponse;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommand;
-import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenInvalidateCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenRefreshCommand;
+import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokensInvalidateCommand;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideAuthenticationUseCase;
 import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 import com.agitrubard.authside.auth.mapper.AuthSideLoginRequestToLoginCommandMapper;
@@ -87,7 +87,7 @@ class AuthSideAuthenticationController {
     public AuthSideResponse<Void> invalidateTokens(
             @RequestBody @Valid final AuthSideTokensInvalidateRequest invalidateRequest) {
 
-        final AuthSideTokenInvalidateCommand tokenInvalidateCommand = tokenInvalidateRequestToTokenInvalidateCommandMapper
+        final AuthSideTokensInvalidateCommand tokenInvalidateCommand = tokenInvalidateRequestToTokenInvalidateCommandMapper
                 .map(invalidateRequest);
         authenticationUseCase.invalidateTokens(tokenInvalidateCommand);
         return AuthSideResponse.SUCCESS;

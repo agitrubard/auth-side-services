@@ -1,8 +1,8 @@
 package com.agitrubard.authside.auth.application.port.in.usecase;
 
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommand;
-import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenInvalidateCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenRefreshCommand;
+import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokensInvalidateCommand;
 import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 
 /**
@@ -39,6 +39,6 @@ public interface AuthSideAuthenticationUseCase {
      *
      * @param tokenInvalidateCommand The command containing the tokens to be invalidated.
      */
-    void invalidateTokens(AuthSideTokenInvalidateCommand tokenInvalidateCommand);
+    void invalidateTokens(AuthSideTokensInvalidateCommand tokenInvalidateCommand);
 
 }

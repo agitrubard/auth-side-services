@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class AuthSideTokenInvalidateCommand {
+public class AuthSideTokensInvalidateCommand {
 
     /**
      * The access token to be invalidated.
