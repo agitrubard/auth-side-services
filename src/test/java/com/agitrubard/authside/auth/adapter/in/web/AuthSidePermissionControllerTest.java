@@ -9,6 +9,7 @@ import com.agitrubard.authside.auth.mapper.AuthSidePermissionToPermissionsRespon
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideErrorResponse;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideErrorResponseBuilder;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
+import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponseBuilder;
 import com.agitrubard.authside.util.AuthSideMockMvcRequestBuilders;
 import com.agitrubard.authside.util.AuthSideMockResultMatchersBuilders;
 import org.junit.jupiter.api.Test;
@@ -47,7 +48,9 @@ class AuthSidePermissionControllerTest extends AuthSideRestControllerTest {
                 .get(endpoint, adminUserToken.getAccessToken());
 
         AuthSidePermissionsResponse mockPermissionsResponse = permissionToPermissionsResponseMapper.map(mockPermissions);
-        AuthSideResponse<AuthSidePermissionsResponse> mockResponse = AuthSideResponse.successOf(mockPermissionsResponse);
+        AuthSideResponse<AuthSidePermissionsResponse> mockResponse = new AuthSideResponseBuilder()
+                .success(mockPermissionsResponse)
+                .build();
 
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
