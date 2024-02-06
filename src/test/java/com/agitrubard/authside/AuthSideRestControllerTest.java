@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.oauth2.core.OAuth2AccessToken;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Date;
 import java.util.UUID;
@@ -30,7 +29,7 @@ import java.util.UUID;
 public abstract class AuthSideRestControllerTest implements AuthSideTestcontainer {
 
     @Autowired
-    protected MockMvc mockMvc;
+    protected AuthSideMockMvc authSideMockMvc;
 
 
     protected AuthSideToken adminUserToken;

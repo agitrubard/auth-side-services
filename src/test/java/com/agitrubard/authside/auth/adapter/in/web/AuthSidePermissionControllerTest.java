@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 
 import java.util.Set;
 
@@ -38,42 +37,46 @@ class AuthSidePermissionControllerTest extends AuthSideRestControllerTest {
                 new AuthSidePermissionBuilder().withValidFields().build()
         );
 
-        Mockito.when(permissionUseCase.findAll()).thenReturn(mockPermissions);
+        Mockito.when(permissionUseCase.findAll())
+                .thenReturn(mockPermissions);
 
         // Then
-        AuthSidePermissionsResponse mockPermissionsResponse = permissionToPermissionsResponseMapper.map(mockPermissions);
-        AuthSideResponse<AuthSidePermissionsResponse> mockAysResponse = AuthSideResponse.successOf(mockPermissionsResponse);
+        String endpoint = BASE_PATH.concat("/permissions");
+        MockHttpServletRequestBuilder mockHttpServletRequestBuilder = AuthSideMockMvcRequestBuilders
+                .get(endpoint, adminUserToken.getAccessToken());
 
-        mockMvc.perform(AuthSideMockMvcRequestBuilders
-                        .get(BASE_PATH.concat("/permissions"), adminUserToken.getAccessToken()))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(AuthSideMockResultMatchersBuilders.status().isOk())
-                .andExpect(AuthSideMockResultMatchersBuilders.time()
-                        .isNotEmpty())
-                .andExpect(AuthSideMockResultMatchersBuilders.httpStatus()
-                        .value(mockAysResponse.getHttpStatus().getReasonPhrase()))
-                .andExpect(AuthSideMockResultMatchersBuilders.isSuccess()
-                        .value(mockAysResponse.getIsSuccess()))
+        AuthSidePermissionsResponse mockPermissionsResponse = permissionToPermissionsResponseMapper.map(mockPermissions);
+        AuthSideResponse<AuthSidePermissionsResponse> mockResponse = AuthSideResponse.successOf(mockPermissionsResponse);
+
+        authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
+                .andExpect(AuthSideMockResultMatchersBuilders.status()
+                        .isOk())
                 .andExpect(AuthSideMockResultMatchersBuilders.response()
                         .isNotEmpty());
+
+        // Verify
+        Mockito.verify(permissionUseCase, Mockito.times(1))
+                .findAll();
     }
 
     @Test
     void whenUserUnauthorized_thenReturnAccessDeniedException() throws Exception {
 
-        // When
+        // Then
         MockHttpServletRequestBuilder mockHttpServletRequestBuilder = AuthSideMockMvcRequestBuilders
                 .get(BASE_PATH.concat("/permissions"), userToken.getAccessToken());
 
-        // Then
-        AuthSideErrorResponse mockResponse = AuthSideErrorResponse.FORBIDDEN;
-        mockMvc.perform(mockHttpServletRequestBuilder)
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(AuthSideMockResultMatchersBuilders.status().isForbidden())
-                .andExpect(AuthSideMockResultMatchersBuilders.time().isNotEmpty())
-                .andExpect(AuthSideMockResultMatchersBuilders.httpStatus().value(mockResponse.getHttpStatus().name()))
-                .andExpect(AuthSideMockResultMatchersBuilders.isSuccess().value(mockResponse.getIsSuccess()))
-                .andExpect(AuthSideMockResultMatchersBuilders.response().doesNotExist());
+        AuthSideErrorResponse mockErrorResponse = AuthSideErrorResponse.FORBIDDEN;
+
+        authSideMockMvc.perform(mockHttpServletRequestBuilder, mockErrorResponse)
+                .andExpect(AuthSideMockResultMatchersBuilders.status()
+                        .isForbidden())
+                .andExpect(AuthSideMockResultMatchersBuilders.subErrors()
+                        .doesNotExist());
+
+        // Verify
+        Mockito.verify(permissionUseCase, Mockito.never())
+                .findAll();
     }
 
 }

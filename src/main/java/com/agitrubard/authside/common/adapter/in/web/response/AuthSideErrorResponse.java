@@ -64,6 +64,7 @@ public class AuthSideErrorResponse {
 
     public static final AuthSideErrorResponse FORBIDDEN = AuthSideErrorResponse.builder()
             .httpStatus(HttpStatus.FORBIDDEN)
+            .header(Header.AUTH_ERROR.getName())
             .isSuccess(false).build();
 
     /**
