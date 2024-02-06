@@ -10,9 +10,9 @@ import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokensIn
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideAuthenticationUseCase;
 import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 import com.agitrubard.authside.auth.mapper.AuthSideLoginRequestToLoginCommandMapper;
-import com.agitrubard.authside.auth.mapper.AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper;
 import com.agitrubard.authside.auth.mapper.AuthSideTokenRefreshRequestToTokenRefreshCommandMapper;
 import com.agitrubard.authside.auth.mapper.AuthSideTokenToTokenResponseMapper;
+import com.agitrubard.authside.auth.mapper.AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +40,7 @@ class AuthSideAuthenticationController {
 
     private final AuthSideLoginRequestToLoginCommandMapper loginRequestToLoginCommandMapper = AuthSideLoginRequestToLoginCommandMapper.initialize();
     private final AuthSideTokenRefreshRequestToTokenRefreshCommandMapper tokenRefreshRequestToTokenRefreshCommandMapper = AuthSideTokenRefreshRequestToTokenRefreshCommandMapper.initialize();
-    private final AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper tokenInvalidateRequestToTokenInvalidateCommandMapper = AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper.initialize();
+    private final AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper tokenInvalidateRequestToTokenInvalidateCommandMapper = AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper.initialize();
     private final AuthSideTokenToTokenResponseMapper tokenToTokenResponseMapper = AuthSideTokenToTokenResponseMapper.initialize();
 
     /**

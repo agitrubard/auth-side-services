@@ -15,15 +15,15 @@ import org.mapstruct.factory.Mappers;
  * @version 1.0.0
  */
 @Mapper
-public interface AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper extends AuthSideBaseMapper<AuthSideTokensInvalidateRequest, AuthSideTokensInvalidateCommand> {
+public interface AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper extends AuthSideBaseMapper<AuthSideTokensInvalidateRequest, AuthSideTokensInvalidateCommand> {
 
     /**
      * Initializes and returns an instance of the {@code AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper}.
      *
      * @return An instance of the mapper for converting between {@link AuthSideTokensInvalidateRequest} and {@link AuthSideTokensInvalidateCommand}.
      */
-    static AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper initialize() {
-        return Mappers.getMapper(AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper.class);
+    static AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper initialize() {
+        return Mappers.getMapper(AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper.class);
     }
 
 }
