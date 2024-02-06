@@ -10,10 +10,10 @@ import com.agitrubard.authside.auth.application.exception.AuthSideUserNotFoundEx
 import com.agitrubard.authside.auth.application.exception.AuthSideUsernameNotValidException;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideLoginCommandBuilder;
-import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenInvalidateCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenInvalidateCommandBuilder;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenRefreshCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokenRefreshCommandBuilder;
+import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokensInvalidateCommand;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideInvalidTokenUseCase;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideTokenUseCase;
 import com.agitrubard.authside.auth.application.port.out.AuthSideLoginAttemptReadPort;
@@ -532,7 +532,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .build();
 
         // Given
-        AuthSideTokenInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
+        AuthSideTokensInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
 
         // When
         Mockito.doNothing()
@@ -574,7 +574,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
     void givenInvalidTokenInvalidateCommand_whenTokensNotValid_thenThrowAuthSideTokenNotValidException() {
 
         // Given
-        AuthSideTokenInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
+        AuthSideTokensInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
 
         // When
         Mockito.doThrow(AuthSideTokenNotValidException.class)
@@ -618,7 +618,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .build();
 
         // Given
-        AuthSideTokenInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
+        AuthSideTokensInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
 
         // When
         Mockito.doNothing()
@@ -672,7 +672,7 @@ class AuthSideAuthenticationServiceTest extends AuthSideUnitTest {
                 .build();
 
         // Given
-        AuthSideTokenInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
+        AuthSideTokensInvalidateCommand mockTokenInvalidateCommand = new AuthSideTokenInvalidateCommandBuilder().build();
 
         // When
         Mockito.doNothing()
