@@ -7,6 +7,7 @@ import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermissionBuilder;
 import com.agitrubard.authside.auth.mapper.AuthSidePermissionToPermissionsResponseMapper;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideErrorResponse;
+import com.agitrubard.authside.common.adapter.in.web.response.AuthSideErrorResponseBuilder;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
 import com.agitrubard.authside.util.AuthSideMockMvcRequestBuilders;
 import com.agitrubard.authside.util.AuthSideMockResultMatchersBuilders;
@@ -66,7 +67,9 @@ class AuthSidePermissionControllerTest extends AuthSideRestControllerTest {
         MockHttpServletRequestBuilder mockHttpServletRequestBuilder = AuthSideMockMvcRequestBuilders
                 .get(BASE_PATH.concat("/permissions"), userToken.getAccessToken());
 
-        AuthSideErrorResponse mockErrorResponse = AuthSideErrorResponse.FORBIDDEN;
+        AuthSideErrorResponse mockErrorResponse = new AuthSideErrorResponseBuilder()
+                .forbidden()
+                .build();
 
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockErrorResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
