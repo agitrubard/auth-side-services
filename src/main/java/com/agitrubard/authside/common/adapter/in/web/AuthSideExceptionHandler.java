@@ -36,7 +36,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    protected AuthSideErrorResponse handleProcessError(final Exception exception) {
+    AuthSideErrorResponse handleProcessError(final Exception exception) {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.builder()
@@ -53,7 +53,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(AuthSideProcessException.class)
-    protected AuthSideErrorResponse handleProcessError(final AuthSideProcessException exception) {
+    AuthSideErrorResponse handleProcessError(final AuthSideProcessException exception) {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.builder()
@@ -71,7 +71,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(SQLException.class)
-    protected AuthSideErrorResponse handleSQLError(final SQLException exception) {
+    AuthSideErrorResponse handleSQLError(final SQLException exception) {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.builder()
@@ -88,7 +88,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    protected AuthSideErrorResponse handleValidationErrors(final MethodArgumentTypeMismatchException exception) {
+    AuthSideErrorResponse handleValidationErrors(final MethodArgumentTypeMismatchException exception) {
 
         log.error(exception.getMessage(), exception);
 
@@ -106,7 +106,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    protected AuthSideErrorResponse handleValidationErrors(final MethodArgumentNotValidException exception) {
+    AuthSideErrorResponse handleValidationErrors(final MethodArgumentNotValidException exception) {
 
         log.error(exception.getMessage(), exception);
 
@@ -124,7 +124,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
-    protected AuthSideErrorResponse handlePathVariableErrors(final ConstraintViolationException exception) {
+    AuthSideErrorResponse handlePathVariableErrors(final ConstraintViolationException exception) {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.subErrors(exception.getConstraintViolations())
@@ -141,7 +141,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(AuthSideNotFoundException.class)
-    protected AuthSideErrorResponse handleNotExistError(final AuthSideNotFoundException exception) {
+    AuthSideErrorResponse handleNotExistError(final AuthSideNotFoundException exception) {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.builder()
@@ -159,7 +159,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.CONFLICT)
     @ExceptionHandler(AuthSideAlreadyException.class)
-    protected AuthSideErrorResponse handleAlreadyExistError(final AuthSideAlreadyException exception) {
+    AuthSideErrorResponse handleAlreadyExistError(final AuthSideAlreadyException exception) {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.builder()
@@ -177,7 +177,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler(AccessDeniedException.class)
-    protected AuthSideErrorResponse handleAccessDeniedError(final AccessDeniedException exception) {
+    AuthSideErrorResponse handleAccessDeniedError(final AccessDeniedException exception) {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.builder()
@@ -194,7 +194,7 @@ class AuthSideExceptionHandler {
      */
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AuthSideException.class)
-    protected AuthSideErrorResponse handleAuthError(final AuthSideException exception) {
+    AuthSideErrorResponse handleAuthError(final AuthSideException exception) {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.builder()
