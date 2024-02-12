@@ -11,4 +11,11 @@ public class AuthSideErrorResponseBuilder {
                 .header(AuthSideErrorResponse.Header.AUTH_ERROR.getName());
     }
 
+    public AuthSideErrorResponse.AuthSideErrorResponseBuilder unauthorized() {
+        return AuthSideErrorResponse.builder()
+                .httpStatus(HttpStatus.UNAUTHORIZED)
+                .isSuccess(false)
+                .header(AuthSideErrorResponse.Header.AUTH_ERROR.getName());
+    }
+
 }
