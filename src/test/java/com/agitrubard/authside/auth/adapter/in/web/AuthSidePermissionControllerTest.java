@@ -64,7 +64,7 @@ class AuthSidePermissionControllerTest extends AuthSideRestControllerTest {
     }
 
     @Test
-    void whenUserUnauthorized_thenReturnAccessDeniedException() throws Exception {
+    void whenUserHasNotPermissions_thenReturnForbiddenErrorResponse() throws Exception {
 
         // Then
         MockHttpServletRequestBuilder mockHttpServletRequestBuilder = AuthSideMockMvcRequestBuilders
