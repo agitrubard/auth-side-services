@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -48,7 +49,7 @@ public class AuthSideUser extends AuthSideBaseDomainModel {
     /**
      * The user's password (usually encrypted or hashed for security).
      */
-    private String password;
+    private Password password;
 
     /**
      * The first name of the user.
@@ -135,6 +136,24 @@ public class AuthSideUser extends AuthSideBaseDomainModel {
                 .flatMap(Set::stream)
                 .map(AuthSidePermission::getName)
                 .collect(Collectors.toSet());
+    }
+
+    /**
+     * Represents a password with expiration information.
+     */
+    @Getter
+    @Setter
+    @SuperBuilder
+    public static class Password extends AuthSideBaseDomainModel {
+        /**
+         * The actual password string.
+         */
+        private String value;
+
+        /**
+         * The date and time when the password expires.
+         */
+        private LocalDateTime expiresAt;
     }
 
 }

@@ -2,6 +2,7 @@ package com.agitrubard.authside.auth.adapter.out.persistence.entity;
 
 import com.agitrubard.authside.auth.domain.user.enums.AuthSideUserStatus;
 import com.agitrubard.authside.common.adapter.out.persistence.entity.AuthSideBaseEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -11,11 +12,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
@@ -54,10 +57,10 @@ public class AuthSideUserEntity extends AuthSideBaseEntity {
     private String emailAddress;
 
     /**
-     * The user's password, securely stored for authentication purposes.
+     * The password entity associated with the user for authentication and security.
      */
-    @Column(name = "PASSWORD")
-    private String password;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private PasswordEntity password;
 
     /**
      * The user's first name or given name.
@@ -88,5 +91,53 @@ public class AuthSideUserEntity extends AuthSideBaseEntity {
             inverseJoinColumns = @JoinColumn(name = "ROLE_ID")
     )
     private Set<AuthSideRoleEntity> roles;
+
+
+    /**
+     * The {@code AuthSideUserPasswordEntity} class represents an entity that stores user password information on the authentication side of the application.
+     * It is used to manage and store user passwords, including user identifiers, password values, and expiration dates.
+     * <p>
+     * This entity extends the {@link AuthSideBaseEntity} class and is mapped to the "AUTH_SIDE_USER_PASSWORD" table in the database.
+     */
+    @Entity
+    @Getter
+    @Setter
+    @EqualsAndHashCode(callSuper = true)
+    @Table(name = "AUTH_SIDE_USER_PASSWORD")
+    public static class PasswordEntity extends AuthSideBaseEntity {
+
+        /**
+         * The unique identifier for the password.
+         */
+        @Id
+        @Column(name = "ID")
+        private Long id;
+
+        /**
+         * The user identifier associated with the password.
+         */
+        @Column(name = "USER_ID")
+        private String userId;
+
+        /**
+         * The password value for the user.
+         */
+        @Column(name = "VALUE")
+        private String value;
+
+        /**
+         * The date and time when the password was created.
+         */
+        @Column(name = "EXPIRES_AT")
+        private LocalDateTime expiresAt;
+
+        /**
+         * The user associated with the password.
+         */
+        @OneToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "user_id", referencedColumnName = "id")
+        private AuthSideUserEntity user;
+
+    }
 
 }

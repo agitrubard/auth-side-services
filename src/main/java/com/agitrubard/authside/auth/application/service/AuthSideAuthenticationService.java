@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -97,7 +98,11 @@ class AuthSideAuthenticationService implements AuthSideAuthenticationUseCase {
                 throw new AuthSideUserMaximumLoginAttemptsExceedException(user.getId());
             }
 
-            final boolean isPasswordWrong = !passwordEncoder.matches(loginCommand.getPassword(), user.getPassword());
+            final String passwordFromDatabase = Optional.ofNullable(user.getPassword())
+                    .map(AuthSideUser.Password::getValue)
+                    .orElse(null);
+            final boolean isPasswordWrong = !passwordEncoder
+                    .matches(loginCommand.getPassword(), passwordFromDatabase);
             if (isPasswordWrong) {
                 throw new AuthSidePasswordNotValidException();
             }
