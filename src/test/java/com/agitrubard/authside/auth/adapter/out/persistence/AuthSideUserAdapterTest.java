@@ -51,7 +51,9 @@ class AuthSideUserAdapterTest extends AuthSideUnitTest {
         Assertions.assertEquals(mockUser.getId(), user.get().getId());
         Assertions.assertEquals(mockUser.getUsername(), user.get().getUsername());
         Assertions.assertEquals(mockUser.getEmailAddress(), user.get().getEmailAddress());
-        Assertions.assertEquals(mockUser.getPassword(), user.get().getPassword());
+        Assertions.assertNotNull(user.get().getPassword());
+        Assertions.assertEquals(mockUser.getPassword().getValue(), user.get().getPassword().getValue());
+        Assertions.assertEquals(mockUser.getPassword().getExpiresAt(), user.get().getPassword().getExpiresAt());
         Assertions.assertEquals(mockUser.getFirstName(), user.get().getFirstName());
         Assertions.assertEquals(mockUser.getLastName(), user.get().getLastName());
         Assertions.assertEquals(mockUser.getStatus(), user.get().getStatus());
@@ -107,7 +109,9 @@ class AuthSideUserAdapterTest extends AuthSideUnitTest {
         Assertions.assertEquals(mockUser.getId(), user.get().getId());
         Assertions.assertEquals(mockUser.getUsername(), user.get().getUsername());
         Assertions.assertEquals(mockUser.getEmailAddress(), user.get().getEmailAddress());
-        Assertions.assertEquals(mockUser.getPassword(), user.get().getPassword());
+        Assertions.assertNotNull(user.get().getPassword());
+        Assertions.assertEquals(mockUser.getPassword().getValue(), user.get().getPassword().getValue());
+        Assertions.assertEquals(mockUser.getPassword().getExpiresAt(), user.get().getPassword().getExpiresAt());
         Assertions.assertEquals(mockUser.getFirstName(), user.get().getFirstName());
         Assertions.assertEquals(mockUser.getLastName(), user.get().getLastName());
         Assertions.assertEquals(mockUser.getStatus(), user.get().getStatus());
