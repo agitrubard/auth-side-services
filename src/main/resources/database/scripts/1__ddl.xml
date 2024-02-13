@@ -45,9 +45,6 @@
             <column name="EMAIL_ADDRESS" type="VARCHAR(254)">
                 <constraints nullable="false" unique="true" uniqueConstraintName="U__AUTH_SIDE_USER__EMAIL_ADDRESS"/>
             </column>
-            <column name="PASSWORD" type="VARCHAR(60)">
-                <constraints nullable="false"/>
-            </column>
             <column name="FIRST_NAME" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
@@ -69,6 +66,41 @@
         <!-- ===================== -->
         <!-- DDL of AUTH_SIDE_USER -->
         <!-- ===================== -->
+
+
+        <!-- ============================== -->
+        <!-- DDL of AUTH_SIDE_USER_PASSWORD -->
+        <!-- ============================== -->
+        <createTable tableName="AUTH_SIDE_USER_PASSWORD">
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="USER_ID" type="VARCHAR(36)">
+                <constraints unique="true"
+                             nullable="false"
+                             foreignKeyName="FK__AUTH_SIDE_USER_PASSWORD__USER_ID"
+                             referencedTableName="AUTH_SIDE_USER"
+                             referencedColumnNames="ID"
+                />
+            </column>
+            <column name="VALUE" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EXPIRES_AT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR(255)" defaultValue="AUTH_SIDE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_AT" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_BY" type="VARCHAR(255)"/>
+            <column name="UPDATED_AT" type="TIMESTAMP"/>
+        </createTable>
+        <!-- ============================== -->
+        <!-- DDL of AUTH_SIDE_USER_PASSWORD -->
+        <!-- ============================== -->
 
 
         <!-- ===================== -->
