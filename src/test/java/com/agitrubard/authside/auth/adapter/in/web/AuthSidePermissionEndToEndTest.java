@@ -32,9 +32,9 @@ class AuthSidePermissionEndToEndTest extends AuthSideEndToEndTest {
         MockHttpServletRequestBuilder mockHttpServletRequestBuilder = AuthSideMockMvcRequestBuilders
                 .get(endpoint, adminUserToken.getAccessToken());
 
-        AuthSidePermissionsResponse mockPermissionsResponse = permissionToPermissionsResponseMapper.map(mockPermissions);
-        AuthSideResponse<AuthSidePermissionsResponse> mockResponse = new AuthSideResponseBuilder()
-                .success(mockPermissionsResponse)
+        Set<AuthSidePermissionsResponse> mockPermissionsResponses = permissionToPermissionsResponseMapper.map(mockPermissions);
+        AuthSideResponse<Set<AuthSidePermissionsResponse>> mockResponse = new AuthSideResponseBuilder()
+                .success(mockPermissionsResponses)
                 .build();
 
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)

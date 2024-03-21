@@ -8,6 +8,7 @@ import com.agitrubard.authside.auth.mapper.AuthSidePermissionEntityToPermissionM
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -36,7 +37,7 @@ class AuthSidePermissionAdapter implements AuthSidePermissionReadPort {
     @Override
     public Set<AuthSidePermission> findAll() {
         final List<AuthSidePermissionEntity> permissionEntities = permissionRepository.findAll();
-        return permissionEntityToPermissionMapper.map(permissionEntities);
+        return permissionEntityToPermissionMapper.map(new HashSet<>(permissionEntities));
     }
 
 }

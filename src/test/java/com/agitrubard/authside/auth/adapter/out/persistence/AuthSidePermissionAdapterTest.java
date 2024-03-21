@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.UUID;
 
@@ -33,7 +33,7 @@ class AuthSidePermissionAdapterTest extends AuthSideUnitTest {
     void whenFindAllPermissions_thenReturnAllPermissions() {
 
         // Initialize
-        List<AuthSidePermissionEntity> mockPermissionEntities = List.of(
+        Set<AuthSidePermissionEntity> mockPermissionEntities = Set.of(
                 new AuthSidePermissionEntityBuilder()
                         .withId(UUID.randomUUID().toString())
                         .withName("user:list")
@@ -50,7 +50,7 @@ class AuthSidePermissionAdapterTest extends AuthSideUnitTest {
 
         // When
         Mockito.when(permissionRepository.findAll())
-                .thenReturn(mockPermissionEntities);
+                .thenReturn(new ArrayList<>(mockPermissionEntities));
 
         // Then
         Set<AuthSidePermission> permissions = permissionAdapter.findAll();
@@ -69,13 +69,13 @@ class AuthSidePermissionAdapterTest extends AuthSideUnitTest {
     void whenPermissionsAreNotExist_thenReturnEmptySet() {
 
         // Initialize
-        List<AuthSidePermissionEntity> mockPermissionEntities = List.of();
+        Set<AuthSidePermissionEntity> mockPermissionEntities = Set.of();
 
         Set<AuthSidePermission> mockPermissions = permissionEntityToPermissionMapper.map(mockPermissionEntities);
 
         // When
         Mockito.when(permissionRepository.findAll())
-                .thenReturn(mockPermissionEntities);
+                .thenReturn(new ArrayList<>(mockPermissionEntities));
 
         // Then
         Set<AuthSidePermission> permissions = permissionAdapter.findAll();

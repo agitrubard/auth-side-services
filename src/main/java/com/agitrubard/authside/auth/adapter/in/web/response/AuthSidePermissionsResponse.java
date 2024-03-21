@@ -4,9 +4,6 @@ import com.agitrubard.authside.auth.domain.permission.model.enums.AuthSidePermis
 import lombok.Builder;
 import lombok.Getter;
 
-import java.util.Map;
-import java.util.Set;
-
 /**
  * AuthSidePermissionsResponse is a data transfer object (DTO) that represents
  * the response containing a map of permissions categorized by PermissionCategory.
@@ -21,8 +18,18 @@ import java.util.Set;
 public class AuthSidePermissionsResponse {
 
     /**
-     * A map that associates PermissionCategory with a set of permission strings.
+     * The unique identifier for the permission.
      */
-    private Map<AuthSidePermissionCategory, Set<String>> permissions;
+    private String id;
+
+    /**
+     * The name or description of the permission.
+     */
+    private String name;
+
+    /**
+     * The category to which the permission belongs. It categorizes permissions based on their usage within the application.
+     */
+    private AuthSidePermissionCategory category;
 
 }

@@ -2,46 +2,20 @@ package com.agitrubard.authside.auth.mapper;
 
 import com.agitrubard.authside.auth.adapter.in.web.response.AuthSidePermissionsResponse;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
-import com.agitrubard.authside.auth.domain.permission.model.enums.AuthSidePermissionCategory;
+import com.agitrubard.authside.common.mapper.AuthSideBaseMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 /**
- * AuthSidePermissionToPermissionsResponseMapper is a mapper interface responsible for
- * converting a Set of AuthSidePermission objects to an AuthSidePermissionsResponse object.
- * It groups permissions by PermissionCategory and creates a response with a map of permissions.
+ * The {@code AuthSidePermissionToPermissionsResponseMapper} interface defines mapping methods for converting instances of
+ * {@link AuthSidePermissionsResponse} to their corresponding domain model representations, {@link AuthSidePermission}.
+ * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
  */
 @Mapper
-public interface AuthSidePermissionToPermissionsResponseMapper {
-
-    /**
-     * Maps a Set of AuthSidePermission objects to an AuthSidePermissionsResponse object.
-     *
-     * @param permissions Set of AuthSidePermission objects to be mapped.
-     * @return An AuthSidePermissionsResponse object representing the mapped permissions.
-     */
-    default AuthSidePermissionsResponse map(Set<AuthSidePermission> permissions) {
-        final Map<AuthSidePermissionCategory, Set<String>> permissionsMap = permissions.stream()
-                .collect(
-                        Collectors.groupingBy(
-                                AuthSidePermission::getCategory,
-                                Collectors.mapping(
-                                        AuthSidePermission::getName,
-                                        Collectors.toSet()
-                                )
-                        )
-                );
-        return AuthSidePermissionsResponse.builder()
-                .permissions(permissionsMap)
-                .build();
-    }
+public interface AuthSidePermissionToPermissionsResponseMapper extends AuthSideBaseMapper<AuthSidePermission, AuthSidePermissionsResponse> {
 
     /**
      * Initializes and returns an instance of AuthSidePermissionToPermissionsResponseMapper.

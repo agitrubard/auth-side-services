@@ -1,6 +1,7 @@
 package com.agitrubard.authside.common.mapper;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -17,7 +18,6 @@ import java.util.Set;
  *
  * @param <S> the type of the source object to be mapped
  * @param <T> the type of the target object to be mapped to
- *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
  */
@@ -35,8 +35,16 @@ public interface AuthSideBaseMapper<S, T> {
      * Maps the specified collection of source objects to a list of objects of type {@code T}.
      *
      * @param sources the collection of source objects to be mapped
+     * @return the list of resulting objects of type {@code T}
+     */
+    List<T> map(List<S> sources);
+
+    /**
+     * Maps the specified set of source objects to a set of objects of type {@code T}.
+     *
+     * @param sources the set of source objects to be mapped
      * @return the set of resulting objects of type {@code T}
      */
-    Set<T> map(Collection<S> sources);
+    Set<T> map(Set<S> sources);
 
 }
