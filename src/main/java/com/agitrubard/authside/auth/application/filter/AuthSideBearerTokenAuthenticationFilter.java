@@ -64,7 +64,7 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
                                     final @NonNull FilterChain filterChain) throws ServletException, IOException {
 
 
-        log.debug("API Request was secured with AYS Security!");
+        log.debug("API Request was secured with Auth Side Security!");
 
         final String authorizationHeader = httpServletRequest.getHeader(HttpHeaders.AUTHORIZATION);
         if (this.isBearerToken(authorizationHeader)) {

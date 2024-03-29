@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 
 /**
  * Utility class for private key encryption and decryption operations.
- * This class internally utilizes the AysDataEncryptionUtil class for encryption and decryption using a salt-based approach.
+ * This class internally utilizes the AuthSideDataEncryptionUtil class for encryption and decryption using a salt-based approach.
  * <p>
  * <p>
  * <b>How to generating salt?</b>
@@ -30,7 +30,7 @@ public class AuthSidePrivateKeyEncryptionUtil {
     private static final String POSTFIX_OF_SALT = "dnBxS05TODhaZmNqeW1wOEJxU0Z3UGJTakRySkcybW0=";
 
     /**
-     * Encrypts the given raw data using the AysDataEncryptionUtil with the specified salt.
+     * Encrypts the given raw data using the AuthSideDataEncryptionUtil with the specified salt.
      *
      * @param rawData the raw data to be encrypted
      * @return the encrypted data
@@ -40,7 +40,7 @@ public class AuthSidePrivateKeyEncryptionUtil {
     }
 
     /**
-     * Decrypts the given encrypted data using the AysDataEncryptionUtil with the specified salt.
+     * Decrypts the given encrypted data using the AuthSideDataEncryptionUtil with the specified salt.
      *
      * @param encryptedData the encrypted data to be decrypted
      * @return the decrypted data
