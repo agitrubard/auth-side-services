@@ -9,6 +9,7 @@ import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -131,6 +132,24 @@ class AuthSideExceptionHandler {
         return AuthSideErrorResponse.subErrors(exception.getConstraintViolations())
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .header(AuthSideErrorResponse.Header.VALIDATION_ERROR.getName())
+                .build();
+    }
+
+    /**
+     * Handles HttpRequestMethodNotSupportedException by returning a customized error response
+     * with HTTP status code METHOD_NOT_ALLOWED (405).
+     *
+     * @param exception The exception indicating the unsupported HTTP request method.
+     * @return An instance of AuthSideErrorResponse containing the customized error details.
+     */
+    @ResponseStatus(HttpStatus.METHOD_NOT_ALLOWED)
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    AuthSideErrorResponse handleHttpRequestMethodNotSupported(final HttpRequestMethodNotSupportedException exception) {
+        log.error(exception.getMessage(), exception);
+
+        return AuthSideErrorResponse.builder()
+                .httpStatus(HttpStatus.METHOD_NOT_ALLOWED)
+                .header(AuthSideErrorResponse.Header.API_ERROR.getName())
                 .build();
     }
 
