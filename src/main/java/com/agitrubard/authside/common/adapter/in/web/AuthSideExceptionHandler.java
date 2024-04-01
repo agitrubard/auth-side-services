@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.sql.SQLException;
 
@@ -130,6 +131,24 @@ class AuthSideExceptionHandler {
         return AuthSideErrorResponse.subErrors(exception.getConstraintViolations())
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .header(AuthSideErrorResponse.Header.VALIDATION_ERROR.getName())
+                .build();
+    }
+
+    /**
+     * Handles NoResourceFoundException by returning a customized error response
+     * with HTTP status code NOT_FOUND (404).
+     *
+     * @param exception The exception indicating the resource was not found.
+     * @return An instance of AuthSideErrorResponse containing the customized error details.
+     */
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoResourceFoundException.class)
+    AuthSideErrorResponse handleResourceNotFound(final NoResourceFoundException exception) {
+        log.error(exception.getMessage(), exception);
+
+        return AuthSideErrorResponse.builder()
+                .httpStatus(HttpStatus.NOT_FOUND)
+                .header(AuthSideErrorResponse.Header.API_ERROR.getName())
                 .build();
     }
 
