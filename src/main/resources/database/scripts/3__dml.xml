@@ -112,87 +112,59 @@
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="ff16f0a7-d07a-4cbb-99a9-1d525e478742"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="919425c0-29f5-411d-abd9-91c56380460c"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="cc68b542-03ee-4531-bb17-eac502798fe3"/>
             <column name="PERMISSION_ID" value="ff16f0a7-d07a-4cbb-99a9-1d525e478742"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="cc68b542-03ee-4531-bb17-eac502798fe3"/>
             <column name="PERMISSION_ID" value="919425c0-29f5-411d-abd9-91c56380460c"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="a168788e-3ddb-4707-be23-3cda897f6592"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="3189638c-fc86-41ed-9e08-010a938deda5"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="c7f0d44c-fd83-4065-be11-44d975eebb58"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
 
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="3c7898b7-992d-499f-bcdb-77289b3f90ff"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="67628ab8-e357-4371-8ab3-0e69afabfe08"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="cc68b542-03ee-4531-bb17-eac502798fe3"/>
             <column name="PERMISSION_ID" value="3c7898b7-992d-499f-bcdb-77289b3f90ff"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="cc68b542-03ee-4531-bb17-eac502798fe3"/>
             <column name="PERMISSION_ID" value="67628ab8-e357-4371-8ab3-0e69afabfe08"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="ae8915bd-0727-4ee9-845a-f151dd61462e"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="0fc41873-1f96-4c06-bd74-51ca3ae26413"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_ROLE_PERMISSION_RELATION">
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
             <column name="PERMISSION_ID" value="fa9b728b-adb8-4e75-9800-ad72db7ff0bb"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <!-- ========================================= -->
         <!-- DML of AUTH_SIDE_ROLE_PERMISSION_RELATION -->
@@ -258,21 +230,15 @@
         <insert tableName="AUTH_SIDE_USER_ROLE_RELATION">
             <column name="USER_ID" value="93cdd260-57cd-4536-bd17-e35b5b7c68fd"/>
             <column name="ROLE_ID" value="6ea3a124-87a3-4b97-9f3e-afd64f164556"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <insert tableName="AUTH_SIDE_USER_ROLE_RELATION">
             <column name="USER_ID" value="93cdd260-57cd-4536-bd17-e35b5b7c68fd"/>
             <column name="ROLE_ID" value="cc68b542-03ee-4531-bb17-eac502798fe3"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
 
         <insert tableName="AUTH_SIDE_USER_ROLE_RELATION">
             <column name="USER_ID" value="e86f01ee-bde2-4a4d-b98b-b7a76041c0a7"/>
             <column name="ROLE_ID" value="cc68b542-03ee-4531-bb17-eac502798fe3"/>
-            <column name="CREATED_BY" value="AUTH_SIDE"/>
-            <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <!-- =================================== -->
         <!-- DML of AUTH_SIDE_USER_ROLE_RELATION -->
