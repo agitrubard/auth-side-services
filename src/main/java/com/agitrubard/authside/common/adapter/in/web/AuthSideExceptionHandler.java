@@ -8,6 +8,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideProcessExcep
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -130,6 +131,26 @@ class AuthSideExceptionHandler {
         log.error(exception.getMessage(), exception);
 
         return AuthSideErrorResponse.subErrors(exception.getConstraintViolations())
+                .httpStatus(HttpStatus.BAD_REQUEST)
+                .header(AuthSideErrorResponse.Header.VALIDATION_ERROR.getName())
+                .build();
+    }
+
+    /**
+     * Handles HttpMessageNotReadableException by returning a customized error response
+     * with HTTP status code BAD_REQUEST (400).
+     *
+     * @param exception The exception indicating that the HTTP message cannot be read.
+     * @return An instance of AuthSideErrorResponse containing the customized error details.
+     */
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    AuthSideErrorResponse handleHttpMessageNotReadableException(final HttpMessageNotReadableException exception) {
+
+        log.error(exception.getMessage(), exception);
+
+        return AuthSideErrorResponse.builder()
                 .httpStatus(HttpStatus.BAD_REQUEST)
                 .header(AuthSideErrorResponse.Header.VALIDATION_ERROR.getName())
                 .build();
