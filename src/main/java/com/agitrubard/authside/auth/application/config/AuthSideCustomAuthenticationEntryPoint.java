@@ -45,17 +45,22 @@ class AuthSideCustomAuthenticationEntryPoint implements AuthenticationEntryPoint
                          HttpServletResponse httpServletResponse,
                          AuthenticationException authenticationException) throws IOException {
 
-        httpServletResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
-
-        final AuthSideErrorResponse response = AuthSideErrorResponse.builder()
+        AuthSideErrorResponse.AuthSideErrorResponseBuilder errorResponseBuilder = AuthSideErrorResponse.builder()
                 .header(AuthSideErrorResponse.Header.AUTH_ERROR.getName())
-                .httpStatus(HttpStatus.UNAUTHORIZED)
-                .isSuccess(false)
-                .build();
+                .isSuccess(false);
+
+        if (httpServletRequest.getHeader("Authorization") != null) {
+            httpServletResponse.setStatus(HttpStatus.FORBIDDEN.value());
+            errorResponseBuilder.httpStatus(HttpStatus.FORBIDDEN);
+        } else {
+            httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());
+            errorResponseBuilder.httpStatus(HttpStatus.UNAUTHORIZED);
+        }
+
+        httpServletResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
         final String responseBody = OBJECT_MAPPER
                 .writer(DateFormat.getDateInstance())
-                .writeValueAsString(response);
+                .writeValueAsString(errorResponseBuilder.build());
         httpServletResponse.getOutputStream().write(responseBody.getBytes());
     }
 
