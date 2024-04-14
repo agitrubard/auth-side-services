@@ -24,7 +24,7 @@
         </insert>
         <insert tableName="AUTH_SIDE_PERMISSION">
             <column name="ID" value="a168788e-3ddb-4707-be23-3cda897f6592"/>
-            <column name="NAME" value="user:add"/>
+            <column name="NAME" value="user:create"/>
             <column name="CATEGORY" value="USER_MANAGEMENT"/>
             <column name="CREATED_BY" value="AUTH_SIDE"/>
             <column name="CREATED_AT" valueDate="now()"/>
