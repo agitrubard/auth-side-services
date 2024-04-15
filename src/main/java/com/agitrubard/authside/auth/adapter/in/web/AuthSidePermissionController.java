@@ -29,9 +29,13 @@ class AuthSidePermissionController {
     private final AuthSidePermissionToPermissionsResponseMapper permissionToPermissionsResponseMapper = AuthSidePermissionToPermissionsResponseMapper.initialize();
 
     /**
-     * Retrieves all permissions.
+     * Retrieves all permissions accessible to the user, filtered based on their authorities.
+     * <p>
+     * This method is mapped to handle HTTP GET requests to "/permissions". It requires
+     * the user to have either 'role:create' or 'role:update' authority to access.
      *
-     * @return An AuthSideResponse containing a map of permissions categorized by PermissionCategory.
+     * @return An {@code AuthSideResponse} containing a set of {@code AuthSidePermissionsResponse}
+     * representing all permissions available to the user.
      */
     @GetMapping("/permissions")
     public AuthSideResponse<Set<AuthSidePermissionsResponse>> findAll() {
