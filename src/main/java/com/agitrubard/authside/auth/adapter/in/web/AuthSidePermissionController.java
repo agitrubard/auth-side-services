@@ -6,6 +6,7 @@ import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
 import com.agitrubard.authside.auth.mapper.AuthSidePermissionToPermissionsResponseMapper;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +39,7 @@ class AuthSidePermissionController {
      * representing all permissions available to the user.
      */
     @GetMapping("/permissions")
+    @PreAuthorize("hasAnyAuthority('role:create', 'role:update')")
     public AuthSideResponse<Set<AuthSidePermissionsResponse>> findAll() {
         final Set<AuthSidePermission> permissions = permissionUseCase.findAll();
         return AuthSideResponse.successOf(permissionToPermissionsResponseMapper.map(permissions));

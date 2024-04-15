@@ -71,8 +71,8 @@ class AuthSideSecurityConfiguration {
                 .authorizeHttpRequests(customizer -> customizer
                         .requestMatchers(HttpMethod.GET, "/public/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/v1/authentication/**").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/v1/permissions").hasAnyAuthority("role:create", "role:update")
-                        .requestMatchers(HttpMethod.POST, "/api/v1/role").hasAnyAuthority("role:create", "role:update")
+//                        .requestMatchers(HttpMethod.GET, "/api/v1/permissions").hasAnyAuthority("role:create", "role:update")
+//                        .requestMatchers(HttpMethod.POST, "/api/v1/role").hasAnyAuthority("role:create", "role:update")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

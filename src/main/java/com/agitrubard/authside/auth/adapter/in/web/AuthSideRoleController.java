@@ -7,6 +7,7 @@ import com.agitrubard.authside.auth.mapper.AuthSideRoleCreateRequestToCommandMap
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,7 @@ class AuthSideRoleController {
      * @return An {@code AuthSideResponse} indicating the success of the operation.
      */
     @PostMapping("/role")
+    @PreAuthorize("hasAnyAuthority('role:create', 'role:update')")
     public AuthSideResponse<Void> create(@RequestBody @Valid AuthSideRoleCreateRequest createRequest) {
         final AuthSideRoleCreateCommand createCommand = roleCreateRequestToCommandMapper.map(createRequest);
         roleUseCase.create(createCommand);
