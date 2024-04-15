@@ -30,10 +30,13 @@ class AuthSideRoleController {
     private final AuthSideRoleCreateRequestToCommandMapper roleCreateRequestToCommandMapper = AuthSideRoleCreateRequestToCommandMapper.initialize();
 
     /**
-     * Endpoint for creating a new user role.
+     * Creates a new role based on the provided request data.
+     * <p>
+     * This method is mapped to handle HTTP POST requests to "/role". It requires
+     * the user to have either 'role:create' or 'role:update' authority to access.
      *
-     * @param createRequest The request body containing the data for creating the role.
-     * @return A success response if the role is created successfully.
+     * @param createRequest The request object containing data for creating the role.
+     * @return An {@code AuthSideResponse} indicating the success of the operation.
      */
     @PostMapping("/role")
     public AuthSideResponse<Void> create(@RequestBody @Valid AuthSideRoleCreateRequest createRequest) {
