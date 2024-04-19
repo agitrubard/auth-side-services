@@ -50,11 +50,11 @@ public abstract class AuthSideRestControllerTest implements AuthSideTestcontaine
     void init() {
         AuthSideUser adminUser = userReadPort.findById(AuthSideValidTestData.AdminUser.ID).get();
         AuthSideLoginAttempt loginAttemptOfAdminUser = loginAttemptReadPort.findByUserId(adminUser.getId());
-        this.userToken = this.generate(adminUser.getPayload(loginAttemptOfAdminUser));
+        this.adminUserToken = this.generate(adminUser.getPayload(loginAttemptOfAdminUser));
 
         AuthSideUser user = userReadPort.findById(AuthSideValidTestData.ReadUser.ID).get();
         AuthSideLoginAttempt loginAttemptOfUser = loginAttemptReadPort.findByUserId(user.getId());
-        this.adminUserToken = this.generate(user.getPayload(loginAttemptOfUser));
+        this.userToken = this.generate(user.getPayload(loginAttemptOfUser));
     }
 
     protected AuthSideToken generate(Claims claims) {
