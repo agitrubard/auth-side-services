@@ -1,8 +1,8 @@
 package com.agitrubard.authside.auth.adapter.in.web.response;
 
 import com.agitrubard.authside.auth.domain.permission.model.enums.AuthSidePermissionCategory;
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * AuthSidePermissionsResponse is a data transfer object (DTO) that represents
@@ -14,7 +14,7 @@ import lombok.Getter;
  * @version 1.0.0
  */
 @Getter
-@Builder
+@Setter
 public class AuthSidePermissionsResponse {
 
     /**

@@ -1,7 +1,7 @@
 package com.agitrubard.authside.auth.application.port.in.command;
 
-import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import java.util.Set;
  * @version 1.0.0
  */
 @Getter
-@Builder
+@Setter
 public class AuthSideRoleCreateCommand {
 
     private String name;
