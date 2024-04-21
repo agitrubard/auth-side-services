@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSideUserEntityToUserMapper} interface defines mapping methods for converting instances of
+ * The {@link AuthSideUserEntityToUserMapper} interface defines mapping methods for converting instances of
  * {@link AuthSideUserEntity} to their corresponding domain model representations, {@link AuthSideUser}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
 public interface AuthSideUserEntityToUserMapper extends AuthSideBaseMapper<AuthSideUserEntity, AuthSideUser> {
 
     /**
-     * Initializes and returns an instance of the {@code AuthSideUserEntityToUserMapper}.
+     * Initializes and returns an instance of the {@link AuthSideUserEntityToUserMapper}.
      *
      * @return An instance of the mapper for converting between {@link AuthSideUserEntity} and {@link AuthSideUser}.
      */

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSideTokenRefreshRequestToTokenRefreshCommandMapper} interface defines mapping methods for converting instances of
+ * The {@link AuthSideTokenRefreshRequestToTokenRefreshCommandMapper} interface defines mapping methods for converting instances of
  * {@link AuthSideTokenRefreshRequest} to their corresponding command representations, {@link AuthSideTokenRefreshCommand}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
 public interface AuthSideTokenRefreshRequestToTokenRefreshCommandMapper extends AuthSideBaseMapper<AuthSideTokenRefreshRequest, AuthSideTokenRefreshCommand> {
 
     /**
-     * Initializes and returns an instance of the {@code AuthSideTokenRefreshRequestToTokenRefreshCommandMapper}.
+     * Initializes and returns an instance of the {@link AuthSideTokenRefreshRequestToTokenRefreshCommandMapper}.
      *
      * @return An instance of the mapper for converting between {@link AuthSideTokenRefreshRequest} and {@link AuthSideTokenRefreshCommand}.
      */

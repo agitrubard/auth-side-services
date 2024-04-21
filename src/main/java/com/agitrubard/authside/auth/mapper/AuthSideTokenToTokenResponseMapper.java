@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSideTokenToTokenResponseMapper} interface defines mapping methods for converting instances of
+ * The {@link AuthSideTokenToTokenResponseMapper} interface defines mapping methods for converting instances of
  * {@link AuthSideToken} to their corresponding response representations, {@link AuthSideTokenResponse}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
 public interface AuthSideTokenToTokenResponseMapper extends AuthSideBaseMapper<AuthSideToken, AuthSideTokenResponse> {
 
     /**
-     * Initializes and returns an instance of the {@code AuthSideTokenToTokenResponseMapper}.
+     * Initializes and returns an instance of the {@link AuthSideTokenToTokenResponseMapper}.
      *
      * @return An instance of the mapper for converting between {@link AuthSideToken} and {@link AuthSideTokenResponse}.
      */

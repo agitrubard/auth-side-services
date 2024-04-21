@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSideRoleToEntityMapper} interface defines mapping methods for converting instances of
+ * The {@link AuthSideRoleCreateRequestToCommandMapper} interface defines mapping methods for converting instances of
  * {@link AuthSideRoleCreateRequest} to their corresponding domain model representations, {@link AuthSideRoleCreateCommand}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *

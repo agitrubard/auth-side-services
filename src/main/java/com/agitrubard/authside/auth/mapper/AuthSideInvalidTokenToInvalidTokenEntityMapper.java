@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSideInvalidTokenToInvalidTokenEntityMapper} interface defines mapping methods for converting instances
+ * The {@link AuthSideInvalidTokenToInvalidTokenEntityMapper} interface defines mapping methods for converting instances
  * of {@link AuthSideInvalidToken} to their corresponding entity representations, {@link AuthSideInvalidTokenEntity}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
 public interface AuthSideInvalidTokenToInvalidTokenEntityMapper extends AuthSideBaseMapper<AuthSideInvalidToken, AuthSideInvalidTokenEntity> {
 
     /**
-     * Initializes and returns an instance of the {@code AuthSideInvalidTokenToInvalidTokenEntityMapper}.
+     * Initializes and returns an instance of the {@link AuthSideInvalidTokenToInvalidTokenEntityMapper}.
      *
      * @return An instance of the mapper for converting between {@link AuthSideInvalidToken} and {@link AuthSideInvalidTokenEntity}.
      */

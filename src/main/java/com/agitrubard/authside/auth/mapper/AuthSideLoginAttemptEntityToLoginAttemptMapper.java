@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSideLoginAttemptEntityToLoginAttemptMapper} interface defines mapping methods for converting instances of
+ * The {@link AuthSideLoginAttemptEntityToLoginAttemptMapper} interface defines mapping methods for converting instances of
  * {@link AuthSideLoginAttemptEntity} to their corresponding model representations, {@link AuthSideLoginAttempt}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
 public interface AuthSideLoginAttemptEntityToLoginAttemptMapper extends AuthSideBaseMapper<AuthSideLoginAttemptEntity, AuthSideLoginAttempt> {
 
     /**
-     * Initializes and returns an instance of the {@code AuthSideLoginAttemptEntityToLoginAttemptMapper}.
+     * Initializes and returns an instance of the {@link AuthSideLoginAttemptEntityToLoginAttemptMapper}.
      *
      * @return An instance of the mapper for converting between {@link AuthSideLoginAttemptEntity} and {@link AuthSideLoginAttempt}.
      */

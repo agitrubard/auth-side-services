@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper} interface defines mapping methods for converting instances of
+ * The {@link AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper} interface defines mapping methods for converting instances of
  * {@link AuthSideTokensInvalidateRequest} to their corresponding command representations, {@link AuthSideTokensInvalidateCommand}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
 public interface AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper extends AuthSideBaseMapper<AuthSideTokensInvalidateRequest, AuthSideTokensInvalidateCommand> {
 
     /**
-     * Initializes and returns an instance of the {@code AuthSideTokenInvalidateRequestToTokenInvalidateCommandMapper}.
+     * Initializes and returns an instance of the {@link AuthSideTokensInvalidateRequestToTokensInvalidateCommandMapper}.
      *
      * @return An instance of the mapper for converting between {@link AuthSideTokensInvalidateRequest} and {@link AuthSideTokensInvalidateCommand}.
      */

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSideParameterSaveCommandToParameterMapper} interface defines mapping methods for converting instances of
+ * The {@link AuthSideParameterSaveCommandToParameterMapper} interface defines mapping methods for converting instances of
  * {@link AuthSideParameterSaveCommand} to their corresponding domain model representations, {@link AuthSideParameter}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
@@ -18,7 +18,7 @@ import org.mapstruct.factory.Mappers;
 public interface AuthSideParameterSaveCommandToParameterMapper extends AuthSideBaseMapper<AuthSideParameterSaveCommand, AuthSideParameter> {
 
     /**
-     * Initializes and returns an instance of the {@code AuthSideParameterSaveCommandToParameterMapper}.
+     * Initializes and returns an instance of the {@link AuthSideParameterSaveCommandToParameterMapper}.
      *
      * @return An instance of the mapper for converting between {@link AuthSideParameterSaveCommand} and {@link AuthSideParameter}.
      */

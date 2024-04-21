@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 /**
- * The {@code AuthSidePermissionToPermissionsResponseMapper} interface defines mapping methods for converting instances of
+ * The {@link AuthSidePermissionToPermissionsResponseMapper} interface defines mapping methods for converting instances of
  * {@link AuthSidePermissionsResponse} to their corresponding domain model representations, {@link AuthSidePermission}.
  * This mapper interface provides a static initialization method to obtain an instance of the mapper.
  *
