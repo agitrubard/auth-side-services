@@ -1,11 +1,11 @@
 package com.agitrubard.authside.auth.adapter.out.persistence;
 
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSideInvalidTokenEntity;
+import com.agitrubard.authside.auth.adapter.out.persistence.mapper.AuthSideInvalidTokenToInvalidTokenEntityMapper;
 import com.agitrubard.authside.auth.adapter.out.persistence.repository.AuthSideInvalidTokenRepository;
 import com.agitrubard.authside.auth.application.port.out.AuthSideInvalidTokenReadPort;
 import com.agitrubard.authside.auth.application.port.out.AuthSideInvalidTokenSavePort;
 import com.agitrubard.authside.auth.domain.token.AuthSideInvalidToken;
-import com.agitrubard.authside.auth.mapper.AuthSideInvalidTokenToInvalidTokenEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.agitrubard.authside.auth.mapper;
+package com.agitrubard.authside.auth.adapter.out.persistence.mapper;
 
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSideRoleEntity;
 import com.agitrubard.authside.auth.domain.role.model.AuthSideRole;

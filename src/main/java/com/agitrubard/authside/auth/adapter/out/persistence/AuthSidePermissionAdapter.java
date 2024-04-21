@@ -1,10 +1,10 @@
 package com.agitrubard.authside.auth.adapter.out.persistence;
 
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSidePermissionEntity;
+import com.agitrubard.authside.auth.adapter.out.persistence.mapper.AuthSidePermissionEntityToPermissionMapper;
 import com.agitrubard.authside.auth.adapter.out.persistence.repository.AuthSidePermissionRepository;
 import com.agitrubard.authside.auth.application.port.out.AuthSidePermissionReadPort;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
-import com.agitrubard.authside.auth.mapper.AuthSidePermissionEntityToPermissionMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

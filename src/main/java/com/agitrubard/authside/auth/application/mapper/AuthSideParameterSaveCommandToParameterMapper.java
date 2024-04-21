@@ -1,4 +1,4 @@
-package com.agitrubard.authside.auth.mapper;
+package com.agitrubard.authside.auth.application.mapper;
 
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideParameterSaveCommand;
 import com.agitrubard.authside.auth.domain.parameter.model.AuthSideParameter;

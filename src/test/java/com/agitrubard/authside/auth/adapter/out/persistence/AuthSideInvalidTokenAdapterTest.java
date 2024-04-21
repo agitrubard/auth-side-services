@@ -2,10 +2,10 @@ package com.agitrubard.authside.auth.adapter.out.persistence;
 
 import com.agitrubard.authside.AuthSideUnitTest;
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSideInvalidTokenEntity;
+import com.agitrubard.authside.auth.adapter.out.persistence.mapper.AuthSideInvalidTokenToInvalidTokenEntityMapper;
 import com.agitrubard.authside.auth.adapter.out.persistence.repository.AuthSideInvalidTokenRepository;
 import com.agitrubard.authside.auth.domain.token.AuthSideInvalidToken;
 import com.agitrubard.authside.auth.domain.token.AuthSideInvalidTokenBuilder;
-import com.agitrubard.authside.auth.mapper.AuthSideInvalidTokenToInvalidTokenEntityMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

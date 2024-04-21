@@ -1,4 +1,4 @@
-package com.agitrubard.authside.auth.mapper;
+package com.agitrubard.authside.auth.adapter.in.web.mapper;
 
 import com.agitrubard.authside.auth.adapter.in.web.response.AuthSidePermissionsResponse;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;

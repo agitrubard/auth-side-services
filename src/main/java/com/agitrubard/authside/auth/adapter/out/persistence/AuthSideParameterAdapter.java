@@ -1,12 +1,12 @@
 package com.agitrubard.authside.auth.adapter.out.persistence;
 
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSideParameterEntity;
+import com.agitrubard.authside.auth.adapter.out.persistence.mapper.AuthSideParameterEntityToParameterMapper;
+import com.agitrubard.authside.auth.adapter.out.persistence.mapper.AuthSideParameterToParameterEntityMapper;
 import com.agitrubard.authside.auth.adapter.out.persistence.repository.AuthSideParameterRepository;
 import com.agitrubard.authside.auth.application.port.out.AuthSideParameterReadPort;
 import com.agitrubard.authside.auth.application.port.out.AuthSideParameterSavePort;
 import com.agitrubard.authside.auth.domain.parameter.model.AuthSideParameter;
-import com.agitrubard.authside.auth.mapper.AuthSideParameterEntityToParameterMapper;
-import com.agitrubard.authside.auth.mapper.AuthSideParameterToParameterEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

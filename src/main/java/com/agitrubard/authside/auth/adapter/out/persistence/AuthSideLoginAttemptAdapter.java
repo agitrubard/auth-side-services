@@ -1,13 +1,13 @@
 package com.agitrubard.authside.auth.adapter.out.persistence;
 
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSideLoginAttemptEntity;
+import com.agitrubard.authside.auth.adapter.out.persistence.mapper.AuthSideLoginAttemptEntityToLoginAttemptMapper;
+import com.agitrubard.authside.auth.adapter.out.persistence.mapper.AuthSideLoginAttemptToLoginAttemptEntityMapper;
 import com.agitrubard.authside.auth.adapter.out.persistence.repository.AuthSideLoginAttemptRepository;
 import com.agitrubard.authside.auth.application.exception.AuthSideLoginAttemptRecordNotFoundException;
 import com.agitrubard.authside.auth.application.port.out.AuthSideLoginAttemptReadPort;
 import com.agitrubard.authside.auth.application.port.out.AuthSideLoginAttemptSavePort;
 import com.agitrubard.authside.auth.domain.login.model.AuthSideLoginAttempt;
-import com.agitrubard.authside.auth.mapper.AuthSideLoginAttemptEntityToLoginAttemptMapper;
-import com.agitrubard.authside.auth.mapper.AuthSideLoginAttemptToLoginAttemptEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

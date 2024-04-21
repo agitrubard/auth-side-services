@@ -2,6 +2,7 @@ package com.agitrubard.authside.auth.adapter.out.persistence;
 
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSidePermissionEntity;
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSideRoleEntity;
+import com.agitrubard.authside.auth.adapter.out.persistence.mapper.AuthSideRoleToEntityMapper;
 import com.agitrubard.authside.auth.adapter.out.persistence.repository.AuthSidePermissionRepository;
 import com.agitrubard.authside.auth.adapter.out.persistence.repository.AuthSideRoleRepository;
 import com.agitrubard.authside.auth.application.exception.AuthSidePermissionNotFoundException;
@@ -9,7 +10,6 @@ import com.agitrubard.authside.auth.application.exception.AuthSideRoleAlreadyExi
 import com.agitrubard.authside.auth.application.port.out.AuthSideRoleSavePort;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
 import com.agitrubard.authside.auth.domain.role.model.AuthSideRole;
-import com.agitrubard.authside.auth.mapper.AuthSideRoleToEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

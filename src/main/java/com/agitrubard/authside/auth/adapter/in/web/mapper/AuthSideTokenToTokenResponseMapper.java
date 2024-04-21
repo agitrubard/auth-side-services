@@ -1,4 +1,4 @@
-package com.agitrubard.authside.auth.mapper;
+package com.agitrubard.authside.auth.adapter.in.web.mapper;
 
 import com.agitrubard.authside.auth.adapter.in.web.response.AuthSideTokenResponse;
 import com.agitrubard.authside.auth.domain.token.AuthSideToken;

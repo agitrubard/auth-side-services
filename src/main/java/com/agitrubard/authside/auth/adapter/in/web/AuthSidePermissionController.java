@@ -1,9 +1,9 @@
 package com.agitrubard.authside.auth.adapter.in.web;
 
+import com.agitrubard.authside.auth.adapter.in.web.mapper.AuthSidePermissionToPermissionsResponseMapper;
 import com.agitrubard.authside.auth.adapter.in.web.response.AuthSidePermissionsResponse;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSidePermissionUseCase;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
-import com.agitrubard.authside.auth.mapper.AuthSidePermissionToPermissionsResponseMapper;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
