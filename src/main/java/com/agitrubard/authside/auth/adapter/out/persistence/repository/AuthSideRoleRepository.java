@@ -2,6 +2,7 @@ package com.agitrubard.authside.auth.adapter.out.persistence.repository;
 
 import com.agitrubard.authside.auth.adapter.out.persistence.entity.AuthSideRoleEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * @version 1.0.0
  */
 @Repository
-public interface AuthSideRoleRepository extends JpaRepository<AuthSideRoleEntity, String> {
+public interface AuthSideRoleRepository extends JpaRepository<AuthSideRoleEntity, String>, JpaSpecificationExecutor<AuthSideRoleEntity> {
 
     boolean existsByName(String name);
 
