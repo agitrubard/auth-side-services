@@ -5,13 +5,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * Abstract base class representing a command for pagination and sorting of authentication side entities.
+ * Extends {@link AuthSideSortingCommand} to include sorting criteria.
+ * Provides a property for pagination criteria.
+ * Subclasses should extend this class to define specific pagination and sorting criteria.
+ *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
+ * @see AuthSidePaging
+ * @see AuthSideSortingCommand
  */
 @Getter
 @Setter
 public abstract class AuthSidePagingCommand extends AuthSideSortingCommand {
 
+    /**
+     * Pagination criteria for the command.
+     */
     protected AuthSidePaging pagination;
 
 }
