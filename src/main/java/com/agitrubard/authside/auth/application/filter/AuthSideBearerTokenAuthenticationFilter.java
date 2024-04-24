@@ -3,6 +3,7 @@ package com.agitrubard.authside.auth.application.filter;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideInvalidTokenUseCase;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideTokenUseCase;
 import com.agitrubard.authside.auth.domain.token.enums.AuthSideTokenClaim;
+import com.agitrubard.authside.common.util.AuthSideCollectionUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwsHeader;
@@ -25,7 +26,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -130,27 +130,11 @@ public class AuthSideBearerTokenAuthenticationFilter extends OncePerRequestFilte
         );
 
         final List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        final Set<String> permissions = this.convertToSet(payload.get(AuthSideTokenClaim.USER_PERMISSIONS.getValue()));
+        final Set<String> permissions = AuthSideCollectionUtil
+                .convertToSet(payload.get(AuthSideTokenClaim.USER_PERMISSIONS.getValue()));
         permissions.forEach(permission -> authorities.add(new SimpleGrantedAuthority(permission)));
 
         return UsernamePasswordAuthenticationToken.authenticated(jwt, null, authorities);
-    }
-
-    /**
-     * Converts an object to a Set of the specified class type.
-     *
-     * @param object the object to convert
-     * @param <C>    the type parameter for the class
-     * @return a Set of objects of the specified class type
-     */
-    @SuppressWarnings({"unchecked"})
-    private <C> Set<C> convertToSet(Object object) {
-
-        if (object == null) {
-            return Set.of();
-        }
-
-        return new HashSet<>((List<C>) object);
     }
 
 }
