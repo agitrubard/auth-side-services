@@ -1,10 +1,18 @@
 package com.agitrubard.authside.auth.adapter.in.web;
 
+import com.agitrubard.authside.auth.adapter.in.web.mapper.AuthSideRoleCreateRequestToCommandMapper;
+import com.agitrubard.authside.auth.adapter.in.web.mapper.AuthSideRoleToRolesResponseMapper;
+import com.agitrubard.authside.auth.adapter.in.web.mapper.AuthSideRolesListRequestToCommandMapper;
 import com.agitrubard.authside.auth.adapter.in.web.request.AuthSideRoleCreateRequest;
+import com.agitrubard.authside.auth.adapter.in.web.request.AuthSideRolesListRequest;
+import com.agitrubard.authside.auth.adapter.in.web.response.AuthSideRolesResponse;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideRoleCreateCommand;
+import com.agitrubard.authside.auth.application.port.in.command.AuthSideRolesListCommand;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleUseCase;
-import com.agitrubard.authside.auth.mapper.AuthSideRoleCreateRequestToCommandMapper;
+import com.agitrubard.authside.auth.domain.role.model.AuthSideRole;
+import com.agitrubard.authside.common.adapter.in.web.response.AuthSidePageResponse;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
+import com.agitrubard.authside.common.domain.model.AuthSidePage;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -29,6 +37,30 @@ class AuthSideRoleController {
     private final AuthSideRoleUseCase roleUseCase;
 
     private final AuthSideRoleCreateRequestToCommandMapper roleCreateRequestToCommandMapper = AuthSideRoleCreateRequestToCommandMapper.initialize();
+    private final AuthSideRolesListRequestToCommandMapper rolesListRequestToCommandMapper = AuthSideRolesListRequestToCommandMapper.initialize();
+    private final AuthSideRoleToRolesResponseMapper roleToRolesResponseMapper = AuthSideRoleToRolesResponseMapper.initialize();
+
+    /**
+     * Endpoint to retrieve a list of authentication side roles.
+     * Requires the 'role:list' authority for access.
+     *
+     * @param listRequest The request object containing criteria for listing authentication side roles.
+     * @return An authentication side response containing a paginated list of authentication side roles.
+     */
+    @PostMapping("/roles")
+    @PreAuthorize("hasAnyAuthority('role:list')")
+    public AuthSideResponse<AuthSidePageResponse<AuthSideRolesResponse>> list(@RequestBody @Valid AuthSideRolesListRequest listRequest) {
+        final AuthSideRolesListCommand listCommand = rolesListRequestToCommandMapper.map(listRequest);
+        final AuthSidePage<AuthSideRole> pageOfRoles = roleUseCase.list(listCommand);
+        return AuthSideResponse.successOf(
+                AuthSidePageResponse.<AuthSideRolesResponse>builder()
+                        .of(
+                                pageOfRoles,
+                                roleToRolesResponseMapper.map(pageOfRoles.getContent())
+                        )
+                        .build()
+        );
+    }
 
     /**
      * Creates a new role based on the provided request data.
