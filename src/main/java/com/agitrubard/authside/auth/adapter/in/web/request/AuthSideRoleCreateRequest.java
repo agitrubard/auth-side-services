@@ -1,7 +1,9 @@
 package com.agitrubard.authside.auth.adapter.in.web.request;
 
+import com.agitrubard.authside.common.util.validator.UUIDs;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,11 +23,13 @@ public class AuthSideRoleCreateRequest {
      * The name of the role to be created.
      */
     @NotBlank
+    @Size(min = 2, max = 255)
     private String name;
 
     /**
      * Set of permission IDs to be associated with the role.
      */
+    @UUIDs
     @NotEmpty
     private Set<String> permissionIds;
 
