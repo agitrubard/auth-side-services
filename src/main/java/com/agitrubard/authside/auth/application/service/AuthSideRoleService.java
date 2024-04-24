@@ -1,11 +1,16 @@
 package com.agitrubard.authside.auth.application.service;
 
+import com.agitrubard.authside.auth.application.mapper.AuthSideRolesListCommandToRolesListingMapper;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideRoleCreateCommand;
+import com.agitrubard.authside.auth.application.port.in.command.AuthSideRolesListCommand;
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleUseCase;
+import com.agitrubard.authside.auth.application.port.out.AuthSideRoleReadPort;
 import com.agitrubard.authside.auth.application.port.out.AuthSideRoleSavePort;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
 import com.agitrubard.authside.auth.domain.role.enums.AuthSideRoleStatus;
 import com.agitrubard.authside.auth.domain.role.model.AuthSideRole;
+import com.agitrubard.authside.auth.domain.role.model.AuthSideRolesListing;
+import com.agitrubard.authside.common.domain.model.AuthSidePage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +19,9 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
- * Service class for managing user roles.
- * <p>
- * This service provides functionality for creating user roles in the system.
+ * Service class implementing the {@link AuthSideRoleUseCase} interface to manage authentication side roles.
+ * Interacts with {@link AuthSideRoleReadPort} for reading roles and {@link AuthSideRoleSavePort} for saving roles.
+ * This service class provides methods to list authentication side roles and create new roles.
  *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
@@ -25,12 +30,27 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 class AuthSideRoleService implements AuthSideRoleUseCase {
 
+    private final AuthSideRoleReadPort roleReadPort;
     private final AuthSideRoleSavePort roleSavePort;
 
+    private final AuthSideRolesListCommandToRolesListingMapper rolesListCommandToRolesListingMapper = AuthSideRolesListCommandToRolesListingMapper.initialize();
+
     /**
-     * Creates a new user role based on the provided command.
+     * Retrieves a page of authentication side roles based on the provided list command.
      *
-     * @param createCommand The command containing the data for creating the role.
+     * @param listCommand The command containing criteria for listing authentication side roles.
+     * @return A page of authentication side roles.
+     */
+    @Override
+    public AuthSidePage<AuthSideRole> list(AuthSideRolesListCommand listCommand) {
+        AuthSideRolesListing rolesListing = rolesListCommandToRolesListingMapper.map(listCommand);
+        return roleReadPort.findAll(rolesListing);
+    }
+
+    /**
+     * Creates a new authentication side role based on the provided command.
+     *
+     * @param createCommand The command containing data for creating the role.
      */
     @Override
     public void create(final AuthSideRoleCreateCommand createCommand) {
