@@ -4,7 +4,7 @@ import com.agitrubard.authside.AuthSideRestControllerTest;
 import com.agitrubard.authside.auth.adapter.in.web.request.AuthSideRoleCreateRequest;
 import com.agitrubard.authside.auth.adapter.in.web.request.AuthSideRoleCreateRequestBuilder;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideRoleCreateCommand;
-import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleUseCase;
+import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleCreateUseCase;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideErrorResponse;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideErrorResponseBuilder;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
@@ -23,7 +23,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
 
 
     @MockBean
-    private AuthSideRoleUseCase roleUseCase;
+    private AuthSideRoleCreateUseCase roleUseCase;
 
 
     private static final String BASE_PATH = "/api/v1";

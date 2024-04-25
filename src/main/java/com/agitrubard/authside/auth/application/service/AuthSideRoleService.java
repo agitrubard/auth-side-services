@@ -3,7 +3,8 @@ package com.agitrubard.authside.auth.application.service;
 import com.agitrubard.authside.auth.application.mapper.AuthSideRolesListCommandToRolesListingMapper;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideRoleCreateCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideRolesListCommand;
-import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleUseCase;
+import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleCreateUseCase;
+import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleReadUseCase;
 import com.agitrubard.authside.auth.application.port.out.AuthSideRoleReadPort;
 import com.agitrubard.authside.auth.application.port.out.AuthSideRoleSavePort;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
@@ -19,16 +20,18 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
- * Service class implementing the {@link AuthSideRoleUseCase} interface to manage authentication side roles.
- * Interacts with {@link AuthSideRoleReadPort} for reading roles and {@link AuthSideRoleSavePort} for saving roles.
- * This service class provides methods to list authentication side roles and create new roles.
+ * Provides service for managing authentication side roles.
+ *
+ * <p>This service implements both reading and creating authentication side roles.</p>
+ *
+ * <p>This class requires dependencies of role read and role save ports.</p>
  *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
  */
 @Service
 @RequiredArgsConstructor
-class AuthSideRoleService implements AuthSideRoleUseCase {
+class AuthSideRoleService implements AuthSideRoleReadUseCase, AuthSideRoleCreateUseCase {
 
     private final AuthSideRoleReadPort roleReadPort;
     private final AuthSideRoleSavePort roleSavePort;

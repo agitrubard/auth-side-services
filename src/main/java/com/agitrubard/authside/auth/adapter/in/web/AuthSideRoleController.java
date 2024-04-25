@@ -8,7 +8,8 @@ import com.agitrubard.authside.auth.adapter.in.web.request.AuthSideRolesListRequ
 import com.agitrubard.authside.auth.adapter.in.web.response.AuthSideRolesResponse;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideRoleCreateCommand;
 import com.agitrubard.authside.auth.application.port.in.command.AuthSideRolesListCommand;
-import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleUseCase;
+import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleCreateUseCase;
+import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleReadUseCase;
 import com.agitrubard.authside.auth.domain.role.model.AuthSideRole;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSidePageResponse;
 import com.agitrubard.authside.common.adapter.in.web.response.AuthSideResponse;
@@ -34,7 +35,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 class AuthSideRoleController {
 
-    private final AuthSideRoleUseCase roleUseCase;
+    private final AuthSideRoleReadUseCase roleReadUseCase;
+    private final AuthSideRoleCreateUseCase roleCreateUseCase;
 
     private final AuthSideRoleCreateRequestToCommandMapper roleCreateRequestToCommandMapper = AuthSideRoleCreateRequestToCommandMapper.initialize();
     private final AuthSideRolesListRequestToCommandMapper rolesListRequestToCommandMapper = AuthSideRolesListRequestToCommandMapper.initialize();
@@ -51,7 +53,7 @@ class AuthSideRoleController {
     @PreAuthorize("hasAnyAuthority('role:list')")
     public AuthSideResponse<AuthSidePageResponse<AuthSideRolesResponse>> list(@RequestBody @Valid AuthSideRolesListRequest listRequest) {
         final AuthSideRolesListCommand listCommand = rolesListRequestToCommandMapper.map(listRequest);
-        final AuthSidePage<AuthSideRole> pageOfRoles = roleUseCase.list(listCommand);
+        final AuthSidePage<AuthSideRole> pageOfRoles = roleReadUseCase.list(listCommand);
         return AuthSideResponse.successOf(
                 AuthSidePageResponse.<AuthSideRolesResponse>builder()
                         .of(
@@ -75,7 +77,7 @@ class AuthSideRoleController {
     @PreAuthorize("hasAnyAuthority('role:create', 'role:update')")
     public AuthSideResponse<Void> create(@RequestBody @Valid AuthSideRoleCreateRequest createRequest) {
         final AuthSideRoleCreateCommand createCommand = roleCreateRequestToCommandMapper.map(createRequest);
-        roleUseCase.create(createCommand);
+        roleCreateUseCase.create(createCommand);
         return AuthSideResponse.SUCCESS;
     }
 
