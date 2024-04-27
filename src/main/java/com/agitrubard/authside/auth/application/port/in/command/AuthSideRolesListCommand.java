@@ -8,6 +8,10 @@ import lombok.Setter;
 import java.util.Set;
 
 /**
+ * This class represents a command for retrieving a list of roles on the authentication side,
+ * extending from {@link AuthSidePagingCommand}.
+ * <p>
+ *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
  */
@@ -15,12 +19,25 @@ import java.util.Set;
 @Setter
 public class AuthSideRolesListCommand extends AuthSidePagingCommand {
 
+    /**
+     * The filter criteria to apply when fetching roles.
+     */
     private Filter filter;
 
+    /**
+     * Represents the filtering parameters for roles.
+     */
     @Getter
     @Setter
     public static class Filter {
+        /**
+         * The name to filter roles by.
+         */
         private String name;
+
+        /**
+         * The set of statuses to filter roles by.
+         */
         private Set<AuthSideRoleStatus> statuses;
     }
 
