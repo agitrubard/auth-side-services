@@ -10,19 +10,46 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.Set;
 
+/**
+ * Represents a listing of roles on the authentication side, extending from {@link AuthSideListing}.
+ * This class provides methods to generate specifications for querying role entities based on filtering criteria.
+ *
+ * @author Agit Rubar Demir | @agitrubard
+ * @version 1.0.0
+ */
 @Getter
 @Setter
 public class AuthSideRolesListing extends AuthSideListing {
 
+    /**
+     * The filter criteria to apply when listing roles.
+     */
     private Filter filter;
 
+    /**
+     * Represents the filtering parameters for roles.
+     */
     @Getter
     @Setter
     public static class Filter implements AuthSideFiltering {
+
+        /**
+         * The name to filter roles by.
+         */
         private String name;
+
+        /**
+         * The set of statuses to filter roles by.
+         */
         private Set<AuthSideRoleStatus> statuses;
     }
 
+    /**
+     * Converts the filter criteria into a {@link Specification} object for querying roles.
+     * If no filter is provided, returns a specification representing all roles.
+     *
+     * @return A {@link Specification} object representing the filtering criteria for roles.
+     */
     public Specification<AuthSideRoleEntity> toSpecification() {
 
         if (this.filter == null) {
