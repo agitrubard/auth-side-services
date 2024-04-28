@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Utility class for authentication side operations.
+ */
 @UtilityClass
 public class AuthSideCollectionUtil {
 
