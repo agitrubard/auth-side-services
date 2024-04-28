@@ -261,7 +261,7 @@
             <column name="CREATED_AT" valueDate="now()"/>
         </insert>
         <!-- =================================== -->
-        <!-- DML of AUTH_SIDE_USER_ROLE_RELATION -->
+        <!-- DML of AUTH_SIDE_USER_LOGIN_ATTEMPT -->
         <!-- =================================== -->
     </changeSet>
 
