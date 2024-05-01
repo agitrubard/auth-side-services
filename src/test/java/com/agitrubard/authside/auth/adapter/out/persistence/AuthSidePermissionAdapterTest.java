@@ -56,9 +56,15 @@ class AuthSidePermissionAdapterTest extends AuthSideUnitTest {
         Set<AuthSidePermission> permissions = permissionAdapter.findAll();
 
         Assertions.assertEquals(mockPermissions.size(), permissions.size());
-        Assertions.assertEquals(mockPermissions.iterator().next().getId(), permissions.iterator().next().getId());
-        Assertions.assertEquals(mockPermissions.iterator().next().getName(), permissions.iterator().next().getName());
-        Assertions.assertEquals(mockPermissions.iterator().next().getCategory(), permissions.iterator().next().getCategory());
+        Assertions.assertTrue(permissions.stream()
+                .anyMatch(permission -> permission.getId().equals(mockPermissions.iterator().next().getId()))
+        );
+        Assertions.assertTrue(permissions.stream()
+                .anyMatch(permission -> permission.getName().equals(mockPermissions.iterator().next().getName()))
+        );
+        Assertions.assertTrue(permissions.stream()
+                .anyMatch(permission -> permission.getCategory().equals(mockPermissions.iterator().next().getCategory()))
+        );
 
         // Verify
         Mockito.verify(permissionRepository, Mockito.times(1))
