@@ -4,6 +4,7 @@ import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
 import com.agitrubard.authside.auth.domain.role.enums.AuthSideRoleStatus;
 import com.agitrubard.authside.common.domain.model.AuthSideBaseDomainModel;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Set;
@@ -20,6 +21,7 @@ import java.util.Set;
  * @version 1.0.0
  */
 @Getter
+@Setter
 @SuperBuilder
 public class AuthSideRole extends AuthSideBaseDomainModel {
 
