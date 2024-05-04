@@ -6,7 +6,7 @@ import com.agitrubard.authside.common.domain.model.TestDataBuilder;
 import java.util.Set;
 import java.util.UUID;
 
-class AuthSideRoleEntityBuilder extends TestDataBuilder<AuthSideRoleEntity> {
+public class AuthSideRoleEntityBuilder extends TestDataBuilder<AuthSideRoleEntity> {
 
     public AuthSideRoleEntityBuilder() {
         super(AuthSideRoleEntity.class);
