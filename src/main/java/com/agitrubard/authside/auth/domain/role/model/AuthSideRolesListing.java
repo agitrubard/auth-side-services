@@ -60,17 +60,17 @@ public class AuthSideRolesListing extends AuthSideListing {
 
         if (this.filter.name != null) {
             Specification<AuthSideRoleEntity> tempSpecification = (root, _, criteriaBuilder) ->
-                    criteriaBuilder.like(root.get("name"), this.filter.name);
-            specification.and(tempSpecification);
+                    criteriaBuilder.like(root.get("name"), STR."%\{this.filter.name}%");
+            specification = specification.and(tempSpecification);
         }
 
         if (this.filter.statuses != null) {
             Specification<AuthSideRoleEntity> tempSpecification = (root, _, _) ->
                     root.get("status").in(this.filter.statuses);
-            specification.and(tempSpecification);
+            specification = specification.and(tempSpecification);
         }
 
-        return Specification.allOf();
+        return specification;
     }
 
 }
