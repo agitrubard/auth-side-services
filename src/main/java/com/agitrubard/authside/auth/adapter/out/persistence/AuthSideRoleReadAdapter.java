@@ -38,6 +38,7 @@ class AuthSideRoleReadAdapter implements AuthSideRoleReadPort {
         );
 
         return AuthSidePage.of(
+                listing.getFilter(),
                 roleEntities,
                 roleEntityToRoleMapper.map(roleEntities.getContent())
         );
