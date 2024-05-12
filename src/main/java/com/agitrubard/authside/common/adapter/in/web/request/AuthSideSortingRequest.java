@@ -4,6 +4,7 @@ import com.agitrubard.authside.common.domain.model.AuthSideSorting;
 import jakarta.validation.Valid;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
@@ -51,14 +52,14 @@ public abstract class AuthSideSortingRequest {
      */
     protected boolean isPropertyAccepted(final Set<String> acceptedProperties) {
 
-        if (this.sort == null || this.sort.isEmpty()) {
+        if (CollectionUtils.isEmpty(this.sort)) {
             return true;
         }
 
-        final boolean isAnyDirectionEmpty = this.sort.stream().anyMatch(sortable -> sortable.getDirection() == null);
-        final boolean isAnyPropertyEmpty = this.sort.stream().anyMatch(sortable -> sortable.getProperty() == null);
-        if (isAnyDirectionEmpty || isAnyPropertyEmpty) {
-            return true;
+        for (AuthSideSorting sorting : this.sort) {
+            if (sorting.getProperty() == null || sorting.getDirection() == null) {
+                return true;
+            }
         }
 
         return sort.stream()
