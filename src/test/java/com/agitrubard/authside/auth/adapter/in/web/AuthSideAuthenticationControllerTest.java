@@ -59,7 +59,7 @@ class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
                         .isOk())
-                .andExpect(AuthSideMockResultMatchersBuilders.response()
+                .andExpect(AuthSideMockResultMatchersBuilders.content()
                         .isNotEmpty())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessToken")
                         .value(mockResponse.getContent().getAccessToken()))
@@ -98,7 +98,7 @@ class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
                         .isOk())
-                .andExpect(AuthSideMockResultMatchersBuilders.response()
+                .andExpect(AuthSideMockResultMatchersBuilders.content()
                         .isNotEmpty())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessToken")
                         .value(mockResponse.getContent().getAccessToken()))
@@ -138,7 +138,7 @@ class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
                         .isOk())
-                .andExpect(AuthSideMockResultMatchersBuilders.response()
+                .andExpect(AuthSideMockResultMatchersBuilders.content()
                         .doesNotExist());
 
         // Verify

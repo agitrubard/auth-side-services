@@ -55,7 +55,7 @@ class AuthSidePermissionControllerTest extends AuthSideRestControllerTest {
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
                         .isOk())
-                .andExpect(AuthSideMockResultMatchersBuilders.response()
+                .andExpect(AuthSideMockResultMatchersBuilders.content()
                         .isNotEmpty());
 
         // Verify
