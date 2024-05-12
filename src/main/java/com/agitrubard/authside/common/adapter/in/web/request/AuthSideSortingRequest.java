@@ -40,6 +40,7 @@ public abstract class AuthSideSortingRequest {
      *
      * @return {@code true} if the sorting properties are accepted, {@code false} otherwise.
      */
+    @SuppressWarnings("This method is unused by the application directly but Spring is using it in the background.")
     public abstract boolean isSortPropertyAccepted();
 
     /**
