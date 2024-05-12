@@ -38,7 +38,7 @@ public class AuthSideResponse<T> {
      * The response data of the specified generic type.
      */
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private T response;
+    private T content;
 
 
     /**
@@ -59,7 +59,7 @@ public class AuthSideResponse<T> {
         return AuthSideResponse.<T>builder()
                 .httpStatus(HttpStatus.OK)
                 .isSuccess(true)
-                .response(response).build();
+                .content(response).build();
     }
 
 }

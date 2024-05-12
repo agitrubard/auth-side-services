@@ -62,11 +62,11 @@ class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
                 .andExpect(AuthSideMockResultMatchersBuilders.response()
                         .isNotEmpty())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessToken")
-                        .value(mockResponse.getResponse().getAccessToken()))
+                        .value(mockResponse.getContent().getAccessToken()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessTokenExpiresAt")
-                        .value(mockResponse.getResponse().getAccessTokenExpiresAt()))
+                        .value(mockResponse.getContent().getAccessTokenExpiresAt()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.response.refreshToken")
-                        .value(mockResponse.getResponse().getRefreshToken()));
+                        .value(mockResponse.getContent().getRefreshToken()));
 
         // Verify
         Mockito.verify(authenticationUseCase, Mockito.times(1))
@@ -101,11 +101,11 @@ class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
                 .andExpect(AuthSideMockResultMatchersBuilders.response()
                         .isNotEmpty())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessToken")
-                        .value(mockResponse.getResponse().getAccessToken()))
+                        .value(mockResponse.getContent().getAccessToken()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessTokenExpiresAt")
-                        .value(mockResponse.getResponse().getAccessTokenExpiresAt()))
+                        .value(mockResponse.getContent().getAccessTokenExpiresAt()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.response.refreshToken")
-                        .value(mockResponse.getResponse().getRefreshToken()));
+                        .value(mockResponse.getContent().getRefreshToken()));
 
         // Verify
         Mockito.verify(authenticationUseCase, Mockito.times(1))
