@@ -66,24 +66,4 @@ public abstract class AuthSideSortingRequest {
                 .allMatch(acceptedProperties::contains);
     }
 
-    /**
-     * Checks whether sorting is specified in the request.
-     *
-     * @return {@code true} if sorting is specified, {@code false} otherwise.
-     */
-    protected boolean isSortable() {
-        return this.sort != null;
-    }
-
-    /**
-     * Converts the sorting criteria into a Spring Data {@link Sort} object that can be used in database queries.
-     *
-     * @return A Spring Data {@link Sort} object representing the sorting criteria.
-     */
-    public Sort toSort() {
-        return Sort.by(this.sort.stream()
-                .map(sortable -> Sort.Order.by(sortable.getProperty()).with(sortable.getDirection()))
-                .toList());
-    }
-
 }
