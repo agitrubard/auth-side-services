@@ -4,6 +4,7 @@ import com.agitrubard.authside.auth.domain.role.enums.AuthSideRoleStatus;
 import com.agitrubard.authside.common.adapter.in.web.request.AuthSidePagingRequest;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -54,6 +55,7 @@ public class AuthSideRolesListRequest extends AuthSidePagingRequest {
      * @return {@code true} if sorting by name or creation date is supported, {@code false} otherwise.
      */
     @JsonIgnore
+    @AssertTrue
     @Override
     public boolean isSortPropertyAccepted() {
         final Set<String> acceptedFields = Set.of("name", "createdAt");
