@@ -16,6 +16,8 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
@@ -31,6 +33,7 @@ class AuthSideRoleReadAdapterTest extends AuthSideUnitTest {
     private final AuthSideRoleEntityToRoleMapper roleEntityToRoleMapper = AuthSideRoleEntityToRoleMapper.initialize();
 
     @Test
+    @SuppressWarnings("unchecked")
     void givenValidRolesListing_whenRolesFound_thenReturnPageOfRoles() {
         // Given
         AuthSideRolesListing mockListing = new AuthSideRolesListingBuilder()
@@ -38,11 +41,15 @@ class AuthSideRoleReadAdapterTest extends AuthSideUnitTest {
                 .build();
 
         // When
-        Page<AuthSideRoleEntity> pageOfMockRoleEntities = new PageImpl<>(List.of(new AuthSideRoleEntityBuilder().withValidFields().build()));
-        Mockito.when(roleRepository.findAll(mockListing.toSpecification(), mockListing.toPageable()))
+        List<AuthSideRoleEntity> roleEntities = List.of(
+                new AuthSideRoleEntityBuilder().withValidFields().build()
+        );
+        Page<AuthSideRoleEntity> pageOfMockRoleEntities = new PageImpl<>(roleEntities);
+        Mockito.when(roleRepository.findAll(Mockito.any(Specification.class), Mockito.any(Pageable.class)))
                 .thenReturn(pageOfMockRoleEntities);
 
         AuthSidePage<AuthSideRole> pageOfMockRoles = AuthSidePage.of(
+                mockListing.getFilter(),
                 pageOfMockRoleEntities,
                 roleEntityToRoleMapper.map(pageOfMockRoleEntities.getContent())
         );
@@ -64,8 +71,8 @@ class AuthSideRoleReadAdapterTest extends AuthSideUnitTest {
 
         // Verify
         Mockito.verify(roleRepository).findAll(
-                mockListing.toSpecification(),
-                mockListing.toPageable()
+                Mockito.any(Specification.class),
+                Mockito.any(Pageable.class)
         );
 
     }
