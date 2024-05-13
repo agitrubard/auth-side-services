@@ -2,6 +2,7 @@ package com.agitrubard.authside.auth.application.port.in.command;
 
 import com.agitrubard.authside.auth.domain.role.enums.AuthSideRoleStatus;
 import com.agitrubard.authside.common.application.port.in.command.AuthSidePagingCommand;
+import com.agitrubard.authside.common.domain.model.AuthSideFiltering;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -29,7 +30,7 @@ public class AuthSideRolesListCommand extends AuthSidePagingCommand {
      */
     @Getter
     @Setter
-    public static class Filter {
+    public static class Filter implements AuthSideFiltering {
         /**
          * The name to filter roles by.
          */
