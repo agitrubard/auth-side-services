@@ -14,7 +14,7 @@ public class AuthSideResponseBuilder {
         return AuthSideResponse.<T>builder()
                 .httpStatus(HttpStatus.OK)
                 .isSuccess(true)
-                .content(response);
+                .response(response);
     }
 
 }

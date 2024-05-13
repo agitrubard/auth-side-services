@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
 
@@ -59,14 +58,14 @@ class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
                         .isOk())
-                .andExpect(AuthSideMockResultMatchersBuilders.content()
+                .andExpect(AuthSideMockResultMatchersBuilders.response()
                         .isNotEmpty())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessToken")
-                        .value(mockResponse.getContent().getAccessToken()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessTokenExpiresAt")
-                        .value(mockResponse.getContent().getAccessTokenExpiresAt()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.response.refreshToken")
-                        .value(mockResponse.getContent().getRefreshToken()));
+                .andExpect(AuthSideMockResultMatchersBuilders.response("accessToken")
+                        .value(mockResponse.getResponse().getAccessToken()))
+                .andExpect(AuthSideMockResultMatchersBuilders.response("accessTokenExpiresAt")
+                        .value(mockResponse.getResponse().getAccessTokenExpiresAt()))
+                .andExpect(AuthSideMockResultMatchersBuilders.response("refreshToken")
+                        .value(mockResponse.getResponse().getRefreshToken()));
 
         // Verify
         Mockito.verify(authenticationUseCase, Mockito.times(1))
@@ -98,14 +97,14 @@ class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
                         .isOk())
-                .andExpect(AuthSideMockResultMatchersBuilders.content()
+                .andExpect(AuthSideMockResultMatchersBuilders.response()
                         .isNotEmpty())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessToken")
-                        .value(mockResponse.getContent().getAccessToken()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.response.accessTokenExpiresAt")
-                        .value(mockResponse.getContent().getAccessTokenExpiresAt()))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.response.refreshToken")
-                        .value(mockResponse.getContent().getRefreshToken()));
+                .andExpect(AuthSideMockResultMatchersBuilders.response("accessToken")
+                        .value(mockResponse.getResponse().getAccessToken()))
+                .andExpect(AuthSideMockResultMatchersBuilders.response("accessTokenExpiresAt")
+                        .value(mockResponse.getResponse().getAccessTokenExpiresAt()))
+                .andExpect(AuthSideMockResultMatchersBuilders.response("refreshToken")
+                        .value(mockResponse.getResponse().getRefreshToken()));
 
         // Verify
         Mockito.verify(authenticationUseCase, Mockito.times(1))
@@ -138,7 +137,7 @@ class AuthSideAuthenticationControllerTest extends AuthSideRestControllerTest {
         authSideMockMvc.perform(mockHttpServletRequestBuilder, mockResponse)
                 .andExpect(AuthSideMockResultMatchersBuilders.status()
                         .isOk())
-                .andExpect(AuthSideMockResultMatchersBuilders.content()
+                .andExpect(AuthSideMockResultMatchersBuilders.response()
                         .doesNotExist());
 
         // Verify

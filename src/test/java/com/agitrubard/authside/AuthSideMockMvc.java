@@ -50,7 +50,7 @@ public class AuthSideMockMvc {
                         .isString())
                 .andExpect(AuthSideMockResultMatchersBuilders.header()
                         .value(mockErrorResponse.getHeader()))
-                .andExpect(AuthSideMockResultMatchersBuilders.content()
+                .andExpect(AuthSideMockResultMatchersBuilders.response()
                         .doesNotExist());
     }
 

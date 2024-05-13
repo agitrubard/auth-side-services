@@ -30,8 +30,8 @@ public class AuthSideMockResultMatchersBuilders {
     }
 
 
-    public static JsonPathResultMatchers content() {
-        return MockMvcResultMatchers.jsonPath("$.content");
+    public static JsonPathResultMatchers response() {
+        return MockMvcResultMatchers.jsonPath("$.response");
     }
 
     public static JsonPathResultMatchers subErrors() {
