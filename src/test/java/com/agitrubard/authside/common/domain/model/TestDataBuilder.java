@@ -47,7 +47,13 @@ public abstract class TestDataBuilder<T> {
         parameters.randomize(String.class, CHARACTER_RANDOMIZER);
         parameters.randomize(Long.class, LONG_RANGE_RANDOMIZER);
 
-        if (!excludeRelations) return parameters;
+        parameters.excludeField(
+                FieldPredicates.named("sort")
+        );
+
+        if (!excludeRelations) {
+            return parameters;
+        }
 
         parameters.excludeField(
                 FieldPredicates.isAnnotatedWith(ManyToOne.class, OneToMany.class, OneToOne.class)
