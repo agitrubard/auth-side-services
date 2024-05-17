@@ -39,7 +39,7 @@ public abstract class AuthSideListing {
 
         if (this.sort != null) {
             return PageRequest.of(
-                    this.pagination.getPage(),
+                    this.pagination.getPageNumber() - 1,
                     this.pagination.getPageSize(),
                     Sort.by(this.sort.stream()
                             .map(sortable -> Sort.Order.by(sortable.getProperty()).with(sortable.getDirection()))
@@ -48,7 +48,7 @@ public abstract class AuthSideListing {
         }
 
         return PageRequest.of(
-                this.pagination.getPage(),
+                this.pagination.getPageNumber() - 1,
                 this.pagination.getPageSize()
         );
 

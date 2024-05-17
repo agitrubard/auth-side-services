@@ -13,7 +13,7 @@ public class AuthSidePagingBuilder extends TestDataBuilder<AuthSidePaging> {
     }
 
     public AuthSidePagingBuilder withPage(int page) {
-        data.setPage(page);
+        data.setPageNumber(page);
         return this;
     }
 

@@ -60,7 +60,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
         );
         AuthSidePage<AuthSideRole> pageOfRoles = AuthSidePage.<AuthSideRole>builder()
                 .content(mockRoles)
-                .pageNumber(mockListCommand.getPagination().getPage())
+                .pageNumber(mockListCommand.getPagination().getPageNumber())
                 .pageSize(mockRoles.size())
                 .totalPageCount(mockRoles.size())
                 .totalElementCount((long) mockRoles.size())
@@ -124,7 +124,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
         List<AuthSideRole> mockRoles = List.of();
         AuthSidePage<AuthSideRole> pageOfRoles = AuthSidePage.<AuthSideRole>builder()
                 .content(mockRoles)
-                .pageNumber(mockListCommand.getPagination().getPage())
+                .pageNumber(mockListCommand.getPagination().getPageNumber())
                 .pageSize(0)
                 .totalPageCount(0)
                 .totalElementCount(0L)
@@ -158,7 +158,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
                 .andExpect(AuthSideMockResultMatchersBuilders.content("size()")
                         .value(0))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("pageNumber")
-                        .value(mockListRequest.getPagination().getPage()))
+                        .value(mockListRequest.getPagination().getPageNumber()))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("pageSize")
                         .value(0))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("totalPageCount")
