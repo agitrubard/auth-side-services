@@ -38,6 +38,10 @@ public class AuthSideMockResultMatchersBuilders {
         return MockMvcResultMatchers.jsonPath(STR."$.response.\{field}");
     }
 
+    public static JsonPathResultMatchers content(String field) {
+        return MockMvcResultMatchers.jsonPath(STR."$.response.content.\{field}");
+    }
+
     public static JsonPathResultMatchers subErrors() {
         return MockMvcResultMatchers.jsonPath("$.subErrors");
     }
