@@ -135,7 +135,7 @@ public class AuthSideUserEntity extends AuthSideBaseEntity {
          * The user associated with the password.
          */
         @OneToOne(fetch = FetchType.LAZY)
-        @JoinColumn(name = "user_id", referencedColumnName = "id")
+        @JoinColumn(name = "USER_ID", referencedColumnName = "ID", insertable = false, updatable = false)
         private AuthSideUserEntity user;
 
     }
