@@ -55,7 +55,7 @@ public class AuthSideResponse<T> {
      * @param <T>      The type of the response data.
      * @return A success response with the provided data and HTTP status 200 (OK).
      */
-    public static <T> AuthSideResponse<T> successOf(final T response) {
+    public static <T> AuthSideResponse<T> success(final T response) {
         return AuthSideResponse.<T>builder()
                 .httpStatus(HttpStatus.OK)
                 .isSuccess(true)

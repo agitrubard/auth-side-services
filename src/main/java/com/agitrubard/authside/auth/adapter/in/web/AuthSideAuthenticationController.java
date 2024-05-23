@@ -57,7 +57,7 @@ class AuthSideAuthenticationController {
         final AuthSideToken token = authenticationUseCase.authenticate(loginCommand);
 
         final AuthSideTokenResponse tokenResponse = tokenToTokenResponseMapper.map(token);
-        return AuthSideResponse.successOf(tokenResponse);
+        return AuthSideResponse.success(tokenResponse);
     }
 
     /**
@@ -74,7 +74,7 @@ class AuthSideAuthenticationController {
                 .map(refreshRequest);
         final AuthSideToken token = authenticationUseCase.refreshAccessToken(tokenRefreshCommand);
         final AuthSideTokenResponse tokenResponse = tokenToTokenResponseMapper.map(token);
-        return AuthSideResponse.successOf(tokenResponse);
+        return AuthSideResponse.success(tokenResponse);
     }
 
     /**

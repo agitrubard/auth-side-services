@@ -42,7 +42,7 @@ class AuthSidePermissionController {
     @PreAuthorize("hasAnyAuthority('role:create', 'role:update')")
     public AuthSideResponse<Set<AuthSidePermissionsResponse>> findAll() {
         final Set<AuthSidePermission> permissions = permissionUseCase.findAll();
-        return AuthSideResponse.successOf(permissionToPermissionsResponseMapper.map(permissions));
+        return AuthSideResponse.success(permissionToPermissionsResponseMapper.map(permissions));
     }
 
 }

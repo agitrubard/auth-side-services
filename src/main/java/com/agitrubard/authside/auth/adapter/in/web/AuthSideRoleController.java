@@ -54,7 +54,7 @@ class AuthSideRoleController {
     public AuthSideResponse<AuthSidePageResponse<AuthSideRolesResponse>> list(@RequestBody @Valid AuthSideRolesListRequest listRequest) {
         final AuthSideRolesListCommand listCommand = rolesListRequestToCommandMapper.map(listRequest);
         final AuthSidePage<AuthSideRole> pageOfRoles = roleReadUseCase.list(listCommand);
-        return AuthSideResponse.successOf(
+        return AuthSideResponse.success(
                 AuthSidePageResponse.<AuthSideRolesResponse>builder()
                         .of(
                                 pageOfRoles,
