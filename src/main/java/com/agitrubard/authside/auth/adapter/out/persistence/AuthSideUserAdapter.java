@@ -7,6 +7,7 @@ import com.agitrubard.authside.auth.application.port.out.AuthSideUserReadPort;
 import com.agitrubard.authside.auth.domain.user.model.AuthSideUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -23,6 +24,7 @@ import java.util.Optional;
  */
 @Component
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 class AuthSideUserAdapter implements AuthSideUserReadPort {
 
     private final AuthSideUserRepository userRepository;
