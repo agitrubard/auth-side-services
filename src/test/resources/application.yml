@@ -1,3 +1,7 @@
+logging:
+  level:
+    sql: debug
+
 spring:
   sql:
     init:
