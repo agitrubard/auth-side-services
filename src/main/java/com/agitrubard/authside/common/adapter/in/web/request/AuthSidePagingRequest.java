@@ -3,7 +3,6 @@ package com.agitrubard.authside.common.adapter.in.web.request;
 import com.agitrubard.authside.common.domain.model.AuthSidePaging;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +17,6 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
 public abstract class AuthSidePagingRequest extends AuthSideSortingRequest {
 
     /**
