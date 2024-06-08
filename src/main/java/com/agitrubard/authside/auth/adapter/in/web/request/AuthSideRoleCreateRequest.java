@@ -1,11 +1,11 @@
 package com.agitrubard.authside.auth.adapter.in.web.request;
 
-import com.agitrubard.authside.common.util.validator.UUIDs;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.UUID;
 
 import java.util.Set;
 
@@ -29,8 +29,7 @@ public class AuthSideRoleCreateRequest {
     /**
      * Set of permission IDs to be associated with the role.
      */
-    @UUIDs
     @NotEmpty
-    private Set<String> permissionIds;
+    private Set<@UUID String> permissionIds;
 
 }
