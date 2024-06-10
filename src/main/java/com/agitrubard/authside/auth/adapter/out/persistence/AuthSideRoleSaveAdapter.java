@@ -54,7 +54,6 @@ class AuthSideRoleSaveAdapter implements AuthSideRoleSavePort {
 
         final AuthSideRoleEntity roleEntity = roleToEntityMapper.map(role);
         roleRepository.save(roleEntity);
-
     }
 
     private void checkRoleName(final String name) {

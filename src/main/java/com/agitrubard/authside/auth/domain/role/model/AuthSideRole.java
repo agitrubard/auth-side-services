@@ -3,6 +3,7 @@ package com.agitrubard.authside.auth.domain.role.model;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
 import com.agitrubard.authside.auth.domain.role.enums.AuthSideRoleStatus;
 import com.agitrubard.authside.common.domain.model.AuthSideBaseDomainModel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
@@ -38,7 +39,8 @@ public class AuthSideRole extends AuthSideBaseDomainModel {
     /**
      * The status of the role, which indicates whether the role is active, passive, or deleted.
      */
-    private AuthSideRoleStatus status;
+    @Builder.Default
+    private AuthSideRoleStatus status = AuthSideRoleStatus.ACTIVE;
 
     /**
      * A set of permissions associated with the role. Permissions define what actions or resources users with this role can access.

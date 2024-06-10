@@ -4,13 +4,11 @@ import com.agitrubard.authside.auth.application.port.in.command.AuthSideRoleCrea
 import com.agitrubard.authside.auth.application.port.in.usecase.AuthSideRoleCreateUseCase;
 import com.agitrubard.authside.auth.application.port.out.AuthSideRoleSavePort;
 import com.agitrubard.authside.auth.domain.permission.model.AuthSidePermission;
-import com.agitrubard.authside.auth.domain.role.enums.AuthSideRoleStatus;
 import com.agitrubard.authside.auth.domain.role.model.AuthSideRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -43,10 +41,8 @@ class AuthSideRoleCreateService implements AuthSideRoleCreateUseCase {
                 .collect(Collectors.toSet());
 
         final AuthSideRole role = AuthSideRole.builder()
-                .id(UUID.randomUUID().toString())
                 .name(createCommand.getName())
                 .permissions(permissions)
-                .status(AuthSideRoleStatus.ACTIVE)
                 .build();
 
         roleSavePort.save(role);

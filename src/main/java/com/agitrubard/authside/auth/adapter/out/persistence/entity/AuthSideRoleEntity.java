@@ -6,7 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -39,6 +40,7 @@ public class AuthSideRoleEntity extends AuthSideBaseEntity {
      */
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     /**
@@ -57,7 +59,7 @@ public class AuthSideRoleEntity extends AuthSideBaseEntity {
     /**
      * A set of permissions associated with the role for access control and authorization purposes.
      */
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "AUTH_SIDE_ROLE_PERMISSION_RELATION",
             joinColumns = @JoinColumn(name = "ROLE_ID"),
