@@ -42,6 +42,7 @@ public class AuthSideUserEntity extends AuthSideBaseEntity {
      */
     @Id
     @Column(name = "ID")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     /**
@@ -84,7 +85,7 @@ public class AuthSideUserEntity extends AuthSideBaseEntity {
     /**
      * A set of roles associated with the user for access control and authorization purposes.
      */
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
             name = "AUTH_SIDE_USER_ROLE_RELATION",
             joinColumns = @JoinColumn(name = "USER_ID"),
@@ -102,7 +103,6 @@ public class AuthSideUserEntity extends AuthSideBaseEntity {
     @Entity
     @Getter
     @Setter
-    @EqualsAndHashCode(callSuper = true)
     @Table(name = "AUTH_SIDE_USER_PASSWORD")
     public static class PasswordEntity extends AuthSideBaseEntity {
 
