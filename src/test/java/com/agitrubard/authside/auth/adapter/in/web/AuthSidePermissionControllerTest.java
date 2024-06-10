@@ -21,7 +21,6 @@ import java.util.Set;
 
 class AuthSidePermissionControllerTest extends AuthSideRestControllerTest {
 
-
     @MockBean
     private AuthSidePermissionUseCase permissionUseCase;
 
