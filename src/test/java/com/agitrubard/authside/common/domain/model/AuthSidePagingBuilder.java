@@ -1,9 +1,9 @@
 package com.agitrubard.authside.common.domain.model;
 
-public class AuthSidePagingBuilder extends TestDataBuilder<AuthSidePaging> {
+public class AuthSidePagingBuilder extends TestDataBuilder<AuthSidePageable> {
 
     public AuthSidePagingBuilder() {
-        super(AuthSidePaging.class);
+        super(AuthSidePageable.class);
     }
 
     public AuthSidePagingBuilder withValidFields() {

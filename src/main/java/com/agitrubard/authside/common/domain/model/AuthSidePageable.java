@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class AuthSidePaging {
+public class AuthSidePageable {
 
     /**
      * The page number to retrieve, which must be a positive integer (1 or greater).

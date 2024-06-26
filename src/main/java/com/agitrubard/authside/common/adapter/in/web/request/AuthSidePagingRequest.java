@@ -1,6 +1,6 @@
 package com.agitrubard.authside.common.adapter.in.web.request;
 
-import com.agitrubard.authside.common.domain.model.AuthSidePaging;
+import com.agitrubard.authside.common.domain.model.AuthSidePageable;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -24,6 +24,6 @@ public abstract class AuthSidePagingRequest extends AuthSideSortingRequest {
      */
     @Valid
     @NotNull
-    protected AuthSidePaging pageable;
+    protected AuthSidePageable pageable;
 
 }

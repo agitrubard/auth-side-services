@@ -23,7 +23,7 @@ public abstract class AuthSideListing {
     /**
      * Pagination criteria for the listing.
      */
-    protected AuthSidePaging pagination;
+    protected AuthSidePageable pagination;
 
     /**
      * Sorting criteria for the listing.

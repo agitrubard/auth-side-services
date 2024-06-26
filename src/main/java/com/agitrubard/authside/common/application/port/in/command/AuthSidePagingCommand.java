@@ -1,6 +1,6 @@
 package com.agitrubard.authside.common.application.port.in.command;
 
-import com.agitrubard.authside.common.domain.model.AuthSidePaging;
+import com.agitrubard.authside.common.domain.model.AuthSidePageable;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,7 @@ import lombok.Setter;
  *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
- * @see AuthSidePaging
+ * @see AuthSidePageable
  * @see AuthSideSortingCommand
  */
 @Getter
@@ -22,6 +22,6 @@ public abstract class AuthSidePagingCommand extends AuthSideSortingCommand {
     /**
      * Pagination criteria for the command.
      */
-    protected AuthSidePaging pagination;
+    protected AuthSidePageable pagination;
 
 }

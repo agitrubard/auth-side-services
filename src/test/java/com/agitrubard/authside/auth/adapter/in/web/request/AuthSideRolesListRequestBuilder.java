@@ -1,7 +1,7 @@
 package com.agitrubard.authside.auth.adapter.in.web.request;
 
 import com.agitrubard.authside.auth.domain.role.enums.AuthSideRoleStatus;
-import com.agitrubard.authside.common.domain.model.AuthSidePaging;
+import com.agitrubard.authside.common.domain.model.AuthSidePageable;
 import com.agitrubard.authside.common.domain.model.AuthSidePagingBuilder;
 import com.agitrubard.authside.common.domain.model.AuthSideSortingBuilder;
 import com.agitrubard.authside.common.domain.model.TestDataBuilder;
@@ -27,7 +27,7 @@ public class AuthSideRolesListRequestBuilder extends TestDataBuilder<AuthSideRol
                 .withSortCreatedAt(Sort.Direction.DESC);
     }
 
-    public AuthSideRolesListRequestBuilder withPagination(AuthSidePaging pagination) {
+    public AuthSideRolesListRequestBuilder withPagination(AuthSidePageable pagination) {
         data.setPageable(pagination);
         return this;
     }
