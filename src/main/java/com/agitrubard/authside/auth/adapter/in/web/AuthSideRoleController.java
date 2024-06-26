@@ -51,7 +51,7 @@ class AuthSideRoleController {
      */
     @PostMapping("/roles")
     @PreAuthorize("hasAnyAuthority('role:list')")
-    public AuthSideResponse<AuthSidePageResponse<AuthSideRolesResponse>> list(@RequestBody @Valid AuthSideRolesListRequest listRequest) {
+    public AuthSideResponse<AuthSidePageResponse<AuthSideRolesResponse>> findAll(@RequestBody @Valid AuthSideRolesListRequest listRequest) {
         final AuthSideRolesListCommand listCommand = rolesListRequestToCommandMapper.map(listRequest);
         final AuthSidePage<AuthSideRole> pageOfRoles = roleReadUseCase.list(listCommand);
         return AuthSideResponse.success(
