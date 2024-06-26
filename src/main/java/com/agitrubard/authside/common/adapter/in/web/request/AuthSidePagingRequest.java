@@ -24,6 +24,6 @@ public abstract class AuthSidePagingRequest extends AuthSideSortingRequest {
      */
     @Valid
     @NotNull
-    protected AuthSidePaging pagination;
+    protected AuthSidePaging pageable;
 
 }

@@ -28,7 +28,7 @@ public class AuthSideRolesListRequestBuilder extends TestDataBuilder<AuthSideRol
     }
 
     public AuthSideRolesListRequestBuilder withPagination(AuthSidePaging pagination) {
-        data.setPagination(pagination);
+        data.setPageable(pagination);
         return this;
     }
 

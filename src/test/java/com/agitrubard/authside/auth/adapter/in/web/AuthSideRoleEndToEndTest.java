@@ -153,7 +153,7 @@ class AuthSideRoleEndToEndTest extends AuthSideEndToEndTest {
                 .andExpect(AuthSideMockResultMatchersBuilders.content("size()")
                         .value(0))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("pageNumber")
-                        .value(mockListRequest.getPagination().getPageNumber()))
+                        .value(mockListRequest.getPageable().getPageNumber()))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("pageSize")
                         .value(0))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("totalPageCount")
