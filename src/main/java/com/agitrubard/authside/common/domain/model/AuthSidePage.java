@@ -5,11 +5,12 @@ import lombok.Getter;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Set;
 
 /**
- * The {@code AuthSidePage} class represents a paginated response containing a list of content items, along with pagination information and optional sorting and filtering details.
+ * The {@code AuthSidePage} class represents a paginated response containing a list of content items, along with pageable information and optional ordering and filtering details.
  *
- * <p>It is commonly used in the Auth Side application to provide paginated results of data. The class includes the content, page number, page size, total page count, total element count, sorting criteria, and filtering details.
+ * <p>It is commonly used in the Auth Side application to provide paginated results of data. The class includes the content, page number, page size, total page count, total element count, ordering criteria, and filtering details.
  *
  * @param <R> The type of content items in the page.
  * @author Agit Rubar Demir | @agitrubard
@@ -45,9 +46,9 @@ public class AuthSidePage<R> {
     private Long totalElementCount;
 
     /**
-     * The sorting criteria applied to the content items. Can be null if no sorting is specified.
+     * The ordering criteria applied to the content items. Can be null if no ordering is specified.
      */
-    private List<AuthSideSorting> sortedBy;
+    private Set<AuthSideSortable.Order> orderedBy;
 
     /**
      * The filtering criteria used to retrieve the content items. Can be null if no filtering is applied.
@@ -55,13 +56,13 @@ public class AuthSidePage<R> {
     private AuthSideFiltering filteredBy;
 
     /**
-     * Create an {@code AuthSidePage} from a Spring Data Page and content list.
+     * Create an {@link AuthSidePage} from a Spring Data Page and content list.
      *
      * @param <E>              The type of entities in the original Spring Data Page.
      * @param <C>              The type of content items in the AuthSidePage.
      * @param pageableEntities The Spring Data Page containing entities.
      * @param content          The content items for the page.
-     * @return An {@code AuthSidePage} containing the specified content and pagination information.
+     * @return An {@link AuthSidePage} containing the specified content and pageable information.
      */
     public static <E, C> AuthSidePage<C> of(final Page<E> pageableEntities,
                                             final List<C> content) {
@@ -74,21 +75,21 @@ public class AuthSidePage<R> {
                 .totalElementCount(pageableEntities.getTotalElements());
 
         if (pageableEntities.getSort().isSorted()) {
-            responseBuilder.sortedBy(AuthSideSorting.of(pageableEntities.getSort()));
+            responseBuilder.orderedBy(AuthSideSortable.Order.of(pageableEntities.getSort()));
         }
 
         return responseBuilder.build();
     }
 
     /**
-     * Create an {@code AuthSidePage} from a filtering object, Spring Data Page, and content list.
+     * Create an {@link AuthSidePage} from a filtering object, Spring Data Page, and content list.
      *
      * @param <E>              The type of entities in the original Spring Data Page.
      * @param <C>              The type of content items in the AuthSidePage.
      * @param filter           The filtering criteria used for the content.
      * @param pageableEntities The Spring Data Page containing entities.
      * @param content          The content items for the page.
-     * @return An {@code AuthSidePage} containing the specified content, pagination, and filtering information.
+     * @return An {@link AuthSidePage} containing the specified content, pageable, and filtering information.
      */
     public static <E, C> AuthSidePage<C> of(final AuthSideFiltering filter,
                                             final Page<E> pageableEntities,
@@ -103,7 +104,7 @@ public class AuthSidePage<R> {
                 .filteredBy(filter);
 
         if (pageableEntities.getSort().isSorted()) {
-            responseBuilder.sortedBy(AuthSideSorting.of(pageableEntities.getSort()));
+            responseBuilder.orderedBy(AuthSideSortable.Order.of(pageableEntities.getSort()));
         }
 
         return responseBuilder.build();

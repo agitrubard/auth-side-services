@@ -48,9 +48,9 @@ public class AuthSideRolesListRequest extends AuthSidePagingRequest {
     }
 
     /**
-     * Checks if sorting by name or creation date is supported.
+     * Checks if ordering by name or creation date is supported.
      *
-     * @return {@code true} if sorting by name or creation date is supported, {@code false} otherwise.
+     * @return {@code true} if ordering by name or creation date is supported, {@code false} otherwise.
      */
     @JsonIgnore
     @AssertTrue

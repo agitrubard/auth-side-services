@@ -5,16 +5,23 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * A class representing paging information for paginated data retrieval.
+ * {@link AuthSidePageable} represents a pageable configuration for authentication-related data retrieval.
  * <p>
- * This class defines parameters for specifying the page number and page size when querying paginated data.
+ * It extends {@link AuthSideSortable}, inheriting ordering properties functionality, and introduces
+ * pageable settings including page number and page size.
+ * </p>
+ * <p>
+ * The {@code pageNumber} indicates the specific page of data to retrieve, which must be a positive integer (1 or greater).
+ * The {@code pageSize} specifies the number of items per page, typically set to limit the number of items displayed per page.
+ * Both properties are annotated with {@link Positive} to enforce positive integer values.
+ * </p>
  *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
  */
 @Getter
 @Setter
-public class AuthSidePageable {
+public class AuthSidePageable extends AuthSideSortable {
 
     /**
      * The page number to retrieve, which must be a positive integer (1 or greater).

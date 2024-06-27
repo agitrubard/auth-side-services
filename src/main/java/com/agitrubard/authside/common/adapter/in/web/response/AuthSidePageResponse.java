@@ -2,15 +2,16 @@ package com.agitrubard.authside.common.adapter.in.web.response;
 
 import com.agitrubard.authside.common.domain.model.AuthSideFiltering;
 import com.agitrubard.authside.common.domain.model.AuthSidePage;
-import com.agitrubard.authside.common.domain.model.AuthSideSorting;
+import com.agitrubard.authside.common.domain.model.AuthSideSortable;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * The {@code AuthSidePageResponse} class is a generic response class that encapsulates paged data along with metadata, including page information,
- * total page count, total element count, sorting details, and filtering details. It is used to represent paged data in various scenarios within the application.
+ * total page count, total element count, ordering details, and filtering details. It is used to represent paged data in various scenarios within the application.
  * <p>
  * The class provides a builder pattern for creating instances, making it easy to initialize and populate the necessary fields.
  *
@@ -48,9 +49,9 @@ public class AuthSidePageResponse<R> {
     private Long totalElementCount;
 
     /**
-     * The list of sorting criteria used for sorting the elements in the result set.
+     * The set of ordering criteria used for ordering the elements in the result set.
      */
-    private List<AuthSideSorting> sortedBy;
+    private Set<AuthSideSortable.Order> orderedBy;
 
     /**
      * The filtering criteria used to filter the elements in the result set.
@@ -79,7 +80,7 @@ public class AuthSidePageResponse<R> {
                     .pageSize(authSidePage.getPageSize())
                     .totalPageCount(authSidePage.getTotalPageCount())
                     .totalElementCount(authSidePage.getTotalElementCount())
-                    .sortedBy(authSidePage.getSortedBy())
+                    .orderedBy(authSidePage.getOrderedBy())
                     .filteredBy(authSidePage.getFilteredBy());
         }
     }

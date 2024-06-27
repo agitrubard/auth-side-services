@@ -62,11 +62,11 @@ class AuthSideRoleEndToEndTest extends AuthSideEndToEndTest {
         );
         AuthSidePage<AuthSideRole> pageOfRoles = AuthSidePage.<AuthSideRole>builder()
                 .content(roles)
-                .pageNumber(listCommand.getPagination().getPageNumber())
+                .pageNumber(listCommand.getPageable().getPageNumber())
                 .pageSize(roles.size())
                 .totalPageCount(roles.size())
                 .totalElementCount((long) roles.size())
-                .sortedBy(listCommand.getSort())
+                .orderedBy(listCommand.getPageable().getOrders())
                 .filteredBy(listCommand.getFilter())
                 .build();
 
@@ -101,7 +101,7 @@ class AuthSideRoleEndToEndTest extends AuthSideEndToEndTest {
                         .value(1))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("totalElementCount")
                         .value(roles.size()))
-                .andExpect(AuthSideMockResultMatchersBuilders.response("sortedBy")
+                .andExpect(AuthSideMockResultMatchersBuilders.response("orderedBy")
                         .exists())
                 .andExpect(AuthSideMockResultMatchersBuilders.response("filteredBy")
                         .exists());
@@ -121,11 +121,11 @@ class AuthSideRoleEndToEndTest extends AuthSideEndToEndTest {
         List<AuthSideRole> roles = List.of();
         AuthSidePage<AuthSideRole> pageOfRoles = AuthSidePage.<AuthSideRole>builder()
                 .content(roles)
-                .pageNumber(listCommand.getPagination().getPageNumber())
+                .pageNumber(listCommand.getPageable().getPageNumber())
                 .pageSize(0)
                 .totalPageCount(0)
                 .totalElementCount(0L)
-                .sortedBy(listCommand.getSort())
+                .orderedBy(listCommand.getPageable().getOrders())
                 .filteredBy(listCommand.getFilter())
                 .build();
 
@@ -160,7 +160,7 @@ class AuthSideRoleEndToEndTest extends AuthSideEndToEndTest {
                         .value(0))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("totalElementCount")
                         .value(0))
-                .andExpect(AuthSideMockResultMatchersBuilders.response("sortedBy")
+                .andExpect(AuthSideMockResultMatchersBuilders.response("orderedBy")
                         .exists())
                 .andExpect(AuthSideMockResultMatchersBuilders.response("filteredBy")
                         .exists());
@@ -205,10 +205,12 @@ class AuthSideRoleEndToEndTest extends AuthSideEndToEndTest {
         Assertions.assertTrue(roleEntity.isPresent());
         Assertions.assertEquals(createRequest.getName(), roleEntity.get().getName());
         Assertions.assertEquals(createRequest.getPermissionIds().size(), roleEntity.get().getPermissions().size());
-        createRequest.getPermissionIds().forEach(permissionId -> {
-            Assertions.assertTrue(roleEntity.get().getPermissions().stream()
-                    .anyMatch(permission -> permission.getId().equals(permissionId)));
-        });
+        createRequest.getPermissionIds().forEach(permissionId ->
+                Assertions.assertTrue(
+                        roleEntity.get().getPermissions().stream()
+                                .anyMatch(permission -> permission.getId().equals(permissionId))
+                )
+        );
         Assertions.assertEquals(AuthSideRoleStatus.ACTIVE, roleEntity.get().getStatus());
         Assertions.assertNotNull(roleEntity.get().getCreatedBy());
         Assertions.assertNotNull(roleEntity.get().getCreatedAt());

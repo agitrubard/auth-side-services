@@ -2,13 +2,14 @@ package com.agitrubard.authside.auth.adapter.in.web.request;
 
 import com.agitrubard.authside.auth.domain.role.enums.AuthSideRoleStatus;
 import com.agitrubard.authside.common.domain.model.AuthSidePageable;
-import com.agitrubard.authside.common.domain.model.AuthSidePagingBuilder;
-import com.agitrubard.authside.common.domain.model.AuthSideSortingBuilder;
+import com.agitrubard.authside.common.domain.model.AuthSidePageableBuilder;
+import com.agitrubard.authside.common.domain.model.AuthSideSortable;
+import com.agitrubard.authside.common.domain.model.AuthSideSortableBuilder;
 import com.agitrubard.authside.common.domain.model.TestDataBuilder;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.domain.Sort;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 public class AuthSideRolesListRequestBuilder extends TestDataBuilder<AuthSideRolesListRequest> {
@@ -20,15 +21,15 @@ public class AuthSideRolesListRequestBuilder extends TestDataBuilder<AuthSideRol
     public AuthSideRolesListRequestBuilder withValidFields() {
 
         return new AuthSideRolesListRequestBuilder()
-                .withPagination(new AuthSidePagingBuilder().withValidFields().build())
+                .withPageable(new AuthSidePageableBuilder().withValidFields().build())
                 .withName("ad")
                 .withStatuses(Set.of(AuthSideRoleStatus.ACTIVE))
-                .withSortName(Sort.Direction.ASC)
-                .withSortCreatedAt(Sort.Direction.DESC);
+                .withOrderByName(Sort.Direction.ASC)
+                .withOrderByCreatedAt(Sort.Direction.DESC);
     }
 
-    public AuthSideRolesListRequestBuilder withPagination(AuthSidePageable pagination) {
-        data.setPageable(pagination);
+    public AuthSideRolesListRequestBuilder withPageable(AuthSidePageable pageable) {
+        data.setPageable(pageable);
         return this;
     }
 
@@ -52,23 +53,31 @@ public class AuthSideRolesListRequestBuilder extends TestDataBuilder<AuthSideRol
         return this;
     }
 
-    public AuthSideRolesListRequestBuilder withSortName(Sort.Direction direction) {
+    public AuthSideRolesListRequestBuilder withOrderByName(Sort.Direction direction) {
 
-        if (CollectionUtils.isEmpty(data.getSort())) {
-            data.setSort(new ArrayList<>());
+        if (CollectionUtils.isEmpty(data.getPageable().getOrders())) {
+            data.getPageable().setOrders(new HashSet<>());
         }
 
-        data.getSort().add(new AuthSideSortingBuilder().withProperty("name").withDirection(direction).build());
+        AuthSideSortable.Order order = new AuthSideSortableBuilder.OrderBuilder()
+                .withProperty("name")
+                .withDirection(direction)
+                .build();
+        data.getPageable().getOrders().add(order);
         return this;
     }
 
-    public AuthSideRolesListRequestBuilder withSortCreatedAt(Sort.Direction direction) {
+    public AuthSideRolesListRequestBuilder withOrderByCreatedAt(Sort.Direction direction) {
 
-        if (CollectionUtils.isEmpty(data.getSort())) {
-            data.setSort(new ArrayList<>());
+        if (CollectionUtils.isEmpty(data.getPageable().getOrders())) {
+            data.getPageable().setOrders(new HashSet<>());
         }
 
-        data.getSort().add(new AuthSideSortingBuilder().withProperty("createdAt").withDirection(direction).build());
+        AuthSideSortable.Order order = new AuthSideSortableBuilder.OrderBuilder()
+                .withProperty("createdAt")
+                .withDirection(direction)
+                .build();
+        data.getPageable().getOrders().add(order);
         return this;
     }
 

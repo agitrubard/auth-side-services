@@ -60,11 +60,11 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
         );
         AuthSidePage<AuthSideRole> pageOfRoles = AuthSidePage.<AuthSideRole>builder()
                 .content(mockRoles)
-                .pageNumber(mockListCommand.getPagination().getPageNumber())
+                .pageNumber(mockListCommand.getPageable().getPageNumber())
                 .pageSize(mockRoles.size())
                 .totalPageCount(mockRoles.size())
                 .totalElementCount((long) mockRoles.size())
-                .sortedBy(mockListCommand.getSort())
+                .orderedBy(mockListCommand.getPageable().getOrders())
                 .filteredBy(mockListCommand.getFilter())
                 .build();
         Mockito.when(roleReadUseCase.list(Mockito.any(AuthSideRolesListCommand.class)))
@@ -101,7 +101,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
                         .value(1))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("totalElementCount")
                         .value(mockRoles.size()))
-                .andExpect(AuthSideMockResultMatchersBuilders.response("sortedBy")
+                .andExpect(AuthSideMockResultMatchersBuilders.response("orderedBy")
                         .exists())
                 .andExpect(AuthSideMockResultMatchersBuilders.response("filteredBy")
                         .exists());
@@ -124,11 +124,11 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
         List<AuthSideRole> mockRoles = List.of();
         AuthSidePage<AuthSideRole> pageOfRoles = AuthSidePage.<AuthSideRole>builder()
                 .content(mockRoles)
-                .pageNumber(mockListCommand.getPagination().getPageNumber())
+                .pageNumber(mockListCommand.getPageable().getPageNumber())
                 .pageSize(0)
                 .totalPageCount(0)
                 .totalElementCount(0L)
-                .sortedBy(mockListCommand.getSort())
+                .orderedBy(mockListCommand.getPageable().getOrders())
                 .filteredBy(mockListCommand.getFilter())
                 .build();
         Mockito.when(roleReadUseCase.list(Mockito.any(AuthSideRolesListCommand.class)))
@@ -165,7 +165,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
                         .value(0))
                 .andExpect(AuthSideMockResultMatchersBuilders.response("totalElementCount")
                         .value(0))
-                .andExpect(AuthSideMockResultMatchersBuilders.response("sortedBy")
+                .andExpect(AuthSideMockResultMatchersBuilders.response("orderedBy")
                         .exists())
                 .andExpect(AuthSideMockResultMatchersBuilders.response("filteredBy")
                         .exists());

@@ -1,7 +1,7 @@
 package com.agitrubard.authside.auth.domain.role.model;
 
 import com.agitrubard.authside.common.domain.model.AuthSidePageable;
-import com.agitrubard.authside.common.domain.model.AuthSidePagingBuilder;
+import com.agitrubard.authside.common.domain.model.AuthSidePageableBuilder;
 import com.agitrubard.authside.common.domain.model.TestDataBuilder;
 
 public class AuthSideRolesListingBuilder extends TestDataBuilder<AuthSideRolesListing> {
@@ -12,11 +12,11 @@ public class AuthSideRolesListingBuilder extends TestDataBuilder<AuthSideRolesLi
 
     public AuthSideRolesListingBuilder withValidFields() {
         return this
-                .withPagination(new AuthSidePagingBuilder().withValidFields().build());
+                .withPageable(new AuthSidePageableBuilder().withValidFields().build());
     }
 
-    public AuthSideRolesListingBuilder withPagination(AuthSidePageable paging) {
-        data.setPagination(paging);
+    public AuthSideRolesListingBuilder withPageable(AuthSidePageable paging) {
+        data.setPageable(paging);
         return this;
     }
 

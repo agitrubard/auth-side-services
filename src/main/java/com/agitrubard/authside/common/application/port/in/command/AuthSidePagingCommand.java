@@ -5,23 +5,28 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Abstract base class representing a command for pagination and sorting of authentication side entities.
- * Extends {@link AuthSideSortingCommand} to include sorting criteria.
- * Provides a property for pagination criteria.
- * Subclasses should extend this class to define specific pagination and sorting criteria.
+ * {@link AuthSidePagingCommand} defines pageable criteria for commands related to authentication.
+ * <p>
+ * It encapsulates the configuration for pageable using {@link AuthSidePageable}.
+ * The {@code pageable} property specifies the pageable details, ensuring that pageable criteria
+ * are provided for operations that require paging through results.
+ * </p>
+ * <p>
+ * This abstract class serves as a base for commands that involve pageable, allowing subclasses
+ * to define specific behaviors or additional properties as needed.
+ * </p>
  *
  * @author Agit Rubar Demir | @agitrubard
  * @version 1.0.0
  * @see AuthSidePageable
- * @see AuthSideSortingCommand
  */
 @Getter
 @Setter
-public abstract class AuthSidePagingCommand extends AuthSideSortingCommand {
+public abstract class AuthSidePagingCommand {
 
     /**
-     * Pagination criteria for the command.
+     * Pageable criteria for the command.
      */
-    protected AuthSidePageable pagination;
+    protected AuthSidePageable pageable;
 
 }

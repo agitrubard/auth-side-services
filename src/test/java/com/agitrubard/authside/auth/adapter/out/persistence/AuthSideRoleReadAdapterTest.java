@@ -66,7 +66,7 @@ class AuthSideRoleReadAdapterTest extends AuthSideUnitTest {
         Assertions.assertEquals(pageOfMockRoles.getPageSize(), pageOfRoles.getPageSize());
         Assertions.assertEquals(pageOfMockRoles.getTotalPageCount(), pageOfRoles.getTotalPageCount());
         Assertions.assertEquals(pageOfMockRoles.getTotalElementCount(), pageOfRoles.getTotalElementCount());
-        Assertions.assertEquals(pageOfMockRoles.getSortedBy(), pageOfRoles.getSortedBy());
+        Assertions.assertEquals(pageOfMockRoles.getOrderedBy(), pageOfRoles.getOrderedBy());
         Assertions.assertEquals(pageOfMockRoles.getFilteredBy(), pageOfRoles.getFilteredBy());
 
         // Verify

@@ -2,15 +2,16 @@ package com.agitrubard.authside.common.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * Abstract base class representing a listing of authentication side entities.
- * Provides properties for pagination and sorting criteria.
+ * Provides properties for pageable and ordering criteria.
  * Subclasses should extend this class to define specific listing criteria.
  *
  * @author Agit Rubar Demir | @agitrubard
@@ -21,35 +22,35 @@ import java.util.List;
 public abstract class AuthSideListing {
 
     /**
-     * Pagination criteria for the listing.
+     * Pageable criteria for the listing.
      */
-    protected AuthSidePageable pagination;
-
-    /**
-     * Sorting criteria for the listing.
-     */
-    protected List<AuthSideSorting> sort;
+    protected AuthSidePageable pageable;
 
     /**
      * Converts authentication side listing criteria into a Spring Data's Pageable object.
      *
-     * @return A Pageable object representing the pagination and sorting criteria.
+     * @return A Pageable object representing the pageable and ordering criteria.
      */
     public Pageable toPageable() {
 
-        if (this.sort != null) {
+        if (this.pageable == null) {
+            return Pageable.unpaged();
+        }
+
+        final Set<AuthSideSortable.Order> orders = this.pageable.getOrders();
+        if (CollectionUtils.isNotEmpty(orders)) {
             return PageRequest.of(
-                    this.pagination.getPageNumber() - 1,
-                    this.pagination.getPageSize(),
-                    Sort.by(this.sort.stream()
+                    this.pageable.getPageNumber() - 1,
+                    this.pageable.getPageSize(),
+                    Sort.by(orders.stream()
                             .map(sortable -> Sort.Order.by(sortable.getProperty()).with(sortable.getDirection()))
                             .toList())
             );
         }
 
         return PageRequest.of(
-                this.pagination.getPageNumber() - 1,
-                this.pagination.getPageSize()
+                this.pageable.getPageNumber() - 1,
+                this.pageable.getPageSize()
         );
 
     }
