@@ -1,7 +1,7 @@
 package com.agitrubard.authside.auth.application.port.out;
 
 /**
- * The {@code AuthSideInvalidTokenReadPort} interface defines methods for reading and checking the existence of invalid tokens
+ * The {@link AuthSideInvalidTokenReadPort} interface defines methods for reading and checking the existence of invalid tokens
  * in the authentication side of the application. It is responsible for querying the existence of tokens marked as invalid.
  * <p>
  * Implementations of this interface provide the ability to determine whether a token identified by its token ID exists in the

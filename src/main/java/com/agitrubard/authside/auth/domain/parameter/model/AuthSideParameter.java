@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.experimental.SuperBuilder;
 
 /**
- * The {@code AuthSideParameter} class represents a parameter in the authentication system.
+ * The {@link AuthSideParameter} class represents a parameter in the authentication system.
  * It extends the {@link AuthSideBaseDomainModel} and provides information about parameters, including an ID, name,
  * and a definition.
  *

@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * The {@code AuthSideTokenClaim} enum defines a set of standard claims used in JSON Web Tokens (JWTs) within the
+ * The {@link AuthSideTokenClaim} enum defines a set of standard claims used in JSON Web Tokens (JWTs) within the
  * authentication system. Each claim is represented by a key and provides specific information about the token.
  * <p>
  * These claims are used for various purposes, such as identifying the token, specifying its type, and including user-related

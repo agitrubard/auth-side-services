@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSideTokenResponse} class represents a data transfer object (DTO)
+ * The {@link AuthSideTokenResponse} class represents a data transfer object (DTO)
  * used for encapsulating the response containing authentication tokens on the authentication side.
  * It includes the access token, access token expiration time, and the refresh token.
  *

@@ -5,7 +5,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 
 /**
- * The {@code AuthSideTokenUseCase} interface defines the use cases for working with authentication tokens in the authentication
+ * The {@link AuthSideTokenUseCase} interface defines the use cases for working with authentication tokens in the authentication
  * side of the application. It provides methods for generating tokens, verifying and validating tokens, and retrieving token claims.
  * <p>
  * Implementations of this interface are responsible for handling the creation, validation, and management of authentication tokens

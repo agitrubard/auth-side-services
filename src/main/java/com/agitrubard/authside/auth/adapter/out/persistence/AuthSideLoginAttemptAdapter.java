@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
- * The {@code AuthSideLoginAttemptAdapter} class is an adapter component responsible for bridging the gap between the application's
+ * The {@link AuthSideLoginAttemptAdapter} class is an adapter component responsible for bridging the gap between the application's
  * business logic and the data access layer. It implements the interfaces {@link AuthSideLoginAttemptReadPort} and
  * {@link AuthSideLoginAttemptSavePort}, providing methods to read and save user login attempts.
  * <p>

@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 /**
- * The {@code AuthSidePermission} class represents a permission entity in the authentication system. Permissions are
+ * The {@link AuthSidePermission} class represents a permission entity in the authentication system. Permissions are
  * used to define access rights for various categories or features within the application. Each permission has a unique
  * identifier, a name, and belongs to a specific category.
  *

@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
 
 /**
- * The {@code AuthSideBaseDomainModel} is an abstract base class representing common attributes for domain models within the Auth Side application. Domain models typically represent core business entities and may have information about their creation and modification history.
+ * The {@link AuthSideBaseDomainModel} is an abstract base class representing common attributes for domain models within the Auth Side application. Domain models typically represent core business entities and may have information about their creation and modification history.
  *
  * <p>This class includes attributes to track the creator, creation timestamp, last updater, and update timestamp for domain entities. Subclasses can extend this base class to inherit these common attributes.
  *

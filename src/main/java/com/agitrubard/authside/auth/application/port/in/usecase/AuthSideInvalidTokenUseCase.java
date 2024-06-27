@@ -3,7 +3,7 @@ package com.agitrubard.authside.auth.application.port.in.usecase;
 import java.util.Set;
 
 /**
- * The {@code AuthSideInvalidTokenUseCase} interface defines the use cases for managing and validating invalidated tokens
+ * The {@link AuthSideInvalidTokenUseCase} interface defines the use cases for managing and validating invalidated tokens
  * in the authentication side of the application. It provides methods for invalidating tokens and checking the invalidity
  * status of specific tokens.
  * <p>

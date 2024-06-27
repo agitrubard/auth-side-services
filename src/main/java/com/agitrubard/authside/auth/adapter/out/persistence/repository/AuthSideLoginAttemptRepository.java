@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * The {@code AuthSideLoginAttemptRepository} interface defines a repository for managing and accessing user login attempts
+ * The {@link AuthSideLoginAttemptRepository} interface defines a repository for managing and accessing user login attempts
  * on the authentication side of the application. It extends the JpaRepository interface, providing CRUD operations for the
  * {@link AuthSideLoginAttemptEntity} entities in the database.
  * <p>

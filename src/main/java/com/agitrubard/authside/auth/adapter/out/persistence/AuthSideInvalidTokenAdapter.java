@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.Set;
 
 /**
- * The {@code AuthSideInvalidTokenAdapter} class is an adapter component responsible for bridging the gap between the application's
+ * The {@link AuthSideInvalidTokenAdapter} class is an adapter component responsible for bridging the gap between the application's
  * business logic and the data access layer. It implements the interfaces {@link AuthSideInvalidTokenReadPort} and
  * {@link AuthSideInvalidTokenSavePort}, providing methods to read and save invalidated authentication tokens.
  * <p>

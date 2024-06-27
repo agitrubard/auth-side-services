@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 /**
- * The {@code AuthSideUserRepository} interface defines a repository for managing and accessing user profiles
+ * The {@link AuthSideUserRepository} interface defines a repository for managing and accessing user profiles
  * on the authentication side of the application. It extends the JpaRepository interface, providing CRUD operations for the
  * {@link AuthSideUserEntity} entities in the database.
  * <p>

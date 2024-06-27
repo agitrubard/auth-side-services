@@ -5,7 +5,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideNotFoundExce
 import java.io.Serial;
 
 /**
- * The {@code AuthSideUserNotFoundException} class is an exception that is thrown when an attempt to find a user by user ID in the
+ * The {@link AuthSideUserNotFoundException} class is an exception that is thrown when an attempt to find a user by user ID in the
  * authentication side of the application fails because the user is not found. This exception extends {@link AuthSideNotFoundException},
  * indicating that the requested user is not present.
  *
@@ -23,7 +23,7 @@ public class AuthSideUserNotFoundException extends AuthSideNotFoundException {
     private static final long serialVersionUID = -4416721844391767957L;
 
     /**
-     * Constructs a new {@code AuthSideUserNotFoundException} with the provided user ID.
+     * Constructs a new {@link AuthSideUserNotFoundException} with the provided user ID.
      *
      * @param userId The user ID for which the user is not found.
      */

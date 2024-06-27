@@ -5,7 +5,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideNotFoundExce
 import java.io.Serial;
 
 /**
- * The {@code AuthSideLoginAttemptRecordNotFoundException} class is an exception that is thrown when an attempt to find a
+ * The {@link AuthSideLoginAttemptRecordNotFoundException} class is an exception that is thrown when an attempt to find a
  * user login attempt record by user ID in the authentication side of the application fails because the record is not found.
  * This exception extends {@link AuthSideNotFoundException}, indicating that the requested record is not present.
  *
@@ -23,7 +23,7 @@ public class AuthSideLoginAttemptRecordNotFoundException extends AuthSideNotFoun
     private static final long serialVersionUID = 5360206400050299920L;
 
     /**
-     * Constructs a new {@code AuthSideLoginAttemptRecordNotFoundException} with the provided user ID.
+     * Constructs a new {@link AuthSideLoginAttemptRecordNotFoundException} with the provided user ID.
      *
      * @param userId The user ID for which the login attempt record is not found.
      */

@@ -5,7 +5,7 @@ import com.agitrubard.authside.auth.domain.parameter.model.AuthSideParameter;
 import java.util.Set;
 
 /**
- * The {@code AuthSideParameterSavePort} interface defines methods for saving authentication parameters.
+ * The {@link AuthSideParameterSavePort} interface defines methods for saving authentication parameters.
  * Implementations of this interface provide the ability to save sets of authentication parameters.
  *
  * @author Agit Rubar Demir | @agitrubard

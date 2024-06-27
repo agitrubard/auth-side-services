@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * The {@code AuthSideInvalidTokenRepository} interface defines a repository for managing and accessing invalidated authentication tokens
+ * The {@link AuthSideInvalidTokenRepository} interface defines a repository for managing and accessing invalidated authentication tokens
  * on the authentication side of the application. It extends the JpaRepository interface, providing CRUD operations for the
  * {@link AuthSideInvalidTokenEntity} entities in the database.
  * <p>

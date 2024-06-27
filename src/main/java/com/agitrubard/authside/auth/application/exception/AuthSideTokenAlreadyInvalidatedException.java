@@ -5,7 +5,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideException;
 import java.io.Serial;
 
 /**
- * The {@code AuthSideTokenAlreadyInvalidatedException} class is an exception that is thrown when an attempt to invalidate a
+ * The {@link AuthSideTokenAlreadyInvalidatedException} class is an exception that is thrown when an attempt to invalidate a
  * token in the authentication side of the application fails because the token has already been invalidated. This exception
  * extends {@link AuthSideException}, indicating that the requested token is already in an invalidated state.
  *
@@ -23,7 +23,7 @@ public class AuthSideTokenAlreadyInvalidatedException extends AuthSideException 
     private static final long serialVersionUID = 926590327251528609L;
 
     /**
-     * Constructs a new {@code AuthSideTokenAlreadyInvalidatedException} with the provided token ID.
+     * Constructs a new {@link AuthSideTokenAlreadyInvalidatedException} with the provided token ID.
      *
      * @param tokenId The token ID for which the invalidation failed due to the token being already invalidated.
      */

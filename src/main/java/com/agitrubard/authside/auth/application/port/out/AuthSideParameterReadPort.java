@@ -5,7 +5,7 @@ import com.agitrubard.authside.auth.domain.parameter.model.AuthSideParameter;
 import java.util.Set;
 
 /**
- * The {@code AuthSideParameterReadPort} interface defines methods for retrieving authentication parameters
+ * The {@link AuthSideParameterReadPort} interface defines methods for retrieving authentication parameters
  * with names that match a given prefix in the authentication side of the application. Implementations of this interface
  * provide the ability to search for parameters based on a specified prefix.
  *

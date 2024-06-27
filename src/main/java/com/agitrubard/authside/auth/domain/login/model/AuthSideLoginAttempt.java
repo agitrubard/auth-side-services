@@ -8,7 +8,7 @@ import lombok.experimental.SuperBuilder;
 import java.time.LocalDateTime;
 
 /**
- * The {@code AuthSideLoginAttempt} class represents a user's login attempt in the authentication system.
+ * The {@link AuthSideLoginAttempt} class represents a user's login attempt in the authentication system.
  * It extends the {@link AuthSideBaseDomainModel} and provides information about the login attempt, such as user ID,
  * login date, failed login attempts count, and the date of the last failed attempt.
  *

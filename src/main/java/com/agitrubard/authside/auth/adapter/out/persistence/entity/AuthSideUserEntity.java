@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
- * The {@code AuthSideUserEntity} class represents an entity that stores user information on the authentication side of the application.
+ * The {@link AuthSideUserEntity} class represents an entity that stores user information on the authentication side of the application.
  * It is used to manage and store user profiles, including user identifiers, login credentials, personal information, and associated roles for access control and authorization.
  * <p>
  * This entity extends the {@link AuthSideBaseEntity} class and is mapped to the "AUTH_SIDE_USER" table in the database.
@@ -95,7 +95,7 @@ public class AuthSideUserEntity extends AuthSideBaseEntity {
 
 
     /**
-     * The {@code AuthSideUserPasswordEntity} class represents an entity that stores user password information on the authentication side of the application.
+     * The {@link PasswordEntity} class represents an entity that stores user password information on the authentication side of the application.
      * It is used to manage and store user passwords, including user identifiers, password values, and expiration dates.
      * <p>
      * This entity extends the {@link AuthSideBaseEntity} class and is mapped to the "AUTH_SIDE_USER_PASSWORD" table in the database.

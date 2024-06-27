@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSideTokenRefreshCommand} class represents a command object used for refreshing an authentication token,
+ * The {@link AuthSideTokenRefreshCommand} class represents a command object used for refreshing an authentication token,
  * typically a refresh token. It includes a field for the refresh token, allowing the application to request a new access token
  * and possibly a new refresh token based on the provided refresh token.
  * <p>

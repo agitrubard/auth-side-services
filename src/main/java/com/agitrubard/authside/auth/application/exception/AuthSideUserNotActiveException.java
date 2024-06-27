@@ -5,7 +5,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideException;
 import java.io.Serial;
 
 /**
- * The {@code AuthSideUserNotActiveException} class is an exception that is thrown when a user in the authentication side of
+ * The {@link AuthSideUserNotActiveException} class is an exception that is thrown when a user in the authentication side of
  * the application is found to be inactive. This exception extends {@link AuthSideException} and is used to indicate
  * cases where a user is not in an active state within the application.
  *
@@ -23,7 +23,7 @@ public class AuthSideUserNotActiveException extends AuthSideException {
     private static final long serialVersionUID = -5218287176856317070L;
 
     /**
-     * Constructs a new {@code AuthSideUserNotActiveException} with the provided user ID.
+     * Constructs a new {@link AuthSideUserNotActiveException} with the provided user ID.
      *
      * @param userId The user ID of the inactive user.
      */

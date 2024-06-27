@@ -11,7 +11,7 @@ import lombok.experimental.SuperBuilder;
 import java.util.Set;
 
 /**
- * The {@code AuthSideRole} class represents a role in the authentication system, providing details such as the role's ID,
+ * The {@link AuthSideRole} class represents a role in the authentication system, providing details such as the role's ID,
  * name, status, and associated permissions. It extends the {@link AuthSideBaseDomainModel} class, which serves as the
  * base class for domain models in the authentication system.
  * <p>

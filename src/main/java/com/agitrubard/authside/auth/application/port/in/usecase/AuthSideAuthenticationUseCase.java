@@ -6,7 +6,7 @@ import com.agitrubard.authside.auth.application.port.in.command.AuthSideTokensIn
 import com.agitrubard.authside.auth.domain.token.AuthSideToken;
 
 /**
- * The {@code AuthSideAuthenticationUseCase} interface defines the use cases for handling user authentication and token management
+ * The {@link AuthSideAuthenticationUseCase} interface defines the use cases for handling user authentication and token management
  * in the authentication side of the application. It provides methods for authenticating users, refreshing access tokens,
  * and invalidating tokens.
  * <p>

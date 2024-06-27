@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * The {@code AuthSideOpenAPIConfiguration} class is a Spring configuration class responsible for defining and configuring the OpenAPI (formerly known as Swagger) documentation for the Auth Side API.
+ * The {@link AuthSideOpenAPIConfiguration} class is a Spring configuration class responsible for defining and configuring the OpenAPI (formerly known as Swagger) documentation for the Auth Side API.
  *
  * <p>It creates an OpenAPI bean with information about the API, including the title, version, description, and contact details. This configuration is used to generate interactive API documentation and can be accessed through Swagger UI or other API documentation tools.
  *

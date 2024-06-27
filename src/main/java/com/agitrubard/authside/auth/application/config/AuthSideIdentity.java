@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Component;
 
 /**
- * The {@code AuthSideIdentity} class represents an authentication identity that provides access to user-related information
+ * The {@link AuthSideIdentity} class represents an authentication identity that provides access to user-related information
  * during the course of an HTTP request. It is designed to be scoped at the request level and is used for extracting
  * user-specific details, such as the user's unique identifier (user ID), from a JSON Web Token (JWT).
  * <p>

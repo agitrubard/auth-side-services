@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * The {@code AuthSideAuthenticationController} class is a Spring MVC controller responsible for handling authentication-related
+ * The {@link AuthSideAuthenticationController} class is a Spring MVC controller responsible for handling authentication-related
  * requests on the authentication side of the application. It provides endpoints for authenticating users, refreshing access tokens,
  * and invalidating tokens.
  * <p>
@@ -47,7 +47,7 @@ class AuthSideAuthenticationController {
      * Endpoint for user authentication. Receives a login request, converts it to a command, and returns an authentication token response.
      *
      * @param loginRequest The authentication request containing the username and password.
-     * @return An {@code AuthSideResponse} containing the authentication token response.
+     * @return An {@link AuthSideResponse} containing the authentication token response.
      */
     @PostMapping("/token")
     public AuthSideResponse<AuthSideTokenResponse> authenticate(
@@ -64,7 +64,7 @@ class AuthSideAuthenticationController {
      * Endpoint for refreshing an access token. Receives a refresh request, converts it to a command, and returns a refreshed token response.
      *
      * @param refreshRequest The token refresh request containing the refresh token.
-     * @return An {@code AuthSideResponse} containing the refreshed token response.
+     * @return An {@link AuthSideResponse} containing the refreshed token response.
      */
     @PostMapping("/token/refresh")
     public AuthSideResponse<AuthSideTokenResponse> refreshToken(
@@ -81,7 +81,7 @@ class AuthSideAuthenticationController {
      * Endpoint for invalidating access tokens. Receives a token invalidation request and invalidates the provided tokens.
      *
      * @param invalidateRequest The token invalidation request containing the access and refresh tokens to invalidate.
-     * @return An {@code AuthSideResponse} indicating the success of token invalidation.
+     * @return An {@link AuthSideResponse} indicating the success of token invalidation.
      */
     @PostMapping("/token/invalidate")
     public AuthSideResponse<Void> invalidateTokens(

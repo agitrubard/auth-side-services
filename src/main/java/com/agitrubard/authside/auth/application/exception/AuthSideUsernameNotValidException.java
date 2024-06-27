@@ -5,7 +5,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideException;
 import java.io.Serial;
 
 /**
- * The {@code AuthSideUsernameNotValidException} class is an exception that is thrown when a username in the authentication
+ * The {@link AuthSideUsernameNotValidException} class is an exception that is thrown when a username in the authentication
  * side of the application is considered not valid. This exception extends {@link AuthSideException} and is used to indicate
  * failures related to invalid usernames.
  *
@@ -23,7 +23,7 @@ public class AuthSideUsernameNotValidException extends AuthSideException {
     private static final long serialVersionUID = 8712878086437207740L;
 
     /**
-     * Constructs a new {@code AuthSideUsernameNotValidException} with the provided username.
+     * Constructs a new {@link AuthSideUsernameNotValidException} with the provided username.
      *
      * @param username The username that is considered not valid.
      */

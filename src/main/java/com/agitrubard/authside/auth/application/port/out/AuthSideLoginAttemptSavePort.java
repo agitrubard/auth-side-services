@@ -3,7 +3,7 @@ package com.agitrubard.authside.auth.application.port.out;
 import com.agitrubard.authside.auth.domain.login.model.AuthSideLoginAttempt;
 
 /**
- * The {@code AuthSideLoginAttemptSavePort} interface defines a method for saving user login attempt records
+ * The {@link AuthSideLoginAttemptSavePort} interface defines a method for saving user login attempt records
  * in the authentication side of the application. Implementations of this interface are responsible for persisting
  * login attempt records for future retrieval and analysis.
  *

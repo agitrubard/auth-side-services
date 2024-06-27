@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSideTokenRefreshRequest} class represents a data transfer object (DTO)
+ * The {@link AuthSideTokenRefreshRequest} class represents a data transfer object (DTO)
  * used for requesting the refresh of an authentication token on the authentication side.
  * It contains the refresh token provided for the token refresh process.
  *

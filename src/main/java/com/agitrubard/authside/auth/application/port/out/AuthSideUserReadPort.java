@@ -5,7 +5,7 @@ import com.agitrubard.authside.auth.domain.user.model.AuthSideUser;
 import java.util.Optional;
 
 /**
- * The {@code AuthSideUserReadPort} interface defines methods for reading user information in the authentication system.
+ * The {@link AuthSideUserReadPort} interface defines methods for reading user information in the authentication system.
  * Implementations of this interface provide the ability to retrieve user details by their ID or username.
  *
  * @author Agit Rubar Demir | @agitrubard

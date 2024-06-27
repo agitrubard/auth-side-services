@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 /**
- * The {@code AuthSideUserAdapter} class is an adapter component responsible for bridging the gap between the application's
+ * The {@link AuthSideUserAdapter} class is an adapter component responsible for bridging the gap between the application's
  * business logic and the data access layer. It implements the {@link AuthSideUserReadPort} interface, providing methods to
  * read user profiles on the authentication side of the application.
  * <p>

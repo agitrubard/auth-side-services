@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * The {@code AuthSidePageResponse} class is a generic response class that encapsulates paged data along with metadata, including page information,
+ * The {@link AuthSidePageResponse} class is a generic response class that encapsulates paged data along with metadata, including page information,
  * total page count, total element count, ordering details, and filtering details. It is used to represent paged data in various scenarios within the application.
  * <p>
  * The class provides a builder pattern for creating instances, making it easy to initialize and populate the necessary fields.
@@ -60,18 +60,18 @@ public class AuthSidePageResponse<R> {
 
 
     /**
-     * The builder class for the {@code AuthSidePageResponse} class. This builder is responsible for creating instances of {@code AuthSidePageResponse}.
+     * The builder class for the {@link AuthSidePageResponse} class. This builder is responsible for creating instances of {@link AuthSidePageResponse}.
      *
-     * <p>The method within this builder is used to convert an {@link AuthSidePage} object to an {@code AuthSidePageResponse} object.
+     * <p>The method within this builder is used to convert an {@link AuthSidePage} object to an {@link AuthSidePageResponse} object.
      */
     @SuppressWarnings("This method is unused by the application directly but Spring is using it in the background.")
     public static class AuthSidePageResponseBuilder<R> {
 
         /**
-         * Converts the provided {@link AuthSidePage} object to an {@code AuthSidePageResponse} object.
+         * Converts the provided {@link AuthSidePage} object to an {@link AuthSidePageResponse} object.
          *
-         * @param authSidePage The {@link AuthSidePage} object to be converted to an {@code AuthSidePageResponse} object.
-         * @return An {@code AuthSidePageResponseBuilder} instance representing the converted page response.
+         * @param authSidePage The {@link AuthSidePage} object to be converted to an {@link AuthSidePageResponse} object.
+         * @return An {@link AuthSidePageResponseBuilder} instance representing the converted page response.
          */
         public <M> AuthSidePageResponseBuilder<R> of(final AuthSidePage<M> authSidePage, final List<R> content) {
             return AuthSidePageResponse.<R>builder()

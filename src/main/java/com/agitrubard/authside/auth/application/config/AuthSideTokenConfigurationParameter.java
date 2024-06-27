@@ -17,7 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * The {@code AuthSideTokenConfigurationParameter} class represents a configuration parameter provider for token-related settings
+ * The {@link AuthSideTokenConfigurationParameter} class represents a configuration parameter provider for token-related settings
  * in the authentication side of the application. It is responsible for initializing token-related parameters, such as issuer,
  * token expiration times, and cryptographic keys.
  * <p>
@@ -62,7 +62,7 @@ public class AuthSideTokenConfigurationParameter {
 
 
     /**
-     * Constructs an instance of the {@code AuthSideTokenConfigurationParameter} class and initializes token-related parameters
+     * Constructs an instance of the {@link AuthSideTokenConfigurationParameter} class and initializes token-related parameters
      * based on the configuration settings retrieved from the database using the provided {@link AuthSideParameterUseCase}.
      *
      * @param parameterUseCase The use case for managing authentication parameters.
@@ -178,8 +178,8 @@ public class AuthSideTokenConfigurationParameter {
 
 
     /**
-     * The {@code TokenConfigurationParameter} enum represents token-related configuration parameters used by the
-     * {@code AuthSideTokenConfigurationParameter} class. Each enum constant defines a specific configuration parameter
+     * The {@link TokenConfigurationParameter} enum represents token-related configuration parameters used by the
+     * {@link AuthSideTokenConfigurationParameter} class. Each enum constant defines a specific configuration parameter
      * key, along with a default value. These parameters are used for configuring various aspects of token generation
      * and authentication in the application.
      */

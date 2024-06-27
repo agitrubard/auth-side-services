@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSideParameterEntity} class represents an entity that stores parameter information on the authentication side of the application.
+ * The {@link AuthSideParameterEntity} class represents an entity that stores parameter information on the authentication side of the application.
  * It is used to manage and store various parameters and their definitions, such as configuration settings.
  * <p>
  * This entity extends the {@link AuthSideBaseEntity} class and is mapped to the "AUTH_SIDE_PARAMETER" table in the database.

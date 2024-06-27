@@ -8,7 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * The {@code AuthSideParameterRepository} interface defines a repository for managing and accessing authentication parameters
+ * The {@link AuthSideParameterRepository} interface defines a repository for managing and accessing authentication parameters
  * on the authentication side of the application. It extends the JpaRepository interface, providing CRUD operations for the
  * {@link AuthSideParameterEntity} entities in the database.
  * <p>

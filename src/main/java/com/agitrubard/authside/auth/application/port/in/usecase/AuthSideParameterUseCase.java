@@ -6,7 +6,7 @@ import com.agitrubard.authside.auth.domain.parameter.model.AuthSideParameter;
 import java.util.Set;
 
 /**
- * The {@code AuthSideParameterUseCase} interface defines the use cases for managing authentication-related parameters in the
+ * The {@link AuthSideParameterUseCase} interface defines the use cases for managing authentication-related parameters in the
  * authentication side of the application. It provides methods for retrieving parameters with names that have a specific
  * prefix and for saving a collection of parameter save commands.
  * <p>

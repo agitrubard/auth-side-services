@@ -24,7 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 /**
- * The {@code AuthSideSecurityConfiguration} class is responsible for configuring security settings for the authentication side of the application.
+ * The {@link AuthSideSecurityConfiguration} class is responsible for configuring security settings for the authentication side of the application.
  * It is annotated with {@code @Configuration}, {@code @EnableWebSecurity}, {@code @EnableMethodSecurity}, and {@code @EnableGlobalAuthentication}
  * to enable security features and customize security behaviors.
  * <p>

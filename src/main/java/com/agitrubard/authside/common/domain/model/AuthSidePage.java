@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * The {@code AuthSidePage} class represents a paginated response containing a list of content items, along with pageable information and optional ordering and filtering details.
+ * The {@link AuthSidePage} class represents a paginated response containing a list of content items, along with pageable information and optional ordering and filtering details.
  *
  * <p>It is commonly used in the Auth Side application to provide paginated results of data. The class includes the content, page number, page size, total page count, total element count, ordering criteria, and filtering details.
  *

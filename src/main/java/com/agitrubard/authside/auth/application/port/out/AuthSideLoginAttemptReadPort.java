@@ -3,7 +3,7 @@ package com.agitrubard.authside.auth.application.port.out;
 import com.agitrubard.authside.auth.domain.login.model.AuthSideLoginAttempt;
 
 /**
- * The {@code AuthSideLoginAttemptReadPort} interface defines a method for retrieving a user's login attempt information
+ * The {@link AuthSideLoginAttemptReadPort} interface defines a method for retrieving a user's login attempt information
  * by their user ID in the authentication side of the application. Implementations of this interface are responsible for
  * querying and providing user login attempt records for further processing.
  *

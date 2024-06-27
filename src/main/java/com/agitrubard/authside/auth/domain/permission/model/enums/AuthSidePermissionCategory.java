@@ -1,7 +1,7 @@
 package com.agitrubard.authside.auth.domain.permission.model.enums;
 
 /**
- * The {@code PermissionCategory} enum represents different categories or types of permissions in the authentication system.
+ * The {@link AuthSidePermissionCategory} enum represents different categories or types of permissions in the authentication system.
  * These categories are used to classify and manage permissions related to user management and role management.
  *
  * @author Agit Rubar Demir | @agitrubard

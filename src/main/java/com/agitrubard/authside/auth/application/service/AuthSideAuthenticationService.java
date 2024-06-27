@@ -27,7 +27,7 @@ import java.util.Optional;
 import java.util.Set;
 
 /**
- * The {@code AuthSideAuthenticationService} class provides authentication and token management services.
+ * The {@link AuthSideAuthenticationService} class provides authentication and token management services.
  * <p>
  * It implements the {@link AuthSideAuthenticationUseCase} interface and handles user authentication, token generation,
  * token validation, and token invalidation.

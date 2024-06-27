@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * The {@code AuthSideParameterAdapter} class is an adapter component responsible for bridging the gap between the application's
+ * The {@link AuthSideParameterAdapter} class is an adapter component responsible for bridging the gap between the application's
  * business logic and the data access layer. It implements the interfaces {@link AuthSideParameterReadPort} and
  * {@link AuthSideParameterSavePort}, providing methods to read and save authentication parameters.
  * <p>

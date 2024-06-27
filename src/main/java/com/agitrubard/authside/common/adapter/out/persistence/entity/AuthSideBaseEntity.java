@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 /**
- * The {@code AuthSideBaseEntity} is an abstract base class for all entities in the AuthSide system. It includes fields for audit information such as creation and update timestamps, as well as user information.
+ * The {@link AuthSideBaseEntity} is an abstract base class for all entities in the AuthSide system. It includes fields for audit information such as creation and update timestamps, as well as user information.
  *
  * <p>Entities that extend this class will inherit the audit fields and the logic to set them automatically during the lifecycle of the entity.
  *

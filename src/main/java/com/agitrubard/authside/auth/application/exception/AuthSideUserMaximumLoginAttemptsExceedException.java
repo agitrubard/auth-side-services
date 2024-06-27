@@ -5,7 +5,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideException;
 import java.io.Serial;
 
 /**
- * The {@code AuthSideUserMaximumLoginAttemptsExceedException} class is an exception that is thrown when a user in the
+ * The {@link AuthSideUserMaximumLoginAttemptsExceedException} class is an exception that is thrown when a user in the
  * authentication side of the application exceeds the maximum allowed login attempts. This exception extends
  * {@link AuthSideException} and is used to indicate that the user's login attempts have exceeded the allowable limit.
  *
@@ -23,7 +23,7 @@ public class AuthSideUserMaximumLoginAttemptsExceedException extends AuthSideExc
     private static final long serialVersionUID = -8525633683813130816L;
 
     /**
-     * Constructs a new {@code AuthSideUserMaximumLoginAttemptsExceedException} with the provided user ID.
+     * Constructs a new {@link AuthSideUserMaximumLoginAttemptsExceedException} with the provided user ID.
      *
      * @param userId The user ID of the user who has exceeded the maximum allowed login attempts.
      */

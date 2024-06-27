@@ -11,7 +11,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 /**
- * The {@code AuthSideLoginAttemptEntity} class represents an entity that stores information about user login attempts
+ * The {@link AuthSideLoginAttemptEntity} class represents an entity that stores information about user login attempts
  * on the authentication side of the application. It is used to track login attempts, including successful and failed ones,
  * and includes fields such as the user ID, last login date, failed try count, and the date of the last failed attempt.
  * <p>

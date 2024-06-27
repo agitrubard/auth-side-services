@@ -5,7 +5,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideException;
 import java.io.Serial;
 
 /**
- * The {@code AuthSidePasswordNotValidException} class is an exception that is thrown when an attempt to validate a password
+ * The {@link AuthSidePasswordNotValidException} class is an exception that is thrown when an attempt to validate a password
  * fails in the authentication side of the application. This exception extends {@link AuthSideException}, indicating that
  * the provided password is not considered valid.
  *
@@ -23,7 +23,7 @@ public class AuthSidePasswordNotValidException extends AuthSideException {
     private static final long serialVersionUID = 1899764163725033286L;
 
     /**
-     * Constructs a new {@code AuthSidePasswordNotValidException} with a default error message.
+     * Constructs a new {@link AuthSidePasswordNotValidException} with a default error message.
      */
     public AuthSidePasswordNotValidException() {
         super("PASSWORD IS NOT VALID!");

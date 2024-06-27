@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSideTokensInvalidateRequest} class represents a data transfer object (DTO)
+ * The {@link AuthSideTokensInvalidateRequest} class represents a data transfer object (DTO)
  * used for invalidating authentication tokens on the authentication side.
  * It contains both an access token and a refresh token that are intended to be invalidated.
  *

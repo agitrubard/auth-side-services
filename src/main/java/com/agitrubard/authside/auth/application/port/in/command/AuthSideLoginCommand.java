@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSideLoginCommand} class represents a command object for handling user login requests in the authentication module.
+ * The {@link AuthSideLoginCommand} class represents a command object for handling user login requests in the authentication module.
  * It contains the user's username and password, which are used for authentication.
  * <p>
  * This class is typically used to transfer login request data between the controller and the authentication use case.

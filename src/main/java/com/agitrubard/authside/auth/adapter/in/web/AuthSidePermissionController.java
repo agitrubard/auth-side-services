@@ -35,7 +35,7 @@ class AuthSidePermissionController {
      * This method is mapped to handle HTTP GET requests to "/permissions". It requires
      * the user to have either 'role:create' or 'role:update' authority to access.
      *
-     * @return An {@code AuthSideResponse} containing a set of {@code AuthSidePermissionsResponse}
+     * @return An {@link AuthSideResponse} containing a set of {@link AuthSidePermissionsResponse}
      * representing all permissions available to the user.
      */
     @GetMapping("/permissions")

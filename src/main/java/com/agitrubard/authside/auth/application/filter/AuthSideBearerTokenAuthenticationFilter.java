@@ -31,7 +31,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * The {@code AuthSideBearerTokenAuthenticationFilter} class is a custom Spring Security filter responsible for
+ * The {@link AuthSideBearerTokenAuthenticationFilter} class is a custom Spring Security filter responsible for
  * authenticating API requests using bearer tokens. It extends {@link OncePerRequestFilter} to ensure it's applied
  * only once per request.
  * <p>

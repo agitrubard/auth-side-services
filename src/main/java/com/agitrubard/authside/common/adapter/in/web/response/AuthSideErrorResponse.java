@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
- * The {@code AuthSideErrorResponse} class represents a standard error response format used for handling exceptions and conveying error information.
+ * The {@link AuthSideErrorResponse} class represents a standard error response format used for handling exceptions and conveying error information.
  * It includes details such as the timestamp, HTTP status, error message, and optional sub-errors.
  *
  * @author Agit Rubar Demir | @agitrubard
@@ -64,7 +64,7 @@ public class AuthSideErrorResponse {
 
 
     /**
-     * The {@code AuthSideSubError} class represents a sub-error within an error response.
+     * The {@link AuthSideSubError} class represents a sub-error within an error response.
      */
     @Getter
     @Builder
@@ -112,11 +112,11 @@ public class AuthSideErrorResponse {
 
 
     /**
-     * Constructs an {@code AuthSideErrorResponseBuilder} with sub-errors generated from a list of {@code FieldError} objects.
+     * Constructs an {@link AuthSideErrorResponseBuilder} with sub-errors generated from a list of {@link FieldError} objects.
      * This is typically used to handle validation errors.
      *
-     * @param fieldErrors The list of {@code FieldError} objects representing validation errors.
-     * @return An {@code AuthSideErrorResponseBuilder} with sub-errors.
+     * @param fieldErrors The list of {@link FieldError} objects representing validation errors.
+     * @return An {@link AuthSideErrorResponseBuilder} with sub-errors.
      */
     public static AuthSideErrorResponse.AuthSideErrorResponseBuilder subErrors(final List<FieldError> fieldErrors) {
 
@@ -148,11 +148,11 @@ public class AuthSideErrorResponse {
     }
 
     /**
-     * Constructs an {@code AuthSideErrorResponseBuilder} with sub-errors generated from a set of {@code ConstraintViolation} objects.
+     * Constructs an {@link AuthSideErrorResponseBuilder} with sub-errors generated from a set of {@link ConstraintViolation} objects.
      * This is used to handle validation errors that occur due to constraint violations.
      *
-     * @param constraintViolations The set of {@code ConstraintViolation} objects representing validation errors.
-     * @return An {@code AuthSideErrorResponseBuilder} with sub-errors.
+     * @param constraintViolations The set of {@link ConstraintViolation} objects representing validation errors.
+     * @return An {@link AuthSideErrorResponseBuilder} with sub-errors.
      */
     public static AuthSideErrorResponse.AuthSideErrorResponseBuilder subErrors(final Set<ConstraintViolation<?>> constraintViolations) {
 
@@ -176,11 +176,11 @@ public class AuthSideErrorResponse {
     }
 
     /**
-     * Constructs an {@code AuthSideErrorResponseBuilder} with sub-errors generated from a {@code MethodArgumentTypeMismatchException}.
+     * Constructs an {@link AuthSideErrorResponseBuilder} with sub-errors generated from a {@link MethodArgumentTypeMismatchException}.
      * This is used to handle type mismatch errors in method arguments.
      *
-     * @param exception The {@code MethodArgumentTypeMismatchException} representing the type mismatch error.
-     * @return An {@code AuthSideErrorResponseBuilder} with sub-errors.
+     * @param exception The {@link MethodArgumentTypeMismatchException} representing the type mismatch error.
+     * @return An {@link AuthSideErrorResponseBuilder} with sub-errors.
      */
     public static AuthSideErrorResponse.AuthSideErrorResponseBuilder subErrors(final MethodArgumentTypeMismatchException exception) {
         return AuthSideErrorResponse.builder()

@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 /**
- * The {@code AuthSideParameterSaveCommand} class is a command object used for saving parameters related to the authentication side of the application.
+ * The {@link AuthSideParameterSaveCommand} class is a command object used for saving parameters related to the authentication side of the application.
  * It includes a parameter name and its corresponding definition.
  * <p>
  * This class is typically used to transfer parameter data when saving or updating parameters in the application's configuration.

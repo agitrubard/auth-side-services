@@ -5,7 +5,7 @@ import com.agitrubard.authside.common.application.exception.AuthSideException;
 import java.io.Serial;
 
 /**
- * The {@code AuthSideTokenNotValidException} class is an exception that is thrown when a token in the authentication side
+ * The {@link AuthSideTokenNotValidException} class is an exception that is thrown when a token in the authentication side
  * of the application is not considered valid. This exception extends {@link AuthSideException} and is used to indicate
  * token validation failures.
  *
@@ -23,7 +23,7 @@ public class AuthSideTokenNotValidException extends AuthSideException {
     private static final long serialVersionUID = -5404410121820902017L;
 
     /**
-     * Constructs a new {@code AuthSideTokenNotValidException} with the provided token and a cause.
+     * Constructs a new {@link AuthSideTokenNotValidException} with the provided token and a cause.
      *
      * @param jwt   The token that is not considered valid.
      * @param cause The cause of the exception, typically another exception that led to this token validation failure.

@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSidePermissionEntity} class represents an entity that stores permission information on the authentication side of the application.
+ * The {@link AuthSidePermissionEntity} class represents an entity that stores permission information on the authentication side of the application.
  * It is used to manage and store various permissions, including their names and categories, for access control and authorization purposes.
  * <p>
  * This entity extends the {@link AuthSideBaseEntity} class and is mapped to the "AUTH_SIDE_PERMISSION" table in the database.

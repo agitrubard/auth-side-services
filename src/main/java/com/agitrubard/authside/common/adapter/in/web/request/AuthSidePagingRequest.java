@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Set;
 
 /**
- * {@code AuthSidePagingRequest} is an abstract base class representing a paging request
+ * {@link AuthSidePagingRequest} is an abstract base class representing a paging request
  * configuration for authentication-related data retrieval.
  * <p>
  * It provides pageable settings through the {@link AuthSidePageable} object, ensuring

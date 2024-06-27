@@ -1,7 +1,7 @@
 package com.agitrubard.authside.auth.domain.role.enums;
 
 /**
- * The {@code AuthSideRoleStatus} enum represents the status of a user role in the authentication system. User roles
+ * The {@link AuthSideRoleStatus} enum represents the status of a user role in the authentication system. User roles
  * can have one of the following statuses: ACTIVE, PASSIVE, or DELETED.
  *
  * @author Agit Rubar Demir | @agitrubard

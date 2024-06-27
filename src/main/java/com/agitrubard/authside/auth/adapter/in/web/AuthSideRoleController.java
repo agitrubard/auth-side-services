@@ -71,7 +71,7 @@ class AuthSideRoleController {
      * the user to have either 'role:create' or 'role:update' authority to access.
      *
      * @param createRequest The request object containing data for creating the role.
-     * @return An {@code AuthSideResponse} indicating the success of the operation.
+     * @return An {@link AuthSideResponse} indicating the success of the operation.
      */
     @PostMapping("/role")
     @PreAuthorize("hasAnyAuthority('role:create', 'role:update')")

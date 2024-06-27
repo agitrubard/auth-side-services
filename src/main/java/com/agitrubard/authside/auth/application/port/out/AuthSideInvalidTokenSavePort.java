@@ -5,7 +5,7 @@ import com.agitrubard.authside.auth.domain.token.AuthSideInvalidToken;
 import java.util.Set;
 
 /**
- * The {@code AuthSideInvalidTokenSavePort} interface defines methods for saving invalid tokens in the authentication side
+ * The {@link AuthSideInvalidTokenSavePort} interface defines methods for saving invalid tokens in the authentication side
  * of the application. It provides the capability to store a set of tokens marked as invalid.
  * <p>
  * Implementations of this interface are responsible for persisting invalidated tokens in a data repository, allowing them to

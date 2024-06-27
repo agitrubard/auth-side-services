@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * The {@code AuthSideUser} class represents a user in the authentication system. It contains user-related information
+ * The {@link AuthSideUser} class represents a user in the authentication system. It contains user-related information
  * such as the user's ID, username, email address, password, first name, last name, status, and associated roles.
  * This class provides methods for checking the user's activity status and generating claims for authentication tokens.
  *

@@ -20,7 +20,7 @@ import lombok.Setter;
 import java.util.Set;
 
 /**
- * The {@code AuthSideRoleEntity} class represents an entity that stores role information on the authentication side of the application.
+ * The {@link AuthSideRoleEntity} class represents an entity that stores role information on the authentication side of the application.
  * It is used to manage and store roles, including their names, statuses, and associated permissions for access control and authorization.
  * <p>
  * This entity extends the {@link AuthSideBaseEntity} class and is mapped to the "AUTH_SIDE_ROLE" table in the database.

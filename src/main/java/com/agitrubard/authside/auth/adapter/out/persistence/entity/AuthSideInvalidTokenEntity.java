@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSideInvalidTokenEntity} class represents an entity that stores information about invalidated authentication tokens
+ * The {@link AuthSideInvalidTokenEntity} class represents an entity that stores information about invalidated authentication tokens
  * on the authentication side of the application. It is used to keep a record of tokens that have been invalidated for security purposes.
  * <p>
  * This entity extends the {@link AuthSideBaseEntity} class and includes fields for an automatically generated ID and the token ID.

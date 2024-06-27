@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * The {@code AuthSideLoginRequest} class represents a data transfer object (DTO)
+ * The {@link AuthSideLoginRequest} class represents a data transfer object (DTO)
  * used for authenticating a user's login on the authentication side.
  * It contains the user's username and password.
  *
