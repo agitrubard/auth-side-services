@@ -132,9 +132,9 @@ public class AuthSideErrorResponse {
             List<String> codes = List.of(Objects.requireNonNull(fieldError.getCodes()));
             if (!codes.isEmpty()) {
 
-                subErrorBuilder.field(StringUtils.substringAfterLast(codes.get(0), "."));
+                subErrorBuilder.field(StringUtils.substringAfterLast(codes.getFirst(), "."));
 
-                if (!"AssertTrue".equals(codes.get(codes.size() - 1))) {
+                if (!"AssertTrue".equals(codes.getLast())) {
                     subErrorBuilder.type(StringUtils.substringAfterLast(codes.get(codes.size() - 2), "."));
                 }
             }
