@@ -36,7 +36,7 @@ class AuthSideRoleReadService implements AuthSideRoleReadUseCase {
      * @return A page of authentication side roles.
      */
     @Override
-    public AuthSidePage<AuthSideRole> list(AuthSideRolesListCommand listCommand) {
+    public AuthSidePage<AuthSideRole> findAll(AuthSideRolesListCommand listCommand) {
         AuthSideRolesListing rolesListing = rolesListCommandToRolesListingMapper.map(listCommand);
         return roleReadPort.findAll(rolesListing);
     }

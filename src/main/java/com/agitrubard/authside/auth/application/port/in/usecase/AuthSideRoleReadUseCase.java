@@ -18,6 +18,6 @@ public interface AuthSideRoleReadUseCase {
      * @param listCommand The command containing criteria for listing authentication side roles.
      * @return A page of authentication side roles.
      */
-    AuthSidePage<AuthSideRole> list(AuthSideRolesListCommand listCommand);
+    AuthSidePage<AuthSideRole> findAll(AuthSideRolesListCommand listCommand);
 
 }

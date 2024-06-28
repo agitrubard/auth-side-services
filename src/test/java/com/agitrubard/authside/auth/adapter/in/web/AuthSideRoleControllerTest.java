@@ -67,7 +67,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
                 .orderedBy(mockListCommand.getPageable().getOrders())
                 .filteredBy(mockListCommand.getFilter())
                 .build();
-        Mockito.when(roleReadUseCase.list(Mockito.any(AuthSideRolesListCommand.class)))
+        Mockito.when(roleReadUseCase.findAll(Mockito.any(AuthSideRolesListCommand.class)))
                 .thenReturn(pageOfRoles);
 
         // Then
@@ -108,7 +108,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
 
         // Verify-
         Mockito.verify(roleReadUseCase, Mockito.times(1))
-                .list(Mockito.any(AuthSideRolesListCommand.class));
+                .findAll(Mockito.any(AuthSideRolesListCommand.class));
     }
 
     @Test
@@ -131,7 +131,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
                 .orderedBy(mockListCommand.getPageable().getOrders())
                 .filteredBy(mockListCommand.getFilter())
                 .build();
-        Mockito.when(roleReadUseCase.list(Mockito.any(AuthSideRolesListCommand.class)))
+        Mockito.when(roleReadUseCase.findAll(Mockito.any(AuthSideRolesListCommand.class)))
                 .thenReturn(pageOfRoles);
 
         // Then
@@ -172,7 +172,7 @@ class AuthSideRoleControllerTest extends AuthSideRestControllerTest {
 
         // Verify-
         Mockito.verify(roleReadUseCase, Mockito.times(1))
-                .list(Mockito.any(AuthSideRolesListCommand.class));
+                .findAll(Mockito.any(AuthSideRolesListCommand.class));
     }
 
 
