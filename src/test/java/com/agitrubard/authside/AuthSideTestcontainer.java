@@ -6,7 +6,8 @@ import org.testcontainers.containers.MySQLContainer;
 
 interface AuthSideTestcontainer {
 
-    MySQLContainer MYSQL_CONTAINER = new MySQLContainer("mysql:latest")
+    @SuppressWarnings("rawtypes")
+    MySQLContainer MYSQL_CONTAINER = new MySQLContainer("mysql:8.4.0")
             .withUsername("auth_side")
             .withPassword("auth_side_pass")
             .withDatabaseName("test");
